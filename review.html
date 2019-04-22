@@ -2,11 +2,30 @@
 <html>
 <head>
     <title>RMC Review</title>
+    <h1>Review Form</h1>
     <link rel  = "stylesheet" type = "text/css"  href = "css/style.css">
 </head>
 <body>
-</body>
+    <form method = "POST" id = "myForm">
+    <label for = "input" id = "topicOne">Please enter the Course Name:</label>
+    <input type = "text" name = "Course"> <br>
+    <label for = "Rating" id = "topicTwo">Rate the course (1.0 - 5.0):</label>
+    <input type = "number" name = "rating"> <br>
+        <label for = "tags" id = "topicFour">Tags for the course: </label>
+    <input type = "text" name = "tagInput">       
+    <ol id = "tags"></ol>
+    <label for = "Description" id = "topicThree">Describe the course(HW, Inclass, Professor, etc)</label> <br>
+    <input type = "text" name = "desc"> <br> 
+    <label for = "Anonymous">Anonymous?</label> <br>
+        <input type = "radio" name = "yes" value = "Yes">Yes <br>
+         <input type = "radio" name = "no" value = "No">No <br>
+    <button type = "submit">Submit</button>
+    </form>
     
+    <script src="https://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
+<script src="/js/basic.js"></script>
+</body>
+
 <footer>
 </footer>
 </html>
