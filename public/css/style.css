@@ -1,0 +1,19 @@
+body {
+background: rgb(247,254,255);
+background: linear-gradient(180deg, rgba(247,254,255,1) 0%, rgba(0,212,255,1) 100%);
+background-repeat: no-repeat;
+background-attachment: fixed;
+text-align: center;
+}
+
+nav {
+    background: rgb(247,254,255);
+background: linear-gradient(180deg, rgba(247,254,255,1) 0%, rgba(0,212,255,1) 100%);
+background-repeat: no-repeat;
+background-attachment: fixed;
+}
+
+
+form {
+    display: inline-block;
+}
