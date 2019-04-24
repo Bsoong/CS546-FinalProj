@@ -2,37 +2,89 @@
 <html>
 <head>
     <title>RMC Create</title>
-    <link rel  = "stylesheet" type = "text/css"  href = "css/style.css">
-    <h1>Account creation</h1>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel = "stylesheet" href = "public/css/style.css">
 </head>
-<body class = "Gradient">
-    <h1>Create an Account!</h1>
-    <form method = "post" id = "login">
-      <label for = "name" id ="firstName">First name:</label>  
-      <input type = "text" name = "firstName"> <br>
-      <label for = "name2" id ="lastName">Last name:</label>
-      <input type ="lastname" name = "last"> <br>
-      <label for = "mail" id ="Email">Email:</label>  
-      <input type = "text" name = "emailInput"> <br>
-      <label for = "username" id ="user">Username:</label>  
-      <input type = "text" name = "userName"> <br>
-      <label for = "password" id ="pass">Password:</label>
-      <input type ="password" name = "passWord"> <br>
-      <label for = "Ages" id ="Age">Age: </label>
-      <input type = "number" name = "Age"> <br>
-      <label for = "year" id = "grade">Year:</label> <br>
-     <input type = "radio" name = "First Year" value = "FR">First Year <br>
-      <input type = "radio" name = "Second Year" value = "SOPH">Second Year<br>
-      <input type = "radio" name = "Third Year" value = "JR">Third Year <br>
-      <input type = "radio" name = "Fourth Year" value = "SR">Fourth Year<br>
-       <input type = "radio" name = "Graduate" value = "G">Graduate Student<br>
-      <label for = "Gender">Gender:</label> <br>
-      <input type = "radio" name = "male" value = "Male">Male <br>
-      <input type = "radio" name = "female" value = "Female">Female <br>
-      <input type = "radio" name = "other" value = "Other">Other <br>
-      <button type = "submit">Create</button>
-    </form>
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <a class="navbar-brand" href="#">Rate My Course</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item active">
+        <a class="nav-link" href="index.html">Home<span class="sr-only">(current)</span></a>
+      </li>
+    <li class="nav-item active">
+        <a class="nav-link" href="login.html">Login<span class="sr-only">(current)</span></a>
+      </li>
+    <li class="nav-item active">
+        <a class="nav-link" href="review.html">Reviews<span class="sr-only">(current)</span></a>
+      </li>
+    <li class="nav-item active">
+        <a class="nav-link" href="comment.html">Comments<span class="sr-only">(current)</span></a>
+      </li>
+      <li class="nav-item dropdown">
+      </li>
+    </ul>
+  </div>
+</nav>
+<body>
+    <h1><u>Create an Account</u></h1>
+    <form method = "post" id = "account">
+        <div class = "firstName">
+            <label for = "fName">First name</label>
+            <input type = "text" class = "form-control" id = "fNameInput">
+        </div>
+        <div class = "lastName">
+            <label for = "lName">Last name</label>
+            <input type = "text" class = "form-control" id = "lNameInput">
+        </div>
+        <div class="email">
+            <label for="exampleFormControlInput1">Email address</label>
+            <input type="email" class="form-control" id="emailInput" placeholder="name@example.com">
+        </div>
+        <div class="password">
+            <div class="input-group input-group-lg">
+            <div class="form-group form-group-lg">
+            <label for="pass">Password</label>
+            <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+      </div>
+        </div>
+        </div>
+    <div class="gender">
+            <label for="exampleFormControlSelect1">Gender</label>
+            <select class="form-control" id="exampleFormControlSelect1">
+                <option>Male</option>
+                <option>Female</option>
+                <option>Other</option>
+            </select>
+    </div>
+    <div class = "age">
+        <label for = "agelabel">Age</label>
+        <input type = "number" class = "form-control" id = "ageInput">
+    </div>
+    <div class="year">
+        <label for="exampleFormControlSelect2">Year</label>
+        <select class="form-control" id="exampleFormControlSelect2">
+            <option>First Year</option>
+            <option>Second Year</option>
+            <option>Third Year</option>
+            <option>Fourth Year</option>
+            <option>Fifth Year</option>
+            <option>Graduate</option>
+        </select>
+  </div>
+        <br>
+  <button type="submit" class="btn btn-primary">Submit</button>
+</form>
     <p>Already have an account?<a href = "login.html"> Click here!</a></p>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 </body>
 <footer>
     RateMyCourse
