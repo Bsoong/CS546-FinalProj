@@ -2,29 +2,59 @@
 <html>
 <head>
     <title>RMC Review</title>
-    <h1>Review Form</h1>
-    <link rel  = "stylesheet" type = "text/css"  href = "css/style.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel = "stylesheet" href = "public/css/review.css">
 </head>
-<body class = "Gradient">
-    <form method = "POST" id = "myForm">
-    <label for = "input" id = "topicOne">Please enter the Course Name:</label>
-        <input type = "text" name = "Course"> <br>
-    <label for = "Rating" id = "topicTwo">Rate the course (1.0 - 5.0):</label>
-        <input type = "number" name = "rating"> <br>
-    <label for = "tags" id = "topicFour">Tags for the course: </label>
-        <input type = "text" name = "tagInput">       
-        <ol id = "tags"></ol>
-    <label for = "Description" id = "topicThree">Describe the course(HW, Inclass, Professor, etc)</label> <br>
-        <input id = "desc" type = "text" name = "desc"> <br>
-    <label for = "Anonymous">Anonymous?</label> <br>
-        <input type = "radio" name = "yes" value = "Yes">Yes <br>
-        <input type = "radio" name = "no" value = "No">No <br>
-    <button type = "submit">Submit</button>
-    </form>
-      <div class="form-group">
-    <label for="exampleFormControlTextarea1">Example textarea</label>
-    <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <a class="navbar-brand" href="#">Rate My Course</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item active">
+        <a class="nav-link" href="index.html">Home<span class="sr-only">(current)</span></a>
+      </li>
+    <li class="nav-item active">
+        <a class="nav-link" href="login.html">Login<span class="sr-only">(current)</span></a>
+      </li>
+    <li class="nav-item active">
+        <a class="nav-link" href="review.html">Reviews<span class="sr-only">(current)</span></a>
+      </li>
+    <li class="nav-item active">
+        <a class="nav-link" href="comment.html">Comments<span class="sr-only">(current)</span></a>
+      </li>
+      <li class="nav-item dropdown">
+      </li>
+    </ul>
   </div>
+</nav>
+<body>
+    <h1><u>Review Form</u></h1>
+    <form>
+     <div class = "course">
+            <label for = "courseCode">Course Code</label>
+            <input type = "text" class = "form-control" id = "courseCodeinput">
+        </div>
+        <br>
+        <div class = "tags">
+            <label for = "tag">Tags</label> 
+            <input type = "text" class = "form-control" id = "tagInput">
+            <ol id = "totalTags"></ol>
+        </div>
+        <br>
+        <div class = "rating">
+        <label for = "rate">Rating (1-5)</label>
+        <input type = "number" class = "form-control" id = "ratingInput" min="1" max="5">
+    </div>
+        <br>
+        <br>
+    <div class="review">
+        <label for="reviewLabel">Description</label>
+        <textarea class="form-control" rows="10" id="comment"></textarea>
+</div>
+    </form>
     <script src="https://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
 <script src="/js/basic.js"></script>
 </body>
