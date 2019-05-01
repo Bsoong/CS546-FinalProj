@@ -2,13 +2,15 @@
 //Rachel Kim
 const mongoCollections = require("./mongoCollections");
 const ratings = mongoCollections.ratings;
+const courses = mongoCollections.courses;
 const {ObjectId} = require("mongodb");
 
 module.exports = {
-    async create(courseCode, author, datePosted, tags, rating, review, comments){
+    async create(courseCode, author, datePosted, tags, rating, review){
         if(courseCode===undefined || typeof(courseCode)!="string" || courseCode.trim().length==0) {
             throw "courseCode parameter is invalid";
         }
+        //add check if courseCode exists in courses database
         if(author===undefined || typeof(author)!="string" || author.trim().length==0){
             throw "author parameter is invalid";
         }
@@ -33,7 +35,7 @@ module.exports = {
             tags: tags,
             rating: rating,
             review: review,
-            comments: comments
+            comments: []
         };
       
         const insertInfo = await ratingCollection.insertOne(newrating);
@@ -56,11 +58,11 @@ module.exports = {
             throw "id is not a string";
         }
         const ratingCollection = await ratings();
-        const ani = await ratingCollection.findOne({ _id: ObjectId(id) });
-        if (ani === null) {
+        const rate = await ratingCollection.findOne({ _id: ObjectId(id) });
+        if (rate === null) {
             throw "No rating with that id";
         }
-        return ani;
+        return rate;
     },
 
     async remove(id) {
@@ -75,27 +77,27 @@ module.exports = {
         }
     },
 
-    async recourseCode(id, newcourseCode) {
-        if(id===undefined || typeof(id)!="string") {
-            throw "id is not a string";
-        }  
-        if(newcourseCode===undefined || typeof(newcourseCode)!="string" || newcourseCode.trim().length==0) {
-            throw "courseCode parameter is invalid";
-        }
-        const ratingCollection = await ratings();
-        const ani = await ratingCollection.findOne({ _id: ObjectId(id) });
-        if(ani===null){
-            throw "rating with this id not found"
-        }
-        const updatedrating = {
-          courseCode: newcourseCode,
-          author: ani.author
-        };
+    // async recourseCode(id, newcourseCode) {
+    //     if(id===undefined || typeof(id)!="string") {
+    //         throw "id is not a string";
+    //     }  
+    //     if(newcourseCode===undefined || typeof(newcourseCode)!="string" || newcourseCode.trim().length==0) {
+    //         throw "courseCode parameter is invalid";
+    //     }
+    //     const ratingCollection = await ratings();
+    //     const ani = await ratingCollection.findOne({ _id: ObjectId(id) });
+    //     if(ani===null){
+    //         throw "rating with this id not found"
+    //     }
+    //     const updatedrating = {
+    //       courseCode: newcourseCode,
+    //       author: ani.author
+    //     };
     
-        const updateInfo = await ratingCollection.updateOne({ _id: ObjectId(id) }, {$set: updatedrating});
-        if (updateInfo.modifiedCount === 0) {
-          throw "could not update rating successfully";
-        }    
-        return await this.get(id);
-    }
+    //     const updateInfo = await ratingCollection.updateOne({ _id: ObjectId(id) }, {$set: updatedrating});
+    //     if (updateInfo.modifiedCount === 0) {
+    //       throw "could not update rating successfully";
+    //     }    
+    //     return await this.get(id);
+    // }
 }
