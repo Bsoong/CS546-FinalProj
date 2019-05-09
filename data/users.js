@@ -1,4 +1,4 @@
-const mongoCollections = require("./../mongoCollections.js"); 
+const mongoCollections = require("./../mongoCollections.js");
 //const mongoConnection = require("./../mongoConnection.js");
 const users = mongoCollections.users;
 //const ObjectId = require('mongodb').ObjectId; //or ObjectID
@@ -34,7 +34,7 @@ async function createUser(firstName, lastName, email, gender, year, age){ //Need
         email: email,
         gender: gender,
         year: year,
-        age: age,
+        age: age
 };
     const insertInfo = await userCollection.insertOne(newUser);
     if(insertInfo.insertedCount ===0){
@@ -84,7 +84,7 @@ async function rename(id, newName){ //idk if we want to keep this function for o
     }
     const userCollection = await users();
     const data = await this.get(id);
-   
+
     const updatedInfo = await userCollection.updateOne({ _id: id }, {$set:{name: newName, firstName: data.firstName, lastName: data.lastName, email: data.email, gender: data.gender, year: data.year, age: data.age}});
     if (updatedInfo.modifiedCount === 0) {
       throw "could not update user successfully";

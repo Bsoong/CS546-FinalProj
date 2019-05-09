@@ -18,11 +18,13 @@
   },
   "homepage": "https://github.com/Bsoong/CS546-FinalProj#readme",
   "dependencies": {
+    "body-parser": "^1.19.0",
     "bootstrap": "^4.3.1",
     "express": "^4.16.4",
     "express-handlebars": "^3.0.2",
     "jquery": "^3.4.1",
     "mongodb": "^3.2.4",
+    "node-uuid": "^1.4.8",
     "popper.js": "^1.15.0",
     "save": "^2.3.3"
   }
