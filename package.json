@@ -24,6 +24,7 @@
     "express": "^4.16.4",
     "express-handlebars": "^3.0.2",
     "express-session": "^1.16.1",
+    "express-static": "^1.2.6",
     "jquery": "^3.4.1",
     "mongodb": "^3.2.4",
     "node-uuid": "^1.4.8",

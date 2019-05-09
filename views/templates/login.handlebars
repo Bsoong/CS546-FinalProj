@@ -5,12 +5,12 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    <link rel = "stylesheet" href = "../../public/css/style.css">
+    <link rel = "stylesheet" type = "text/css" href = "css/style.css">
 </head>
   {{> navigationBarPartial}}
 <body>
     <h1><u>Login</u></h1>
-   <form method = "get" id = "login">
+   <form method = "POST" id = "login">
   <div class="input-group input-group-lg">
   <div class="form-group form-group-lg">
     <label for="InputEmail1">Email address</label>
@@ -30,9 +30,9 @@
   <button type="submit" class="btn btn-primary">Submit</button>
 </form>
 <!--Handlebars for if Username/Password is not verified.-->
-<!-- {{#if errors}}
+{{#if errors}}
 <p>Error: Not a valid Username/Password</p>
-{{/if}} -->
+{{/if}}
     <p>Need to make an account?<a href = createacc.handlebars> Click here!</a></p>
 {{> constScriptsPartial}}
 </body>

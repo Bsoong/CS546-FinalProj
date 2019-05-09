@@ -9,6 +9,7 @@ const userData = require("./users.js");
 const saltRounds = 16;
 configRoutes(app);
 
+//set static to pubic folder
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
