@@ -18,8 +18,11 @@
   "homepage": "https://github.com/Bsoong/CS546-FinalProj#readme",
   "dependencies": {
     "bootstrap": "^4.3.1",
+    "express": "^4.16.4",
+    "express-handlebars": "^3.0.2",
     "jquery": "^3.4.0",
     "mongodb": "^3.2.3",
-    "popper.js": "^1.15.0"
+    "popper.js": "^1.15.0",
+    "save": "^2.3.3"
   }
 }
