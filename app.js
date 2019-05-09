@@ -6,18 +6,20 @@ const configRoutes = require("./routes");
 const express_handlebars = require("express-handlebars");
 const router = express.Router();
 const userData = require("./users.js");
+const static = express.static(__dirname + "/public");
 const saltRounds = 16;
 configRoutes(app);
 
 //set static to pubic folder
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
-
 app.engine("handlebars", express_handlebars({
   defaultLayout: "./main" ,
   partialsDir:"./views/templates/partials",
   }));
 app.set("view engine", "handlebars");
+
+app.use('/public', static);
 
 app.listen(3000, () => {
   console.log("We've now got a server!");
