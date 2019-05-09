@@ -1,7 +1,7 @@
 const express = require("express");
 const bodyParser = require("body-parser");
 const app = express();
-const configRoutes = require("./routes");
+const configRoutes = require("/routes");
 const static = express.static(__dirname + '/public')
 
 app.use("/public", static);
