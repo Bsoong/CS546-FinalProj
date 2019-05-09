@@ -3,7 +3,8 @@
 <head>
 <title>Profile Page</title>
 </head>
-<main>
+{{> navigationBarPartial}}
+<body>
   <dl>
     <dt>Username:</dt>
     <dd>{{username}} </dd>
@@ -17,5 +18,6 @@
     <dd>{{comments}} </dd>
   </dl>
   <a href = "/logout">Logout!</a>
-</main>
+</body>
+{{> constScriptsPartial}}
 </html>
