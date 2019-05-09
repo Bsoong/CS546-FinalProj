@@ -9,7 +9,10 @@ configRoutes(app);
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
-app.engine("handlebars", express_handlebars({defaultLayout: "/templates/index"}));
+app.engine("handlebars", express_handlebars({
+  defaultLayout: "./main" ,
+  partialsDir:"./views/templates/partials",
+  }));
 app.set("view engine", "handlebars");
 
 app.listen(3000, () => {
