@@ -1,13 +1,10 @@
 const mongoCollections = require("./collections");
 const courses = mongoCollections.courses;
 const uuid = require("node-uuid");
-const axios = require("axios");
-
-
 
 module.exports = {
 
-  async create(name, code, professors, rating, description, level, web){
+  async create(name, code, professors, rating, description, credits, level, web){
     if(typeof(name) !== "string" || !(name)){
       throw "Error: Must provide a name of type string";
     }
@@ -22,6 +19,9 @@ module.exports = {
     }
     if(typeof(description) !== "string" || !(description)){
       throw "Error: Must provide a description of type string";
+    }
+    if(typeof(credits) !== "number"){
+      throw "Error: Must provide credits of type number";
     }
     if(typeof(level) !== "string" || !(level)){
       throw "Error: Must provide a level of type string";
@@ -39,6 +39,7 @@ module.exports = {
       professors: professors,
       avgRating: rating,
       description: description,
+      credits: credits,
       classLevel: level,
       webSection: web
     };
