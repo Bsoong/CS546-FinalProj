@@ -1,9 +1,12 @@
 const express = require("express");
 const bodyParser = require("body-parser");
 const app = express();
+const session = require("express-session")
 const configRoutes = require("./routes");
 const express_handlebars = require("express-handlebars");
-
+const router = express.Router();
+const userData = require("./users.js");
+const saltRounds = 16;
 configRoutes(app);
 
 app.use(bodyParser.json());
@@ -19,5 +22,7 @@ app.listen(3000, () => {
   console.log("We've now got a server!");
   console.log("Your routes will now be running on http://localhost:3000");
 });
+
+
 
 //I pledge my honor that I have abided by the Stevens Honor System
