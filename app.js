@@ -1,19 +1,17 @@
 const express = require("express");
 const bodyParser = require("body-parser");
-const configRoutes = require("./routes");
 const app = express();
 const session = require("express-session");
 const static = express.static(__dirname + "/public");
+const configRoutes = require("./routes");
 const express_handlebars = require("express-handlebars");
 const router = express.Router();
-const userData = require("./data/users")
-// const userData = require("./users.js");
+const userData = require("./data/users");
 const saltRounds = 16;
 
-//set static to pubic folder
 app.use('/public', static);
+//set static to pubic folder
 app.use(bodyParser.json());
-configRoutes(app);
 // app.use(express.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 
@@ -28,7 +26,3 @@ app.listen(3000, () => {
   console.log("We've now got a server!");
   console.log("Your routes will now be running on http://localhost:3000");
 });
-
-
-
-//I pledge my honor that I have abided by the Stevens Honor System
