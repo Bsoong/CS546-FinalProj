@@ -152,38 +152,18 @@ module.exports = {
         if(rate===null){
             throw "rating with this id not found";
         }
-        let newRating = {
-            courseCode: courseCode,
+        let newComment = {
+            _id: ObjectId(),
             author: author,
             datePosted: datePosted,
-            tags: tags,
-            rating: rating,
-            review: review,
-            comments: []
+            comment: comment
         };
+        newComments = rate.comments;
+        newComments.push(newComment);
+        const updateInfo = await ratingCollection.updateOne({_id: ObjectId(id)}, {$set: {comments: newComments}});
+        if (updateInfo.modifiedCount === 0) {
+            throw "could not update rating successfully";
+        }    
+        return await this.get(id);
     }
-
-    // async recourseCode(id, newcourseCode) {
-    //     if(id===undefined || typeof(id)!="string") {
-    //         throw "id is not a string";
-    //     }  
-    //     if(newcourseCode===undefined || typeof(newcourseCode)!="string" || newcourseCode.trim().length==0) {
-    //         throw "courseCode parameter is invalid";
-    //     }
-    //     const ratingCollection = await ratings();
-    //     const ani = await ratingCollection.findOne({ _id: ObjectId(id) });
-    //     if(ani===null){
-    //         throw "rating with this id not found"
-    //     }
-    //     const updatedrating = {
-    //       courseCode: newcourseCode,
-    //       author: ani.author
-    //     };
-    
-    //     const updateInfo = await ratingCollection.updateOne({ _id: ObjectId(id) }, {$set: updatedrating});
-    //     if (updateInfo.modifiedCount === 0) {
-    //       throw "could not update rating successfully";
-    //     }    
-    //     return await this.get(id);
-    // }
 }
