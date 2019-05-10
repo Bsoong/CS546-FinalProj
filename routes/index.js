@@ -35,5 +35,16 @@ router.get("/comment", (req,res) => {
   res.render("./templates/comment");
 });
 
+router.get("/createAccount", (req,res) => {
+  console.log("Comments");
+  res.render("./templates/createAcc");
+});
+
+router.get("/about", (req,res) => {
+  console.log("About");
+  res.render("./templates/about");
+
+})
+
 
 module.exports = constructorMethod;

@@ -15,22 +15,25 @@ background-attachment: fixed;
 
 
 form {
-    display: inline-block;
+    display: inline-table;
     border-style: solid;
     padding: 50px;
     background: #F2F2F3;
 }
 
 .rating {
-    display: inline-block;
+    display: inline-table;
     width: 300px
+
 }
 
+.professors {
+    display:inline-table;
+
+}
 
 
 .review {
-    display: inline-block;
-    width: 800px
+    display: inline-table;
+    width: 600px
 }
-
-
