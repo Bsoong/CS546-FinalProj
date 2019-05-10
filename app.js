@@ -2,12 +2,15 @@ const express = require("express");
 const bodyParser = require("body-parser");
 const app = express();
 const session = require("express-session")
+const static = express.static(__dirname + "/public");
 const configRoutes = require("./routes");
 const express_handlebars = require("express-handlebars");
 const router = express.Router();
 const userData = require("./users.js");
-const static = express.static(__dirname + "/public");
 const saltRounds = 16;
+
+app.use('/public', static);
+
 configRoutes(app);
 
 //set static to pubic folder
@@ -19,7 +22,6 @@ app.engine("handlebars", express_handlebars({
   }));
 app.set("view engine", "handlebars");
 
-app.use('/public', static);
 
 app.listen(3000, () => {
   console.log("We've now got a server!");
