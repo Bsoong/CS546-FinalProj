@@ -28,3 +28,14 @@ footer{
   height:100px;
   bottom:0;
 }
+
+.table {
+    background: white;
+    border-radius: 5px;
+    width: 50%;
+    margin: 0px auto;
+    float: none;
+}
+thead {
+  text-align: center;
+}
