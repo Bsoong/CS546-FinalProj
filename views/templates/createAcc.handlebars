@@ -33,7 +33,7 @@
         </div>
     <div class="gender">
             <label for="ChooseGender">Gender</label>
-            <select class="form-control" id="exampleFormControlSelect1">
+            <select class="form-control" id="Gender">
                 <option value = "male">Male</option>
                 <option value = "female">Female</option>
                 <option value = "option">Other</option>
@@ -45,7 +45,7 @@
     </div>
     <div class="year">
         <label for="exampleFormControlSelect2">Year</label>
-        <select class="form-control" id="exampleFormControlSelect2">
+        <select class="form-control" id="yearInput">
             <option>First Year</option>
             <option>Second Year</option>
             <option>Third Year</option>
@@ -57,10 +57,8 @@
         <br>
   <button type="submit" class="btn btn-primary">Submit</button>
 </form>
-    <p>Already have an account?<a href = "login.html"> Click here!</a></p>
+    <p>Already have an account?<a href = "/login"> Click here!</a></p>
    {{> constScriptsPartial}}
 </body>
-<footer>
-    RateMyCourse
-</footer>
+{{> footerPartial}}
 </html>

@@ -4,17 +4,23 @@
     <title>RateMyCourse</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel = "stylesheet" href = "/public/home.css">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 </head>
  {{> navigationBarPartial}}
 <body>
     <h1>Rate My Course</h1>
     <h1><small>For all your student needs</small></h1>
-    <form class = "SearchBar" method = "POST">
-      <input type="search" id="inputSearch"  placeholder="Enter Search Query">
-    </form>
+    <div class = "searchbar">
+    <div class="input-group md-form form-sm form-1 pl-0">
+    <div class="input-group-prepend">
+      <span class="input-group-text purple lighten-3" id="basic-text1"><i class="fas fa-search text-white"
+          aria-hidden="true"></i></span>
+    </div>
+    <input class="form-control my-0 py-1" type="text" placeholder="Search" aria-label="Search">
+  </div>
+</div>
  {{> constScriptsPartial}}
 </body>
-<footer>
-</footer>
+{{> footerPartial}}
 </html>

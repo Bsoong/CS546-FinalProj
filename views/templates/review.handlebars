@@ -11,7 +11,7 @@
     <form>
      <div class = "course">
             <label for = "courseCode">Course Code</label>
-            <input type = "text" class = "form-control" id = "courseCodeinput">
+            <input type = "text" class = "form-control" id = "coursecodeInput">
         </div>
         <br>
         <div class = "tags">
@@ -22,8 +22,15 @@
         <br>
         <div class = "rating">
         <label for = "rate">Rating (1-5)</label>
-        <input type = "number" class = "form-control" id = "ratingInput" min="1" max="5">
+        <input align = "left" type = "number" class = "form-control" id = "ratingInput" min="1" max="5">
     </div>
+    <br>
+      <div align = "center" class = "professors">
+        <label for = "prof">Professor:</label> <br>
+        <input type = "checkbox" id = "proffesorInput1">Professor1</input><br>
+        <input type = "checkbox" id = "proffesorInput2">Professor2</input><br>
+        <input type = "checkbox" id = "proffesorInput3">Professor3</input><br>
+      </div>
         <br>
         <br>
     <div class="review">
@@ -31,10 +38,11 @@
         <textarea class="form-control" rows="10" id="comment">
         </textarea>
 </div>
+<br>
+<br>
 <button type="submit" class="btn btn-primary">Submit</button>
     </form>
     {{> constScriptsPartial}}
 </body>
-<footer>
-</footer>
+{{> footerPartial}}
 </html>
