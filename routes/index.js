@@ -87,7 +87,16 @@ router.post("/search", async (req, res) => {
     const body = req.body.searchInput;
     for(let i = 0; i < courseCollection.length; i++){
       if(courseCollection[i].courseName == body || courseCollection[i].courseCode == body){
-        res.status(200).json(courseCollection[i]);
+        const foundCourse = courseCollection[i];
+        res.status(200).render("./templates/courseInfo", {
+          name: foundCourse.courseName,
+          code: foundCourse.courseCode,
+          credits: foundCourse.credits,
+          professors: foundCourse.professors,
+          level: foundCourse.classLevel,
+          rating: foundCourse.avgRating,
+          web: foundCourse.webSection
+        });
       }
     }
   }
