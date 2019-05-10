@@ -18,13 +18,9 @@ background-repeat: no-repeat;
 background-attachment: fixed;
 }
 
-.searchbar {
-  width: 300px;
-}
 footer{
-  position:absolute;
-  bottom:0;
-  width:100%;
-  height:100px;
-  bottom:0;
+    bottom: 0;
+    text-align: center;
+    position: absolute;
+    width: 100%;
 }
