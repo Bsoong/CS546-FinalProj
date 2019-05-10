@@ -44,6 +44,7 @@ router.get("/createAccount", (req,res) => {
 router.get("/about", (req,res) => {
   console.log("About");
   res.render("./templates/about");
+<<<<<<< HEAD
 });
 
 router.get("/coursePage", (req,res) => {
@@ -79,5 +80,10 @@ router.get("/courseInfo", (req,res) => {
   }
 });
 
+=======
+
+})
+
+>>>>>>> e629e257bbe1553043c08d5883beb451548c4804
 
 module.exports = constructorMethod;

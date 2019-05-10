@@ -10,7 +10,13 @@ text-align: center;
 h1 {
   text-align: center;
 }
+<<<<<<< HEAD
 
+=======
+form {
+  display: inline-flex;
+}
+>>>>>>> e629e257bbe1553043c08d5883beb451548c4804
 nav {
 background: rgb(247,254,255);
 background: linear-gradient(180deg, rgba(247,254,255,1) 0%, rgba(0,212,255,1) 100%);
@@ -20,6 +26,10 @@ background-attachment: fixed;
 
 .searchbar {
   width: 300px;
+<<<<<<< HEAD
+=======
+  display: inline-block;
+>>>>>>> e629e257bbe1553043c08d5883beb451548c4804
 }
 footer{
   position:absolute;
