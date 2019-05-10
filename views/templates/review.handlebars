@@ -8,16 +8,18 @@
 {{> navigationBarPartial}}
 <body>
     <h1><u>Review Form</u></h1>
-    <form>
+    <form action="/review/{{code}}" method ="POST" id="ratings-form">
      <div class = "course">
             <label for = "courseCode">Course Code</label>
-            <input type = "text" class = "form-control" id = "coursecodeInput">
+            <input type = "text" name="courseCode" class = "form-control" id = "coursecodeInput" value= "{{code}}">
         </div>
         <br>
         <div class = "tags">
             <label for = "tag">Tags</label>
-            <input type = "text" class = "form-control" id = "tagInput">
-            <ol id = "totalTags"></ol>
+            <input type = "text" name = "tags" class = "form-control" id = "tagInput">
+            {{#each tags}}
+            <input type = "checkbox" id = "{{this}}" name="tag[]" value="{{this}}">{{this}}</input><br>
+            {{/each}}
         </div>
         <br>
         <div class = "rating">
@@ -27,9 +29,9 @@
     <br>
       <div align = "center" class = "professors">
         <label for = "prof">Professor:</label> <br>
-        <input type = "checkbox" id = "proffesorInput1">Professor1</input><br>
-        <input type = "checkbox" id = "proffesorInput2">Professor2</input><br>
-        <input type = "checkbox" id = "proffesorInput3">Professor3</input><br>
+        {{#each professors}}
+        <input type = "radio" id = "{{this}}" name="professor" value="{{this}}">{{this}}</input><br>
+        {{/each}}
       </div>
         <br>
         <br>

@@ -1,4 +1,5 @@
 const courseRoutes = require("./courses");
+const ratingRoutes = require ("./ratings")
 const express = require("express");
 const session = require('express-session');
 const router = express.Router();
@@ -9,6 +10,7 @@ const saltRounds = 16;
 
 const constructorMethod = app => {
   app.use("/courses", courseRoutes);
+  app.use("/review", ratingRoutes);
   app.use("/", router);
   app.use("*", (req, res) => {
     res.render("./templates/index");
@@ -26,10 +28,6 @@ router.get("/login", (req,res) => {
   res.render("templates/login");
 });
 //Once Login is implemented with backend, need to verify authenticated user to let them post.
-router.get("/review", (req,res) => {
-  console.log("Review");
-  res.render("./templates/review");
-})
 
 router.get("/comment", (req,res) => {
   console.log("Comments");
