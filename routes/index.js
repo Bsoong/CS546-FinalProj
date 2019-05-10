@@ -21,35 +21,35 @@ const constructorMethod = app => {
 
 router.get("/",(req, res) => {
   console.log('Home');
-  res.render('templates/index');
+  res.render('templates/index',{title: "RateMyCourse"});
 });
 
 //Once Login is implemented with backend, need to change variable verified to true so that the myprofile page pops up in place of Login.
 router.get("/login", (req,res) => {
   console.log("Login");
-  res.render("templates/login");
+  res.render("templates/login",{title: "RMC | Login"});
 });
 //Once Login is implemented with backend, need to verify authenticated user to let them post.
 
 router.get("/comment", (req,res) => {
   console.log("Comments");
-  res.render("./templates/comment");
+  res.render("./templates/comment",{title: "RMC | Comments"});
 });
 
 router.get("/createAccount", (req,res) => {
   console.log("Comments");
-  res.render("./templates/createAcc");
+  res.render("./templates/createAcc",{title: "RMC | Create Account"});
 });
 
 router.get("/about", (req,res) => {
   console.log("About");
-  res.render("./templates/about");
+  res.render("./templates/about",{title: "RMC | About Us"});
 });
 
 router.get("/coursePage", (req,res) => {
   try {
     console.log("CoursePage");
-    res.render("./templates/coursePage");
+    res.render("./templates/coursePage",{title: "RMC | Courses"});
   } catch(e) {
     console.log(e);
   }
@@ -58,7 +58,7 @@ router.get("/coursePage", (req,res) => {
 router.get("/myProfile", (req,res) => {
   try {
     console.log("myProfile");
-    res.render("templates/myprofile");
+    res.render("templates/myprofile",{title: "RMC | Profile"});
   } catch(e) {
     console.log(e);
   }
@@ -66,14 +66,14 @@ router.get("/myProfile", (req,res) => {
 
 router.get("/logout", (req,res) => {
   //  req.session.destroy();
-    res.render("templates/logout");
+    res.render("templates/logout",{title: "RMC | Logout"});
     return;
 })
 
 router.get("/courseInfo", (req,res) => {
   try {
     console.log("CourseInfo");
-    res.render("./templates/courseInfo");
+    res.render("./templates/courseInfo",{title: "RMC | Course Info"});
   } catch(e) {
     console.log(e);
   }
