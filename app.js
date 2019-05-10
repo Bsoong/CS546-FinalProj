@@ -22,7 +22,6 @@ app.engine("handlebars", express_handlebars({
   }));
 app.set("view engine", "handlebars");
 
-
 app.listen(3000, () => {
   console.log("We've now got a server!");
   console.log("Your routes will now be running on http://localhost:3000");
