@@ -5,7 +5,7 @@ const ratingData = data.ratings;
 const userData = data.users;
 const courseData = data.courses;
 
-router.get("/:code", (req,res) => {
+router.get("/:code", async(req,res) => {
     console.log("Review" + req.params.code);
     res.render("./templates/review", {code: req.params.code});
 });
@@ -48,5 +48,6 @@ router.post("/:code", async(req,res) => {
     } catch (e){
         res.render("/templates/reviewPosted",{hasErrors: true});
     }
-
 });
+
+module.exports = router;

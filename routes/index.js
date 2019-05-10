@@ -1,5 +1,5 @@
 const courseRoutes = require("./courses");
-const ratingRoutes = require ("./ratings")
+const ratingRoutes = require("./ratings")
 const express = require("express");
 const session = require('express-session');
 const bodyParser = require("body-parser");
