@@ -6,7 +6,11 @@ const static = express.static(__dirname + "/public");
 const configRoutes = require("./routes");
 const express_handlebars = require("express-handlebars");
 const router = express.Router();
+<<<<<<< HEAD
 const userData = require("./data/users")
+=======
+// const userData = require("./users.js");
+>>>>>>> 8b65777b55cf64ee085f64ed4b19df25ae8e0d25
 const saltRounds = 16;
 
 app.use('/public', static);
