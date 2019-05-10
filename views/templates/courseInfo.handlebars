@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Course Info</title>
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+<link rel = "stylesheet" href = "public/style.css">
+</head>
+{{> navigationBarPartial}}
+<body>
+  <dl>
+    <dt>Course Name:</dt>
+    <dd>{{name}} </dd>
+    <dt>Course Code:</dt>
+     <dd> {{code}} </dd>
+     <dt>Credits:</dt>
+     <dd>{{credits}} </dd>
+    <dt>Professors:</dt>
+    <dd>{{professors}} </dd>
+    <dt>Level:</dt>
+    <dd>{{level}}</dd>
+    <dt>Rating:</dt>
+    <dd>{{rating}} </dd>
+    <dt>Web Section:</dt>
+    <dd>{{web}}<dd>
+  </dl>
+  <a href = "/review">Make a review!</a>
+</body>
+{{> constScriptsPartial}}
+{{> footerPartial}}
+</html>

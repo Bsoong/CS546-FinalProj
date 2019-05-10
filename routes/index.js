@@ -17,14 +17,15 @@ const constructorMethod = app => {
 
 router.get("/",(req, res) => {
   console.log('Home');
-  res.render('./templates/index');
+  res.render('templates/index');
 });
 
+//Once Login is implemented with backend, need to change variable verified to true so that the myprofile page pops up in place of Login.
 router.get("/login", (req,res) => {
   console.log("Login");
-  res.render("./templates/login");
+  res.render("templates/login");
 });
-
+//Once Login is implemented with backend, need to verify authenticated user to let them post.
 router.get("/review", (req,res) => {
   console.log("Review");
   res.render("./templates/review");
@@ -43,8 +44,40 @@ router.get("/createAccount", (req,res) => {
 router.get("/about", (req,res) => {
   console.log("About");
   res.render("./templates/about");
+});
 
+router.get("/coursePage", (req,res) => {
+  try {
+    console.log("CoursePage");
+    res.render("./templates/coursePage");
+  } catch(e) {
+    console.log(e);
+  }
+});
+
+router.get("/myProfile", (req,res) => {
+  try {
+    console.log("myProfile");
+    res.render("templates/myprofile");
+  } catch(e) {
+    console.log(e);
+  }
+});
+
+router.get("/logout", (req,res) => {
+  //  req.session.destroy();
+    res.render("templates/logout");
+    return;
 })
+
+router.get("/courseInfo", (req,res) => {
+  try {
+    console.log("CourseInfo");
+    res.render("./templates/courseInfo");
+  } catch(e) {
+    console.log(e);
+  }
+});
 
 
 module.exports = constructorMethod;
