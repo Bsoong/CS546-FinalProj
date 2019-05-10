@@ -2,20 +2,22 @@ const express = require("express");
 const bodyParser = require("body-parser");
 const configRoutes = require("./routes");
 const app = express();
-const session = require("express-session")
+const session = require("express-session");
 const static = express.static(__dirname + "/public");
 const express_handlebars = require("express-handlebars");
 const router = express.Router();
 const userData = require("./data/users")
-
-
+// const userData = require("./users.js");
+const saltRounds = 16;
 
 //set static to pubic folder
 app.use('/public', static);
 app.use(bodyParser.json());
+configRoutes(app);
+// app.use(express.json());
+app.use(bodyParser.urlencoded({ extended: false }));
 
 configRoutes(app);
-
 app.engine("handlebars", express_handlebars({
   defaultLayout: "./main" ,
   partialsDir:"./views/templates/partials",

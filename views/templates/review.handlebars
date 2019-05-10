@@ -7,41 +7,51 @@
 </head>
 {{> navigationBarPartial}}
 <body>
-    <h1><u>Review Form</u></h1>
-    <form>
-     <div class = "course">
-            <label for = "courseCode">Course Code</label>
-            <input type = "text" class = "form-control" id = "coursecodeInput">
-        </div>
-        <br>
-        <div class = "tags">
-            <label for = "tag">Tags</label>
-            <input type = "text" class = "form-control" id = "tagInput">
-            <ol id = "totalTags"></ol>
-        </div>
-        <br>
-        <div class = "rating">
-        <label for = "rate">Rating (1-5)</label>
-        <input align = "left" type = "number" class = "form-control" id = "ratingInput" min="1" max="5">
+    <h1>Review {{code}}</h1>
+    <form action="/review/{{code}}" method ="POST" id="ratings-form">
+    {{!-- <h1 name="courseCode">Review {{code}}</h1> --}}
+    <div class = "course">
+        <label for = "courseCode">Course Code</label>
+        <input type = "text" name="courseCode" class = "form-control" id = "coursecodeInput" value= "{{code}}" disabled>
     </div>
     <br>
-      <div align = "center" class = "professors">
+    <div class = "rating">
+        <label for = "rate">Rating (1-5)</label>
+        <input align = "left" type = "number" name="rating" value="{{review.rating}}" class = "form-control" id = "ratingInput" min="1" max="5">
+    </div>
+    <br>
+    <div class = "tags">
+        <label for = "tag">Tags</label>
+        <input type = "text" name = "tags" class = "form-control" id = "tagInput">
+        {{#each tags}}
+        <input type = "checkbox" id = "{{this}}" name="tag[]" value="{{this}}">{{this}}</input><br>
+        {{/each}}
+    </div>
+    <br>
+        
+    <div align = "center" class = "professors">
         <label for = "prof">Professor:</label> <br>
-        <input type = "checkbox" id = "proffesorInput1">Professor1</input><br>
-        <input type = "checkbox" id = "proffesorInput2">Professor2</input><br>
-        <input type = "checkbox" id = "proffesorInput3">Professor3</input><br>
-      </div>
-        <br>
-        <br>
+        {{#each professors}}
+        <input type = "radio" id = "{{this}}" name="professor" value="{{this}}">{{this}}</input><br>
+        {{/each}}
+    </div>
+    <br>
+    <br>
     <div class="review">
-        <label for="reviewLabel">Description</label>
-        <textarea class="form-control" rows="10" id="comment">
-        </textarea>
-</div>
-<br>
-<br>
-<button type="submit" class="btn btn-primary">Submit</button>
+        <label for="reviewLabel">Review</label>
+        <textarea class="form-control" name="comment" rows="10" id="comment">{{review.body}}</textarea>
+    </div>
+    <br>
+    <br>
+    <button type="submit" class="btn btn-primary">Submit</button>
     </form>
+    {{#if hasErrors}}
+    <ul class="error-list">
+    {{#each errors}}
+        <li>{{this}}</li>
+    {{/each}}
+    </ul>
+    {{/if}}
     {{> constScriptsPartial}}
 </body>
 {{> footerPartial}}

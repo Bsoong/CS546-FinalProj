@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>RMC Review</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel = "stylesheet" href = "public/review.css">
+</head>
+{{> navigationBarPartial}}
+<body>
+    <h1><u>Review Posted</u></h1>
+    {{#if posted}}<p>Thank you. Your review has been posted.</p>{{/if}}
+    {{#if hasErrors}}<p>Sorry! There was a technicaly difficulty and the review could not be posted at this time.</p>{{/if}}
+    {{> constScriptsPartial}}
+</body>
+{{> footerPartial}}
+</html>
