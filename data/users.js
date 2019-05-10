@@ -1,7 +1,7 @@
-const mongoCollections = require("./../mongoCollections.js");
-//const mongoConnection = require("./../mongoConnection.js");
+const mongoCollections = require("./mongoCollections.js");
+const mongoConnection = require("./mongoConnection.js");
 const users = mongoCollections.users;
-//const ObjectId = require('mongodb').ObjectId; //or ObjectID
+const ObjectId = require('mongodb').ObjectId; //or ObjectID
 
 async function createUser(firstName, lastName, email, gender, year, age){ //Need hashed password and user comments?..
     //series of checks of the entered variables making sure they exist

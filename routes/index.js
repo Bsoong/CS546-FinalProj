@@ -4,7 +4,7 @@ const session = require('express-session');
 const router = express.Router();
 const bcrypt = require("bcrypt");
 const app = express();
-const userData = require("./../users.js");
+const userData = require("../data/users.js");
 const saltRounds = 16;
 
 const constructorMethod = app => {
