@@ -1,2 +1,2 @@
 # CS546-FinalProj
-CS546 Web development final project. 
+CS546 Web Programming Final Project, Team 7, Rate My Course
