@@ -1,25 +1,23 @@
 const express = require("express");
 const bodyParser = require("body-parser");
 const app = express();
-const session = require("express-session")
+const session = require("express-session");
 const static = express.static(__dirname + "/public");
 const configRoutes = require("./routes");
 const express_handlebars = require("express-handlebars");
 const router = express.Router();
-<<<<<<< HEAD
+const userData = require("./data/users");
 const userData = require("./data/users")
-=======
 // const userData = require("./users.js");
->>>>>>> 8b65777b55cf64ee085f64ed4b19df25ae8e0d25
 const saltRounds = 16;
 
 app.use('/public', static);
-
-configRoutes(app);
-
 //set static to pubic folder
 app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: true }));
+// app.use(express.json());
+app.use(bodyParser.urlencoded({ extended: false }));
+
+configRoutes(app);
 app.engine("handlebars", express_handlebars({
   defaultLayout: "./main" ,
   partialsDir:"./views/templates/partials",

@@ -17,7 +17,7 @@ module.exports = {
     if(!Array.isArray(professors) || !(professors)){
       throw "Error: Must provide an array of professors";
     }
-    if(typeof(rating) !== "number" || rating > 5.0 || rating < 0.0 || !(rating)){
+    if(typeof(rating) !== "number" || !(rating)){
       throw "Error: Must provide a rating of type number between 1 and 5"
     }
     if(typeof(description) !== "string" || !(description)){
@@ -28,9 +28,6 @@ module.exports = {
     }
     if(typeof(level) !== "string" || !(level)){
       throw "Error: Must provide a level of type string";
-    }
-    if(typeof(web) !== "boolean" || !(web)){
-      throw "Error: Must provide a web section boolean";
     }
 
     const courseCollection = await courses();

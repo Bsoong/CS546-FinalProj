@@ -2,19 +2,21 @@ const courseRoutes = require("./courses");
 const ratingRoutes = require ("./ratings")
 const express = require("express");
 const session = require('express-session');
+const bodyParser = require("body-parser");
 const router = express.Router();
 const bcrypt = require("bcrypt");
 const app = express();
 const userData = require("../data/users.js");
+const courseData = require("../data/courses.js")
 const saltRounds = 16;
 
 const constructorMethod = app => {
   app.use("/courses", courseRoutes);
   app.use("/review", ratingRoutes);
   app.use("/", router);
-  app.use("*", (req, res) => {
-    res.render("./templates/index");
-  });
+  // app.use("*", (req, res) => {
+  //   res.render("./templates/index");
+  // });
 };
 
 router.get("/",(req, res) => {
@@ -73,6 +75,31 @@ router.get("/courseInfo", (req,res) => {
     console.log("CourseInfo");
     res.render("./templates/courseInfo");
   } catch(e) {
+    console.log(e);
+  }
+});
+
+router.post("/search", async (req, res) => {
+  try{
+    const courseCollection = await courseData.getAllCourses();
+    const body = req.body.searchInput;
+    for(let i = 0; i < courseCollection.length; i++){
+      if(courseCollection[i].courseName == body || courseCollection[i].courseCode == body){
+        const foundCourse = courseCollection[i];
+        res.status(200).render("./templates/courseInfo", {
+          name: foundCourse.courseName,
+          code: foundCourse.courseCode,
+          credits: foundCourse.credits,
+          professors: foundCourse.professors,
+          level: foundCourse.classLevel,
+          rating: foundCourse.avgRating,
+          web: foundCourse.webSection
+        });
+      }
+    }
+  }
+  catch(e){
+    throw "Error, problem with searching."
     console.log(e);
   }
 });
