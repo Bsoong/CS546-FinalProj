@@ -77,27 +77,93 @@ module.exports = {
         }
     },
 
-    // async recourseCode(id, newcourseCode) {
-    //     if(id===undefined || typeof(id)!="string") {
-    //         throw "id is not a string";
-    //     }  
-    //     if(newcourseCode===undefined || typeof(newcourseCode)!="string" || newcourseCode.trim().length==0) {
-    //         throw "courseCode parameter is invalid";
-    //     }
-    //     const ratingCollection = await ratings();
-    //     const ani = await ratingCollection.findOne({ _id: ObjectId(id) });
-    //     if(ani===null){
-    //         throw "rating with this id not found"
-    //     }
-    //     const updatedrating = {
-    //       courseCode: newcourseCode,
-    //       author: ani.author
-    //     };
-    
-    //     const updateInfo = await ratingCollection.updateOne({ _id: ObjectId(id) }, {$set: updatedrating});
-    //     if (updateInfo.modifiedCount === 0) {
-    //       throw "could not update rating successfully";
-    //     }    
-    //     return await this.get(id);
-    // }
+    async editRating(id, newRating){
+        if(id===undefined || typeof(id)!="string") {
+            throw "id is not a string";
+        }   
+        if(newRating===undefined || typeof(newRating)!="number"){
+            throw "rating parameter is invalid";
+        } 
+        const ratingCollection = await ratings();
+        const rate = await ratingCollection.findOne({ _id: ObjectId(id) });
+        if(rate===null){
+            throw "rating with this id not found";
+        }
+        const updateInfo = await ratingCollection.updateOne({_id: ObjectId(id)}, {$set: {rating: newRating}});
+        if (updateInfo.modifiedCount === 0) {
+            throw "could not update rating successfully";
+        }    
+        return await this.get(id);
+    },
+
+    async editTags(id, newTags){
+        if(id===undefined || typeof(id)!="string") {
+            throw "id is not a string";
+        }   
+        if(newTags===undefined || typeof(newTags)!="array"){
+            throw "tags parameter is invalid";
+        }
+        const ratingCollection = await ratings();
+        const rate = await ratingCollection.findOne({ _id: ObjectId(id) });
+        if(rate===null){
+            throw "rating with this id not found";
+        }
+        const updateInfo = await ratingCollection.updateOne({_id: ObjectId(id)}, {$set: {tags: newTags}});
+        if (updateInfo.modifiedCount === 0) {
+            throw "could not update rating successfully";
+        }    
+        return await this.get(id);
+    },
+
+    async editReview(id, newReview){
+        if(id===undefined || typeof(id)!="string") {
+            throw "id is not a string";
+        }   
+        if(newReview===undefined || typeof(newReview)!="string"){
+            throw "tags parameter is invalid";
+        }
+        const ratingCollection = await ratings();
+        const rate = await ratingCollection.findOne({ _id: ObjectId(id) });
+        if(rate===null){
+            throw "rating with this id not found";
+        }
+        const updateInfo = await ratingCollection.updateOne({_id: ObjectId(id)}, {$set: {review: newReview}});
+        if (updateInfo.modifiedCount === 0) {
+            throw "could not update rating successfully";
+        }    
+        return await this.get(id);
+    },
+
+    async addComment(id, author, datePosted, comment){
+        if(id===undefined || typeof(id)!="string") {
+            throw "id is not a string";
+        }
+        if(author===undefined || typeof(author)!="string" || author.trim().length==0){
+            throw "author parameter is invalid";
+        }
+        if(datePosted===undefined || typeof(datePosted)!="string" || datePosted.trim().length==0){
+            throw "datePosted parameter is invalid";
+        }
+        if(comment===undefined || typeof(comment)!="string" || comment.trim().length==0){
+            throw "comment parameter is invalid";
+        }
+        const ratingCollection = await ratings();
+        const rate = await ratingCollection.findOne({ _id: ObjectId(id) });
+        if(rate===null){
+            throw "rating with this id not found";
+        }
+        let newComment = {
+            _id: ObjectId(),
+            author: author,
+            datePosted: datePosted,
+            comment: comment
+        };
+        newComments = rate.comments;
+        newComments.push(newComment);
+        const updateInfo = await ratingCollection.updateOne({_id: ObjectId(id)}, {$set: {comments: newComments}});
+        if (updateInfo.modifiedCount === 0) {
+            throw "could not update rating successfully";
+        }    
+        return await this.get(id);
+    }
 }
