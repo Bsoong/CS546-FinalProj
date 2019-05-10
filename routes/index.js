@@ -1,4 +1,5 @@
 const courseRoutes = require("./courses");
+const ratingRoutes = require("./ratings")
 const express = require("express");
 const session = require('express-session');
 const bodyParser = require("body-parser");
@@ -11,6 +12,7 @@ const saltRounds = 16;
 
 const constructorMethod = app => {
   app.use("/courses", courseRoutes);
+  app.use("/review", ratingRoutes);
   app.use("/", router);
   // app.use("*", (req, res) => {
   //   res.render("./templates/index");
