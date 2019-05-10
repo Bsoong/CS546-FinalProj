@@ -41,7 +41,6 @@ router.post("/:code", async(req,res) => {
     }
     let date = new Date();
     let formattedDate = date.getMonth()+1 + "/" + date.getDate() + "/" + date.getFullYear();
-    
     try {
         const newReview = await ratingData.create(review.courseCode, person._id, formattedDate, review.tags, reviewComment);
         res.render("/templates/reviewPosted",{posted: true, title: "RMC | Review Posted"});

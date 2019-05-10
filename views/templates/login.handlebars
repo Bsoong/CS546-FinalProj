@@ -10,18 +10,18 @@
   {{> navigationBarPartial}}
 <body>
     <h1><u>Login</u></h1>
-   <form method = "POST" id = "login">
+   <form method = "POST" id = "login" enctype="application/x-www-form-urlencoded" action = "/login">
   <div class="input-group input-group-lg">
   <div class="form-group form-group-lg">
     <label for="InputEmail1">Email address</label>
-    <input type="email" class="form-control" id="inputEmail"  placeholder="Enter email">
+    <input type="email" class="form-control" id="inputEmail" name = "inputEmail"  placeholder="Enter email">
       </div>
 </div>
   <div class="form-group">
     <div class="input-group input-group-lg">
     <div class="form-group form-group-lg">
     <label for="InputPassword1">Password</label>
-    <input type="password" class="form-control" id="inputPassword" placeholder="Password">
+    <input type="password" class="form-control" name = "inputPassword" id= "inputPassword" placeholder="Password">
       </div>
       </div>
   </div>

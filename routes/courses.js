@@ -36,28 +36,18 @@ router.get("/code/:code", async(req, res) => {
   res.status(404);
 }});
 
-// router.post("/", async(req, res) => {
-//   try{
-//     for(let i = 0; i < injectCourses.length; i++){
-//       let currentCourse = injectCourses[i];
-//       let newCourse = await courseData.create(currentCourse.courseName, currentCourse.courseCode, currentCourse.professors, currentCourse.avgRating, currentCourse.description, currentCourse.credits, currentCourse.classLevel, currentCourse.webSection);
-//       res.json(newCourse);
-//     }
-//     res.status(200);
-//   }
-//   catch(e){
-//     res.status(400);
-//     console.log(e);
-//   }
-// });
-
 router.post("/", async(req, res) => {
   try{
-    const body = req.body;
-    console.log(body);
+    for(let i = 0; i < injectCourses.length; i++){
+      let currentCourse = injectCourses[i];
+      let newCourse = await courseData.create(currentCourse.courseName, currentCourse.courseCode, currentCourse.professors, currentCourse.avgRating, currentCourse.description, currentCourse.credits, currentCourse.classLevel, currentCourse.webSection);
+      res.json(newCourse);
+    }
+    res.status(200);
   }
   catch(e){
-    res.status(400).json({ error: "Error: something shat itself"})
+    res.status(400);
+    console.log(e);
   }
 });
 
