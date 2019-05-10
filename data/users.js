@@ -1,5 +1,9 @@
 const mongoCollections = require("./mongoCollections.js");
+<<<<<<< HEAD
 const mongoConnection = require("./mongoConnection.js");
+=======
+//const mongoConnection = require("./../mongoConnection.js");
+>>>>>>> 8b65777b55cf64ee085f64ed4b19df25ae8e0d25
 const users = mongoCollections.users;
 const ObjectId = require('mongodb').ObjectId; //or ObjectID
 
