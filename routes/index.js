@@ -24,7 +24,7 @@ const constructorMethod = app => {
     let method = req.method;
     let route = req.originalUrl;
     let authent = (req.session.authent)? "(Authenticated User)" : "(Non-authenticated User)";
-    console.log(`${date} ${method}  ${route} ${authent}`);
+    console.log(`${date} ${method} ${route} ${authent}`);
     next();
   });
 
@@ -32,9 +32,9 @@ const constructorMethod = app => {
   app.use("/review", ratingRoutes);
   app.use("/login", loginRoutes)
   app.use("/", router);
-  // app.use("*", (req, res) => {
-  //   res.render("./templates/index");
-  // });
+  app.use("*", (req, res) => {
+    res.redirect("/");
+  });
 };
 
 router.get("/",(req, res) => {
