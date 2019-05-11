@@ -1,9 +1,8 @@
 const mongoCollections = require("./mongoCollections");
 const courses = mongoCollections.courses;
 const uuid = require("node-uuid");
+const {ObjectId} = require("mongodb");
 // const axios = require("axios");
-
-
 
 module.exports = {
 
@@ -62,7 +61,7 @@ module.exports = {
       throw "Error: You must provide an input id of type 'string'";
     }
     const courseCollection = await courses();
-    const course = await courseCollection.findOne({ _id: id });
+    const course = await courseCollection.findOne({ _id: ObjectId(id) });
 
     if (!course){
       throw "Course not found";

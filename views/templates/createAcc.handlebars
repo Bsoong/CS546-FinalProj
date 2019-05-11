@@ -9,6 +9,7 @@
 </head>
 {{> navigationBarPartial}}
 <body>
+    <div class="page-container">
     <h1><u>Create an Account</u></h1>
     <form method = "POST" id = "account">
         <div class = "firstName">
@@ -58,7 +59,9 @@
   <button type="submit" class="btn btn-primary">Submit</button>
 </form>
     <p>Already have an account?<a href = "/login"> Click here!</a></p>
-   {{> constScriptsPartial}}
-</body>
 {{> footerPartial}}
+
+    </div>
+{{> constScriptsPartial}}
+</body>
 </html>

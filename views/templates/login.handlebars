@@ -9,6 +9,7 @@
 </head>
   {{> navigationBarPartial}}
 <body>
+  <div class="page-container">
     <h1><u>Login</u></h1>
    <form method = "POST" id = "login" enctype="application/x-www-form-urlencoded" action = "/login">
   <div class="input-group input-group-lg">
@@ -34,7 +35,9 @@
 <p>Error: Not a valid Username/Password</p>
 {{/if}}
     <p>Need to make an account?<a href = "/createAccount"> Click here!</a></p>
+
+{{> footerPartial}}
+</div>
 {{> constScriptsPartial}}
 </body>
-{{> footerPartial}}
 </html>

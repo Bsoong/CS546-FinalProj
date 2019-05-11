@@ -9,6 +9,7 @@
     <link rel = "stylesheet" href = "public/style.css">
   {{> navigationBarPartial}}
 <body>
+<div class="page-container">
   <form method = "POST" id = "comment">
 <br>
 <div class="commentText">
@@ -18,8 +19,8 @@
 </div>
 <button type="submit" class="btn btn-primary">Submit</button>
   </form>
+{{> footerPartial}}
+  </div>
 {{> constScriptsPartial}}
 </body>
-
-{{> footerPartial}}
 </html>
