@@ -23,13 +23,18 @@ background-repeat: no-repeat;
 background-attachment: fixed;
 }
 
-
 form {
     display: inline-block;
     border-style: solid;
     padding: 50px;
     background: #F2F2F3;
     width: 75%;
+}
+
+#account {
+  padding: 20px;
+  width: 50%;
+  margin-bottom: 20px;
 }
 
 footer{

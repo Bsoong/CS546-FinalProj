@@ -4,7 +4,7 @@
     <title>RateMyCourse</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel = "stylesheet" href = "/public/home.css">
+    <link rel = "stylesheet" type = "text/css" href = "/public/home.css">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 </head>
  {{> navigationBarPartial}}
@@ -31,7 +31,7 @@
                         <form action="/search" class="form-inlin justify-content-center" method="post" enctype="application/x-www-form-urlencoded">
                             <div class="form-group">
                                 <label class="sr-only">Name</label>
-                                <input id = "searchInput" type="text" class="form-control" placeholder="Search Courses by name or Code" name="searchInput">
+                                <input id = "searchInput" type="text" class="form-control" placeholder="Search Courses by name or Code" name="searchInput" required>
                                 <br>
                                 <button type="submit" class="btn btn-success">Search!</button>
                             </div>

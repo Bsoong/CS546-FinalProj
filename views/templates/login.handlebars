@@ -5,12 +5,12 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    <link rel = "stylesheet" type = "text/css" href = "/public/style.css">
+    <link rel = "stylesheet" type = "text/css" href = "/public/home.css">
 </head>
   {{> navigationBarPartial}}
 <body>
   <div class="page-container">
-  <div class="page-content">
+  {{!-- <div class="page-content"> --}}
     <h1><u>Login</u></h1>
    <form method = "POST" id = "login" enctype="application/x-www-form-urlencoded" action = "/login">
   <div class="input-group input-group-lg">
@@ -37,7 +37,7 @@
 {{/if}}
     <p>Need to make an account?<a href = "/createAccount"> Click here!</a></p>
 
-</div>
+{{!-- </div> --}}
 </div>
 {{> constScriptsPartial}}
 {{> footerPartial}}
