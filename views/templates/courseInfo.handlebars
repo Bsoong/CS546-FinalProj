@@ -4,7 +4,9 @@
 <title>Course Info</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    <link rel = "stylesheet" type = "text/css" href = "/public/style.css">
+    <link rel = "stylesheet" type = "text/css" href = "/public/courseInfo.css">
+{{!-- <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+<link rel = "stylesheet" href = "public/style.css"> --}}
 </head>
 {{> navigationBarPartial}}
 <body>
@@ -72,8 +74,10 @@
     <dd>{{course.classLevel}}</dd>
     <dt>Rating:</dt>
     <dd>{{course.rating}} </dd>
-    <dt>Description:</dt>
+    <div class = "desc">
+    <dt >Description:</dt>
     <dd>{{course.description}}</dt>
+    </div>
     <dt>Web Section:</dt>
     <dd>{{course.webSection}}<dd>
   </dl> --}}
@@ -81,5 +85,6 @@
   </div>
 {{> footerPartial}}
   {{> constScriptsPartial}}
+  {{> footerPartial}}
 </body>
 </html>
