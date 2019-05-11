@@ -1,3 +1,12 @@
+/* .topRated {
+  margin: 0 auto;
+  text-align: center;
+  display: inline-table;
+  border-style: solid;
+  padding: 50px;
+  color: black;
+  background: #F2F2F3;
+} */
 body {
 background: rgb(247,254,255);
 background: linear-gradient(180deg, rgba(247,254,255,1) 0%, rgba(0,212,255,1) 100%);
