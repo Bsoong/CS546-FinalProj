@@ -1,5 +1,6 @@
 const courseRoutes = require("./courses");
 const ratingRoutes = require("./ratings")
+const loginRoutes = require("./login")
 const express = require("express");
 const session = require('express-session');
 const bodyParser = require("body-parser");
@@ -13,20 +14,19 @@ const saltRounds = 16;
 const constructorMethod = app => {
   app.use("/courses", courseRoutes);
   app.use("/review", ratingRoutes);
+  app.use("/login", loginRoutes)
   app.use("/", router);
   // app.use("*", (req, res) => {
   //   res.render("./templates/index");
   // });
 };
 
-router.get("/",(req, res) => {
-  console.log('Home');
-  res.render('templates/index');
+//Once Login is implemented with backend, need to change variable verified to true so that the myprofile page pops up in place of Login.
+router.get("/", (req,res) => {
+  res.render("templates/index",)
 });
 
-//Once Login is implemented with backend, need to change variable verified to true so that the myprofile page pops up in place of Login.
-router.get("/login", (req,res) => {
-  console.log("Login");
+router.get("/loginPage", (req,res) => {
   res.render("templates/login");
 });
 //Once Login is implemented with backend, need to verify authenticated user to let them post.

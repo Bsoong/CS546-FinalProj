@@ -13,39 +13,39 @@
     <form method = "POST" id = "account">
         <div class = "firstName">
             <label for = "fName">First name</label>
-            <input type = "text" class = "form-control" id = "fNameInput">
+            <input type = "text" class = "form-control" id = "fNameInput" name = "firstName">
         </div>
         <div class = "lastName">
             <label for = "lName">Last name</label>
-            <input type = "text" class = "form-control" id = "lNameInput">
+            <input type = "text" class = "form-control" id = "lNameInput" name = "lastName">
         </div>
         <div class="email">
             <label for="email1">Email address</label>
-            <input type="email" class="form-control" id="emailInput" placeholder="name@example.com">
+            <input type="email" class="form-control" id="emailInput" name = "emailInput" placeholder="name@example.com">
         </div>
         <div class="password">
             <div class="input-group input-group-lg">
             <div class="form-group form-group-lg">
             <label for="pass">Password</label>
-            <input type="password" class="form-control" id="passwordInput" placeholder="Password">
+            <input type="password" class="form-control" id="passwordInput" name = "passwordInput" placeholder="Password">
       </div>
         </div>
         </div>
     <div class="gender">
             <label for="ChooseGender">Gender</label>
-            <select class="form-control" id="Gender">
+            <select class="form-control" id="Gender" name = "Gender">
                 <option value = "male">Male</option>
                 <option value = "female">Female</option>
-                <option value = "option">Other</option>
+                <option value = "other">Other</option>
             </select>
     </div>
     <div class = "age">
         <label for = "agelabel">Age</label>
-        <input type = "number" class = "form-control" id = "ageInput">
+        <input type = "number" class = "form-control" id = "ageInput" name = "ageInput">
     </div>
     <div class="year">
         <label for="exampleFormControlSelect2">Year</label>
-        <select class="form-control" id="yearInput">
+        <select class="form-control" id="yearInput" name = "yearInput">
             <option>First Year</option>
             <option>Second Year</option>
             <option>Third Year</option>
@@ -57,7 +57,7 @@
         <br>
   <button type="submit" class="btn btn-primary">Submit</button>
 </form>
-    <p>Already have an account?<a href = "/login"> Click here!</a></p>
+    <p>Already have an account?<a href = "/loginPage"> Click here!</a></p>
    {{> constScriptsPartial}}
 </body>
 {{> footerPartial}}
