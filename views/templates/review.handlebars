@@ -3,7 +3,7 @@
 <head>
     <title>RMC Review</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    <link rel = "stylesheet" href = "/public/main.css">            
+    <link rel = "stylesheet" href = "/public/main.css">
     <link rel = "stylesheet" href = "/public/style.css">
 </head>
 <body>
@@ -19,18 +19,18 @@
     </div>
     <br>
     <div class = "rating">
-        <label for = "rate">Rating (1-5): </label>
+        <label for = "rating">Rating (1-5): </label>
         <input align = "left" type = "number" name="rating" value="{{review.rating}}" class = "form-control" id = "ratingInput" min="1" max="5">
     </div>
     <br>
     <div class = "tags">
-        <label for = "tag">Tags</label>
+        <label for = "tag[]">Tags</label>
         {{#each tags}}
         <input type = "checkbox" id = "{{this}}" name="tag[]" value="{{this}}"> {{this}}</input><br>
         {{/each}}
     </div>
     <br>
-        
+
     <div align = "center" class = "professors">
         <label for = "professor">Professor:</label> <br>
         {{#each course.professors}}
@@ -39,7 +39,7 @@
     </div>
     <br>
     <div class="review">
-        <label for="reviewLabel">Review</label>
+        <label for="comment">Review</label>
         <textarea class="form-control" name="comment" rows="5" id="comment">{{review.body}}</textarea>
     </div>
     <br>
