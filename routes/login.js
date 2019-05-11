@@ -69,10 +69,10 @@ router.post("/newAccount", async(req,res) => {
     let form = req.body;
     try {
       const newUser = await userData.createUser(form.firstName, form.lastName, form.emailInput, form.passwordInput, form.Gender, form.yearInput, form.ageInput);
-      res.render("/templates/index",{title: RateMyCourse})
+      res.render("templates/index",{title: "RateMyCourse"})
     } catch(e){
       console.log(e);
-      res.render("/templates/index",{title: RateMyCourse})
+      res.render("templates/index",{title: "RateMyCourse"})
     }   
 });
 

@@ -4,45 +4,44 @@
     <title>RMC Review</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link rel = "stylesheet" href = "/public/main.css">            
-    <link rel = "stylesheet" href = "public/review.css">
+    <link rel = "stylesheet" href = "/public/style.css">
 </head>
 {{> navigationBarPartial}}
 <body>
+    <div class="page-container">
+  <div class="page-content">
     <h1>Review {{code}}</h1>
     <form action="/review/{{code}}" method ="POST" id="ratings-form">
     {{!-- <h1 name="courseCode">Review {{code}}</h1> --}}
     <div class = "course">
-        <label for = "courseCode">Course Code</label>
+        <label for = "courseCode">Course Code: </label>
         <input type = "text" name="courseCode" class = "form-control" id = "coursecodeInput" value= "{{code}}" disabled>
     </div>
     <br>
     <div class = "rating">
-        <label for = "rate">Rating (1-5)</label>
+        <label for = "rate">Rating (1-5): </label>
         <input align = "left" type = "number" name="rating" value="{{review.rating}}" class = "form-control" id = "ratingInput" min="1" max="5">
     </div>
     <br>
     <div class = "tags">
         <label for = "tag">Tags</label>
-        <input type = "text" name = "tags" class = "form-control" id = "tagInput">
         {{#each tags}}
-        <input type = "checkbox" id = "{{this}}" name="tag[]" value="{{this}}">{{this}}</input><br>
+        <input type = "checkbox" id = "{{this}}" name="tag[]" value="{{this}}"> {{this}}</input><br>
         {{/each}}
     </div>
     <br>
         
     <div align = "center" class = "professors">
-        <label for = "prof">Professor:</label> <br>
-        {{#each professors}}
-        <input type = "radio" id = "{{this}}" name="professor" value="{{this}}">{{this}}</input><br>
+        <label for = "professor">Professor:</label> <br>
+        {{#each course.professors}}
+        <input type = "radio" class ="professorInput" id = "{{this}}" name="professor" value="{{this}}">{{this}}</input><br>
         {{/each}}
     </div>
     <br>
-    <br>
     <div class="review">
         <label for="reviewLabel">Review</label>
-        <textarea class="form-control" name="comment" rows="10" id="comment">{{review.body}}</textarea>
+        <textarea class="form-control" name="comment" rows="5" id="comment">{{review.body}}</textarea>
     </div>
-    <br>
     <br>
     <button type="submit" class="btn btn-primary">Submit</button>
     </form>
@@ -53,7 +52,9 @@
     {{/each}}
     </ul>
     {{/if}}
+    </div>
+    </div>
     {{> constScriptsPartial}}
-</body>
 {{> footerPartial}}
+</body>
 </html>
