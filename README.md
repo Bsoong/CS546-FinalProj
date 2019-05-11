@@ -1,5 +1,5 @@
 # CS546-FinalProj
-CS546 Web Programming Final Project, Team 7
+CS546 Web Programming Final Project, Team 7  
 Rate My Course: A website featuring Stevens Courses that allows Students to View,Rate, and Review the courses. 
 
 
