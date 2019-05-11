@@ -12,6 +12,21 @@ const courseData = require("../data/courses.js")
 const saltRounds = 16;
 
 const constructorMethod = app => {
+  app.use(session({
+    name: 'AuthCookie',
+    secret: 'some secret string!',
+    resave: false,
+    saveUninitialized: true
+  }));
+
+  app.use(function(req, res, next) {
+    let date = new Date().toUTCString();
+    let method = req.method;
+    let route = req.originalUrl;
+    let authent = (req.session.authent)? "(Authenticated User)" : "(Non-authenticated User)";
+    console.log(`${date} ${method}  ${route} ${authent}`);
+    next();
+  });
   app.use("/courses", courseRoutes);
   app.use("/review", ratingRoutes);
   app.use("/login", loginRoutes)
@@ -22,14 +37,14 @@ const constructorMethod = app => {
 };
 
 router.get("/",(req, res) => {
-  console.log('Home');
   res.render('templates/index',{title: "RateMyCourse"});
 });
 
 //Once Login is implemented with backend, need to change variable verified to true so that the myprofile page pops up in place of Login.
-router.get("/login", (req,res) => {
-  console.log("Login");
-  res.render("templates/login",{title: "RMC | Login"});
+// router.get("/login", (req,res) => {
+//   console.log("Login");
+//   res.render("templates/login",{title: "RMC | Login"
+// });
 
 
 // router.get("/comment", (req,res) => {
@@ -38,12 +53,10 @@ router.get("/login", (req,res) => {
 // });
 
 router.get("/createAccount", (req,res) => {
-  console.log("Comments");
   res.render("./templates/createAcc",{title: "RMC | Account Creation"});
 });
 
 router.get("/about", (req,res) => {
-  console.log("About");
   res.render("./templates/about",{title: "RMC | About Us"});
 });
 
@@ -59,7 +72,6 @@ router.get("/about", (req,res) => {
 
 router.get("/myProfile", (req,res) => {
   try {
-    console.log("myProfile");
     res.render("templates/myprofile",{title: "RMC | Profile"});
   } catch(e) {
     console.log(e);
@@ -74,7 +86,6 @@ router.get("/logout", (req,res) => {
 
 router.get("/courseInfo", (req,res) => {
   try {
-    console.log("CourseInfo");
     res.render("./templates/courseInfo",{title: "RMC | Course Info"});
   } catch(e) {
     console.log(e);

@@ -5,24 +5,10 @@ const bodyParser = require("body-parser");
 const bcrypt = require("bcrypt");
 const app = express();
 const saltRounds = 16;
+const data = require("../data");
+const userData = data.users;
 
 //Confused on how to impllement this with login. 
-
-router.use(session({
-  name: 'AuthCookie',
-  secret: 'some secret string!',
-  resave: false,
-  saveUninitialized: true
-}));
-
-router.use(function(req, res, next) {
-  let date = new Date().toUTCString();
-  let method = req.method;
-  let route = req.originalUrl;
-  let authent = (req.session.authent)? "(Authenticated User)" : "(Non-authenticated User)";
-  console.log(`${date} ${method}  ${route} ${authent}`);
-  next();
-});
 
 
 router.use("/myprofile", function(req, res, next) {
@@ -35,60 +21,66 @@ router.use("/myprofile", function(req, res, next) {
 });
 
 router.get("/", (req,res) => {
-  if(req.session.authent) {
-    res.render("templates/index", {
-      verified: true
-    });
-  } else {
-    res.render("templates/index", {
-      verified: false
-    });
-  }
+  res.render("templates/login",{title: "RMC | Login"});
 });
+
+// router.get("/", (req,res) => {
+//   if(req.session.authent) {
+//     res.render("templates/index", {
+//       verified: true
+//     });
+//   } else {
+//     res.render("templates/index", {
+//       verified: false
+//     });
+//   }
+// });
 
 //Once Login is implemented with backend, need to change variable verified to true so that the myprofile page pops up in place of Login.
 router.post("/",  async (req,res) => {
-    let foundUser = null;
-    let data = req.body;
-    console.log(data.inputEmail)
-    if(!data.inputEmail|| !data.inputPassword) {
+  let form = req.body;
+  try{
+  if(!form.inputEmail || !form.inputPassword){
+    res.render("templates/login" , {
+          errors: true
+        });
+  } else {
+    let match = false;
+    let users = await userData.getAllUsers();
+    for(let i=0;i<users.length;i++){
+        let user = users[i];
+        if(user.email == form.inputEmail){
+            match = await bcrypt.compare(form.inputPassword, user.hashedPassword);
+            if(match){
+                req.session.authent = true;
+                req.session.user = user;
+                delete req.session.user.hashedPassword
+                res.redirect("/");
+                break;
+            }
+        }
+    }
+    if(!match){
       res.render("templates/login" , {
         errors: true
       });
-      res.status(401);
-      return;
     }
-    for(i = 0; i < userData.length; i++) {
-      let usernameChecker = data.username === userData[i].username;
-      if(usernameChecker) {
-        try {
-          let passcheck = await bcrypt.compare(data.password, userData[i].hashedPassword)
-          if(passcheck) {
-            foundUser = userData[i];
-            break;
-          }
-        } catch(e) {
-          console.log("oops")
-          return;
-        }
-      }
-      }
-      if(foundUser) {
-        req.session.authent = true;
-        req.session.id = foundUser.Uid;
-        req.session.username = foundUser.username;
-        req.session.firstName = foundUser.firstName;
-        req.session.lastName = foundUser.lastName;
-        req.session.profession = foundUser.profession;
-        req.session.bio = foundUser.bio;
-        res.redirect("/templates/index");
-        return;
-      } else {
-        res.render("templates/login", {
-          errors:true
-        });
-        return;
-    }
+}} catch(e){
+  res.render("templates/login" , {
+    errors: true
   });
+}
+});
+
+router.post("/newAccount", async(req,res) => {
+    let form = req.body;
+    try {
+      const newUser = await userData.createUser(form.firstName, form.lastName, form.emailInput, form.passwordInput, form.Gender, form.yearInput, form.ageInput);
+      res.render("/templates/index",{title: RateMyCourse})
+    } catch(e){
+      console.log(e);
+      res.render("/templates/index",{title: RateMyCourse})
+    }   
+});
 
 module.exports = router;

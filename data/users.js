@@ -2,8 +2,9 @@ const mongoCollections = require("./mongoCollections.js");
 const mongoConnection = require("./mongoConnection.js");
 const users = mongoCollections.users;
 const ObjectId = require('mongodb').ObjectId; //or ObjectID
+const bcrypt = require("bcrypt");
 
-async function createUser(firstName, lastName, email, gender, year, age){ //Need hashed password and user comments?..
+async function createUser(firstName, lastName, email, password, gender, year, age){ //Need hashed password and user comments?..
     //series of checks of the entered variables making sure they exist
     if(!firstName && firstName != "string"){
         throw "You must enter your First Name";
@@ -11,11 +12,15 @@ async function createUser(firstName, lastName, email, gender, year, age){ //Need
     if(!lastName && lastName != "string"){
         throw "You must enter your Last Name";
     }
-    var at = '@';
-    var period = '.';
-    if(!email & email.indexof(at) == -1 & email.indexof(period) == -1){
-        throw "You must enter a valid email adress";
+    if(!password && password != "string"){
+        throw "You must enter a password";
     }
+    const hash = await bcrypt.hash(password, 16);
+    // var at = '@';
+    // var period = '.';
+    // if(!email & email.indexof(at) == -1 & email.indexof(period) == -1){
+    //     throw "You must enter a valid email adress";
+    // }
     if(!gender & gender != "string"){
         throw "You must enter a valid gender";
     }
@@ -32,6 +37,7 @@ async function createUser(firstName, lastName, email, gender, year, age){ //Need
         firstName: firstName,
         lastName: lastName,
         email: email,
+        hashedPassword: hash,
         gender: gender,
         year: year,
         age: age
@@ -41,7 +47,7 @@ async function createUser(firstName, lastName, email, gender, year, age){ //Need
         throw "Could not enter user information";
     }
     const newId = insertInfo.insertedId;
-    const user = await this.get(newId);
+    const user = await this.getById(newId);
     return user;
 }
 
