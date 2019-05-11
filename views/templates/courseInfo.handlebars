@@ -5,13 +5,61 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link rel = "stylesheet" type = "text/css" href = "/public/style.css">
-{{!-- <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-<link rel = "stylesheet" href = "public/style.css"> --}}
 </head>
 {{> navigationBarPartial}}
 <body>
   <div class="page-container">
-  <dl>
+  <div class="page-content">
+    <div id="coursepage">
+      <h2>{{course.courseName}}</h2>
+      <h3>{{course.courseCode}}</h3>
+      <p>Credits: {{course.credits}}</p>
+      <p>Level: {{course.classLevel}}</p>
+      <p>Web Section: {{course.webSection}}</p>
+      <div class="professors">
+        <p>Professors: {{!-- {{#each course.professors}}{{this}}{{/each}} --}}</p>
+        {{!-- <table class="table" id="professor">
+          {{#each course.professors}}
+          <tr>
+            <td><a target="_blank" href="">{{this}}</a></td>
+          </tr>
+          {{/each}}
+        </table> --}}
+        <ul>
+          {{#each course.professors}}
+          <li>{{this}}</li>
+          {{/each}}
+        </ul>
+      </div>
+      <div class="description">
+        <p>{{course.description}}</p>
+      </div>
+      <div id="reviews">
+        <h2 id="ratings">Reviews:</h2>
+      <p><a href = "/review/{{code}}">Leave a review</a></p>
+        {{#each review}}
+        <div>
+          <p>{{review.datePosted}}</p>
+          <p>Tags</p>
+          <ul>
+            {{#each review.tags}}
+            <li>{{this}}</li>
+            {{/each}}
+          </ul>
+          <p>{{review.review}}</p>
+          <div class="comments">
+            {{#each review.comments}}
+            <div class="singleComment">
+              <p>{{this.datePosted}}</p>
+              <p>{{this.comment}}</p>
+            </div>
+            {{/each}}
+          </div>
+        </div>
+        {{/each}}
+      </div>
+    </div>
+  {{!-- <dl>
     <dt>Course Name:</dt>
     <dd>{{course.courseName}} </dd>
     <dt>Course Code:</dt>
@@ -28,11 +76,10 @@
     <dd>{{course.description}}</dt>
     <dt>Web Section:</dt>
     <dd>{{course.webSection}}<dd>
-  </dl>
-  <a href = "/review/{{code}}">Make a review!</a>
-{{> footerPartial}}
-
+  </dl> --}}
   </div>
+  </div>
+{{> footerPartial}}
   {{> constScriptsPartial}}
 </body>
 </html>
