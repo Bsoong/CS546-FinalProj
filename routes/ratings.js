@@ -5,8 +5,8 @@ const ratingData = data.ratings;
 const courseData = data.courses;
 
 router.get("/:code", async(req,res) => {
-    console.log("Review" + req.params.code);
-    res.render("./templates/review", {title: "RMC | Rate Course", code: req.params.code});
+    const course = await courseData.getCourseByCode(req.params.code);
+    res.render("templates/review", {title: "RMC | Rate Course", code: req.params.code, course: course});
 });
 
 router.post("/:code", async(req,res) => {
@@ -29,7 +29,7 @@ router.post("/:code", async(req,res) => {
         errors.push("Not a valid course code.");
     }
     if(errors.length>0){
-        res.render("./templates/review", {
+        res.render("/templates/review", {
             errors: errors,
             hasErrors: true,
             review: review,

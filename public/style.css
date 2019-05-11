@@ -73,3 +73,31 @@ div.description{
   width:fit-content;
   border:black 2px solid;
 }
+
+#ratings-form {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  border-style: solid;
+  background: #F2F2F3;
+  padding: 20px;
+  width: 45%;
+  margin-bottom: 20px;
+}
+
+#coursecodeInput, #ratingInput {
+  display: inline-block;
+  width: fit-content;
+  margin-left: 5px;
+  /* margin-right: auto; */
+}
+
+.professorInput {
+  margin-right: 10px;
+}
+
+textarea#comment {
+  width: 90%;
+  margin-right:auto;
+  margin-left:auto;
+}
