@@ -1,5 +1,6 @@
 const courseRoutes = require("./courses");
 const ratingRoutes = require("./ratings")
+const loginRoutes = require("./login")
 const express = require("express");
 const session = require('express-session');
 const bodyParser = require("body-parser");
@@ -13,6 +14,7 @@ const saltRounds = 16;
 const constructorMethod = app => {
   app.use("/courses", courseRoutes);
   app.use("/review", ratingRoutes);
+  app.use("/login", loginRoutes)
   app.use("/", router);
   // app.use("*", (req, res) => {
   //   res.render("./templates/index");
@@ -28,7 +30,7 @@ router.get("/",(req, res) => {
 router.get("/login", (req,res) => {
   console.log("Login");
   res.render("templates/login",{title: "RMC | Login"});
-});
+
 
 // router.get("/comment", (req,res) => {
 //   console.log("Comments");

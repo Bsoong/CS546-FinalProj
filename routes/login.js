@@ -1,5 +1,12 @@
 const express = require("express");
 const router = express.Router();
+const session = require('express-session');
+const bodyParser = require("body-parser");
+const bcrypt = require("bcrypt");
+const app = express();
+const saltRounds = 16;
+
+//Confused on how to impllement this with login. 
 
 router.use(session({
   name: 'AuthCookie',
@@ -17,13 +24,15 @@ router.use(function(req, res, next) {
   next();
 });
 
+
 router.use("/myprofile", function(req, res, next) {
   if(req.session.authent) {
+
     next();
   } else {
-    res.status(403).send("Error: Users is not Logged in.");
+    res.status(403).send("Error: User is not Logged in.");
   }
-})
+});
 
 router.get("/", (req,res) => {
   if(req.session.authent) {
@@ -37,11 +46,8 @@ router.get("/", (req,res) => {
   }
 });
 
-router.get("/login" , (req,res) => {
-    res.render("templates/login")
-});
 //Once Login is implemented with backend, need to change variable verified to true so that the myprofile page pops up in place of Login.
-router.post("/login",  async (req,res) => {
+router.post("/",  async (req,res) => {
     let foundUser = null;
     let data = req.body;
     console.log(data.inputEmail)
