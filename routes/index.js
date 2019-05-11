@@ -27,6 +27,7 @@ const constructorMethod = app => {
     console.log(`${date} ${method}  ${route} ${authent}`);
     next();
   });
+
   app.use("/courses", courseRoutes);
   app.use("/review", ratingRoutes);
   app.use("/login", loginRoutes)
@@ -37,7 +38,16 @@ const constructorMethod = app => {
 };
 
 router.get("/",(req, res) => {
-  res.render('templates/index',{title: "RateMyCourse"});
+  if(req.session.authent) {
+    res.render("templates/index", {
+      verified: true, title: "RateMyCourse"
+    });
+  } else {
+    res.render("templates/index", {
+      verified: false, title: "RateMyCourse"
+    });
+  }
+  // res.render('templates/index',{title: "RateMyCourse"});
 });
 
 //Once Login is implemented with backend, need to change variable verified to true so that the myprofile page pops up in place of Login.
@@ -71,10 +81,10 @@ router.get("/about", (req,res) => {
 // });
 
 router.get("/myProfile", (req,res) => {
-  try {
-    res.render("templates/myprofile",{title: "RMC | Profile"});
-  } catch(e) {
-    console.log(e);
+  if(req.session.authent){
+      res.render("templates/myprofile",{title: "RMC | Profile", user: req.session.user});
+  } else {
+    res.redirect("/");
   }
 });
 

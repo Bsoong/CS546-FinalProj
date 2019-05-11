@@ -10,6 +10,7 @@
   {{> navigationBarPartial}}
 <body>
   <div class="page-container">
+  <div class="page-content">
     <h1><u>Login</u></h1>
    <form method = "POST" id = "login" enctype="application/x-www-form-urlencoded" action = "/login">
   <div class="input-group input-group-lg">
@@ -36,8 +37,9 @@
 {{/if}}
     <p>Need to make an account?<a href = "/createAccount"> Click here!</a></p>
 
-{{> footerPartial}}
+</div>
 </div>
 {{> constScriptsPartial}}
+{{> footerPartial}}
 </body>
 </html>
