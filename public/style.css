@@ -12,8 +12,8 @@ text-align: center;
 }
 
 .page-content {
-  padding: 20px;
-  padding-bottom: 50px;
+  padding: 0 20px 50px 20px;
+  /* padding-bottom: 50px; */
 }
 
 nav {
@@ -54,6 +54,52 @@ footer{
     /* display: block; */
     float: none;
 }
+
 thead {
   text-align: center;
+}
+
+/* Styling for courseInfo */
+#coursepage {
+  display: inline-block;
+  border-style: solid;
+  padding: 20px;
+  width: 65%;
+  margin-bottom: 20px;
+  background: #F2F2F3;
+}
+
+#coursepage p {
+  font-size: 20px;
+}
+
+#coursepage ul {
+  font-size: 18px;
+}
+
+div.professors{
+  display:block;
+  margin-left:auto;
+  margin-right:auto;
+  width:fit-content;
+  line-height: 1;
+}
+
+div.professors>ul {
+  padding:0;
+  list-style: none;
+}
+
+div.description{
+  text-align:justify;
+  display:block;
+  margin-left:auto;
+  margin-right:auto;
+  width: 85%;
+  /* padding: 0px 25px; */
+}
+
+#professor{
+  width:fit-content;
+  border:black 2px solid;
 }
