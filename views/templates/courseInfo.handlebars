@@ -8,6 +8,7 @@
 {{> navigationBarPartial}}
 <body>
   <dl>
+    <form>
     <dt>Course Name:</dt>
     <dd>{{name}} </dd>
     <dt>Course Code:</dt>
@@ -20,9 +21,12 @@
     <dd>{{level}}</dd>
     <dt>Rating:</dt>
     <dd>{{rating}} </dd>
+    <dt>Description:</dt>
+    <dd>{{description}}</dt>
     <dt>Web Section:</dt>
     <dd>{{web}}<dd>
   </dl>
+</form>
   <a href = "/review/{{code}}">Make a review!</a>
 </body>
 {{> constScriptsPartial}}
