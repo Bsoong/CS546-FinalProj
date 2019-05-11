@@ -1,0 +1,38 @@
+[
+    {
+      "firstName": "Rachel",
+      "lastName": "Kim",
+      "email": "rkim5@stevens.edu",
+      "password": "rk",
+      "gender": "Female" ,
+      "year": "Second Year",
+      "age": 20
+    },
+    {
+        "firstName": "Brandon",
+        "lastName": "Soong",
+        "email": "bsoong@stevens.edu",
+        "password": "bs",
+        "gender": "Male" ,
+        "year": "Second Year",
+        "age": 20
+    },
+    {
+        "firstName": "Anthony",
+        "lastName": "Quattrocchi",
+        "email": "aquattro@stevens.edu",
+        "password": "aq",
+        "gender": "Male" ,
+        "year": "Second Year",
+        "age": 20
+    },
+    {
+        "firstName": "Kalee",
+        "lastName": "Burns",
+        "email": "kburns2@stevens.edu",
+        "password": "kb",
+        "gender": "Female" ,
+        "year": "Second Year",
+        "age": 20
+    }
+]
