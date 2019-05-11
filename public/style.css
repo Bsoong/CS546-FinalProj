@@ -1,15 +1,6 @@
-/* .topRated {
-  margin: 0 auto;
-  text-align: center;
-  display: inline-table;
-  border-style: solid;
-  padding: 50px;
-  color: black;
-  background: #F2F2F3;
-} */
-.page-container {
+/* .page-container {
   position: relative;
-}
+} */
 
 footer{
   bottom: unset;
