@@ -51,7 +51,7 @@ router.post("/",  async (req,res) => {
                 req.session.authent = true;
                 req.session.user = user;
                 delete req.session.user.hashedPassword
-                res.redirect("/");
+                res.redirect("/myProfile");
                 break;
             }
         }
@@ -68,15 +68,15 @@ router.post("/",  async (req,res) => {
 }
 });
 
-router.post("/newAccount", async(req,res) => {
-    let form = req.body;
-    try {
-      const newUser = await userData.createUser(form.firstName, form.lastName, form.emailInput, form.passwordInput, form.Gender, form.yearInput, form.ageInput);
-      res.redirect("/");
-    } catch(e){
-      console.log(e);
-      res.redirect("/");
-    }   
-});
+// router.post("/newAccount", async(req,res) => {
+//     let form = req.body;
+//     try {
+//       const newUser = await userData.createUser(form.firstName, form.lastName, form.emailInput, form.passwordInput, form.Gender, form.yearInput, form.ageInput);
+//       res.redirect("/");
+//     } catch(e){
+//       console.log(e);
+//       res.redirect("/");
+//     }   
+// });
 
 module.exports = router;

@@ -6,10 +6,10 @@
     <link rel = "stylesheet" href = "/public/main.css">            
     <link rel = "stylesheet" href = "/public/style.css">
 </head>
-{{> navigationBarPartial}}
 <body>
-    <div class="page-container">
-  <div class="page-content">
+{{> navigationBarPartial}}
+<div class="page-container">
+    <div class="page-content">
     <h1>Review {{code}}</h1>
     <form action="/review/{{code}}" method ="POST" id="ratings-form">
     {{!-- <h1 name="courseCode">Review {{code}}</h1> --}}
