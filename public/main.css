@@ -21,11 +21,22 @@ footer{
 }
 
 .page-container {
+    position: relative;
     min-height: 100%;
 }
 
 .page-content {
     padding: 0 20px 50px 20px;
+}
+
+.topRated {
+    margin: 0 auto;
+    text-align: center;
+    display: inline-table;
+    border-style: solid;
+    padding: 50px;
+    color: black;
+    background: #F2F2F3;
 }
 
 #login {
