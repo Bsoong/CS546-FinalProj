@@ -5,8 +5,12 @@ const ratingData = data.ratings;
 const courseData = data.courses;
 
 router.get("/:code", async(req,res) => {
-    const course = await courseData.getCourseByCode(req.params.code);
-    res.render("templates/review", {title: "RMC | Rate Course", code: req.params.code, course: course});
+    if(req.session.authent){
+        const course = await courseData.getCourseByCode(req.params.code);
+        res.render("templates/review", {verified: true, title: "RMC | Rate Course", code: req.params.code, course: course});
+    } else {
+        res.redirect("/");
+    }    
 });
 
 router.post("/:code", async(req,res) => {
@@ -34,7 +38,8 @@ router.post("/:code", async(req,res) => {
             hasErrors: true,
             review: review,
             code: review.courseCode,
-            title: "RMC | Rate Course"
+            title: "RMC | Rate Course",
+            verified: true
         });
         return;
     }
@@ -42,9 +47,25 @@ router.post("/:code", async(req,res) => {
     let formattedDate = date.getMonth()+1 + "/" + date.getDate() + "/" + date.getFullYear();
     try {
         const newReview = await ratingData.create(review.courseCode, person._id, formattedDate, review.tags, reviewComment);
-        res.render("/templates/reviewPosted",{posted: true, title: "RMC | Review Posted"});
+        res.redirect("/posted");
     } catch (e){
-        res.render("/templates/reviewPosted",{hasErrors: true, title: "RMC | Review Posted"});
+        res.redirect("/post_fail");        
+    }
+});
+
+router.get("/posted", (res,req)=>{
+    if(req.session.authent){
+        res.render("/templates/reviewPosted",{posted: true, verified: true, title: "RMC | Review Posted"});
+    } else {
+        res.redirect("/");
+    }
+});
+
+router.get("/post_fail", (res, req) => {
+    if(req.session.authent){
+        res.render("/templates/reviewPosted",{hasErrors: true, verified: true, title: "RMC | Review Posted"});
+    } else {
+        res.redirect("/");
     }
 });
 

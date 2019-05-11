@@ -4,17 +4,20 @@ const bcrypt = require("bcrypt");
 const data = require("../data");
 const userData = data.users;
 
-router.use("/myprofile", function(req, res, next) {
-  if(req.session.authent) {
-
-    next();
-  } else {
-    res.status(403).send("Error: User is not Logged in.");
-  }
-});
+// router.use("/myprofile", function(req, res, next) {
+//   if(req.session.authent) {
+//     next();
+//   } else {
+//     res.status(403).send("Error: User is not Logged in.");
+//   }
+// });
 
 router.get("/", (req,res) => {
-  res.render("templates/login",{title: "RMC | Login"});
+  if(req.session.authent){
+    res.redirect("/myProfile");
+  } else {
+    res.render("templates/login",{verified: false, title: "RMC | Login"});
+  }
 });
 
 // router.get("/", (req,res) => {
@@ -69,10 +72,10 @@ router.post("/newAccount", async(req,res) => {
     let form = req.body;
     try {
       const newUser = await userData.createUser(form.firstName, form.lastName, form.emailInput, form.passwordInput, form.Gender, form.yearInput, form.ageInput);
-      res.render("templates/index",{title: "RateMyCourse"})
+      res.redirect("/");
     } catch(e){
       console.log(e);
-      res.render("templates/index",{title: "RateMyCourse"})
+      res.redirect("/");
     }   
 });
 
