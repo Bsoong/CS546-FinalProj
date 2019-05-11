@@ -33,7 +33,11 @@ const constructorMethod = app => {
   app.use("/login", loginRoutes)
   app.use("/", router);
   app.use("*", (req, res) => {
-    res.redirect("/");
+    if(req.session.authent) {
+      res.render("templates/error",{verified: true, title: "RMC | Error", hasErrors: true, error: "Page not found."});
+    } else {
+      res.render("templates/error",{verified: false, title: "RMC | Error", hasErrors: true, error: "Page not found."});
+    }
   });
 };
 
@@ -65,7 +69,7 @@ router.get("/createAccount", (req,res) => {
   if(req.session.authent) {
     res.render("./templates/createAcc",{verified: true, title: "RMC | Account Creation"});
   } else {
-    res.render("./templates/createAcc",{verified: false, title: "RMC | Account Creation"});
+    res.redirect("/myProfile");
   }
 });
 
