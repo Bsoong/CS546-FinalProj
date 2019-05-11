@@ -8,19 +8,19 @@
 {{> navigationBarPartial}}
 <body>
   <dl>
-    <dt>Username:</dt>
-    <dd>{{username}} </dd>
-    <dt>FirstName:</dt>
-     <dd> {{firstName}} </dd>
-    <dt>Lastname:</dt>
-    <dd>{{lastName}} </dd>
+    <dt>First Name:</dt>
+     <dd> {{user.firstName}} </dd>
+    <dt>Last Name:</dt>
+    <dd>{{user.lastName}} </dd>
+    <dt>Email: </dt>
+    <dd>{{user.email}}</dd>
     <dt>Reviews:</dt>
-    <dd>{{reviews}} </dd>
+    <dd>{{user.reviews}} </dd>
     <dt>Comments:</dt>
-    <dd>{{comments}} </dd>
+    <dd>{{user.comments}} </dd>
   </dl>
   <a href = "/logout">Logout!</a>
 {{> constScriptsPartial}}
-</body>
 {{> footerPartial}}
+</body>
 </html>

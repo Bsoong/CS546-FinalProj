@@ -1,15 +1,8 @@
 const express = require("express");
 const router = express.Router();
-const session = require('express-session');
-const bodyParser = require("body-parser");
 const bcrypt = require("bcrypt");
-const app = express();
-const saltRounds = 16;
 const data = require("../data");
 const userData = data.users;
-
-//Confused on how to impllement this with login. 
-
 
 router.use("/myprofile", function(req, res, next) {
   if(req.session.authent) {

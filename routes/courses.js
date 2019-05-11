@@ -16,7 +16,6 @@ const injectCourses = require("../data/courses.json");
 
 router.get("/", async(req,res) => {
   try {
-    console.log("CoursePage");
     const courseCollection = await courseData.getAllCourses();
     res.render("./templates/coursePage",{title: "RMC | Courses", courses: courseCollection});
   } catch(e) {
