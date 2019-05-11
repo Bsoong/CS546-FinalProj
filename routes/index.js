@@ -101,8 +101,11 @@ router.post("/search", async (req, res) => {
           web: foundCourse.webSection
         });
       }
+      }
+      // res.render("./templates/index", {
+      //   errors2: true
+      // });
     }
-  }
   catch(e){
       res.status(400);
   }
