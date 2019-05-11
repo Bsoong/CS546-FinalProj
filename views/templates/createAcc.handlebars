@@ -5,13 +5,14 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    <link rel = "stylesheet" href = "/public/account.css">
+    <link rel = "stylesheet" href = "/public/main.css">
+    <link rel = "stylesheet" href = "/public/style.css">
 </head>
 {{> navigationBarPartial}}
 <body>
     <div class="page-container">
   <div class="page-content">
-    <h1><u>Create an Account</u></h1>
+    <h1>Create an Account</h1>
     <form method = "POST" id = "account" action="/login/newAccount">
         <div class = "firstName">
             <label for = "fName">First name</label>
@@ -26,12 +27,12 @@
             <input type="email" class="form-control" id="emailInput" name = "emailInput" placeholder="name@example.com" required>
         </div>
         <div class="password">
-            <div class="input-group input-group-lg">
-            <div class="form-group form-group-lg">
+            {{!-- <div class="input-group input-group-lg"> --}}
+            {{!-- <div class="form-group form-group-lg"> --}}
             <label for="pass">Password</label>
             <input type="password" class="form-control" id="passwordInput" name = "passwordInput" placeholder="Password" required>
-      </div>
-        </div>
+      {{!-- </div> --}}
+        {{!-- </div> --}}
         </div>
     <div class="gender">
             <label for="ChooseGender">Gender</label>
