@@ -1,0 +1,39 @@
+body {
+    background: rgb(247,254,255);
+    background: linear-gradient(180deg, rgba(247,254,255,1) 0%, rgba(0,212,255,1) 100%);
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    text-align: center;
+}
+
+nav {
+    background: rgb(247,254,255);
+    background: linear-gradient(180deg, rgba(247,254,255,1) 0%, rgba(0,212,255,1) 100%);
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+}
+
+footer{
+    bottom: 10px;
+    text-align: center;
+    position: absolute;
+    width: 100%;
+}
+
+.page-container {
+    min-height: 100%;
+}
+
+.page-content {
+    padding: 0 20px 50px 20px;
+}
+
+#login {
+    display: inline-block;
+    border-style: solid;
+    padding: 20px;
+    width: fit-content;
+    margin-bottom: 20px;
+    background: #F2F2F3;
+}
+

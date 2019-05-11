@@ -7,52 +7,23 @@
   color: black;
   background: #F2F2F3;
 } */
-body {
-background: rgb(247,254,255);
-background: linear-gradient(180deg, rgba(247,254,255,1) 0%, rgba(0,212,255,1) 100%);
-background-repeat: no-repeat;
-background-attachment: fixed;
-text-align: center;
-}
-
 .page-container {
   position: relative;
-  min-height: 100%;
-}
-
-.page-content {
-  padding: 0 20px 50px 20px;
-  /* padding-bottom: 50px; */
-}
-
-nav {
-background: rgb(247,254,255);
-background: linear-gradient(180deg, rgba(247,254,255,1) 0%, rgba(0,212,255,1) 100%);
-background-repeat: no-repeat;
-background-attachment: fixed;
-}
-
-form {
-    display: inline-block;
-    border-style: solid;
-    padding: 50px;
-    background: #F2F2F3;
-}
-
-#account {
-  padding: 20px;
-  width: 50%;
-  margin-bottom: 20px;
 }
 
 footer{
-  /* bottom: 10px; */
+  bottom: unset;
   margin-top: -30px;
-  text-align: center;
-  position: absolute;
-  width: 100%;
   height: 50px;
-  /* clear: both; */
+}
+
+#account {
+  display: inline-block;
+  border-style: solid;
+  background: #F2F2F3;
+  padding: 20px;
+  width: 30%;
+  margin-bottom: 20px;
 }
 
 .table {
@@ -60,7 +31,6 @@ footer{
     border-radius: 5px;
     width: 50%;
     margin: 0px auto;
-    /* display: block; */
     float: none;
 }
 
@@ -68,7 +38,7 @@ thead {
   text-align: center;
 }
 
-/* Styling for courseInfo */
+/* Styling for /templates/courseInfo */
 #coursepage {
   display: inline-block;
   border-style: solid;
