@@ -17,27 +17,35 @@ const injectCourses = require("../data/courses.json");
 router.get("/", async(req,res) => {
   try {
     const courseCollection = await courseData.getAllCourses();
-    res.render("./templates/coursePage",{title: "RMC | Courses", courses: courseCollection});
+    if(req.session.authent){
+      res.render("./templates/coursePage",{verified: true, title: "RMC | Courses", courses: courseCollection});
+    } else {
+      res.render("./templates/coursePage",{verified: false, title: "RMC | Courses", courses: courseCollection});
+    }
   } catch(e) {
     console.log(e);
   }
 });
 
-router.get("/:id", async(req, res) => {
-  try{
-    const course = await courseData.getCourseById(req.params.id);
-    res.status(200).json(course);
+// router.get("/:id", async(req, res) => {
+//   try{
+//     const course = await courseData.getCourseById(req.params.id);
+//     res.status(200).json(course);
 
-  }
-  catch(e){
-    res.status(404).json({ error: "Error: could not find animal."});
-  }
-});
+//   }
+//   catch(e){
+//     res.status(404).json({ error: "Error: could not find animal."});
+//   }
+// });
 
 router.get("/code/:code", async(req, res) => {
   try {
     const course = await courseData.getCourseByCode(req.params.code);
-    res.render("templates/courseInfo",{title: req.params.code, course: course});
+    if(req.session.authent){
+      res.render("templates/courseInfo",{verified: true, title: req.params.code, course: course});
+    } else {
+      res.render("templates/courseInfo",{verified: false, title: req.params.code, course: course});
+    }
   }
   catch(e){
     res.status(404);
@@ -69,8 +77,5 @@ router.delete("/:id", async(req, res) => {
     console.log(e);
   }
 });
-
-
-
 
 module.exports = router;
