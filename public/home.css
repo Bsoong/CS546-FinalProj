@@ -31,12 +31,22 @@ background-repeat: no-repeat;
 background-attachment: fixed;
 }
 
-/* p {
+p {
   color: black;
-} */
+}
 footer{
     bottom: 10px;
     text-align: center;
     position: absolute;
     width: 100%;
+}
+
+.topRated {
+  margin: 0 auto;
+  text-align: center;
+  display: inline-table;
+  border-style: solid;
+  padding: 50px;
+  color: black;
+  background: #F2F2F3;
 }
