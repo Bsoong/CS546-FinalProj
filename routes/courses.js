@@ -35,15 +35,14 @@ router.get("/:id", async(req, res) => {
 });
 
 router.get("/code/:code", async(req, res) => {
-  try{
+  try {
     const course = await courseData.getCourseByCode(req.params.code);
-
-    res.status(200).json(course);
+    res.render("templates/courseInfo",{title: req.params.code, course: course});
   }
-  catch(e)
-{
-  res.status(404);
-}});
+  catch(e){
+    res.status(404);
+  }
+});
 
 // router.post("/", async(req, res) => {
 //   try{

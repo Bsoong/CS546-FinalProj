@@ -109,16 +109,9 @@ router.post("/search", async (req, res) => {
     for(let i = 0; i < courseCollection.length; i++){
       if(courseCollection[i].courseName == body || courseCollection[i].courseCode == body){
         const foundCourse = courseCollection[i];
-        res.status(200).render("./templates/courseInfo", {
-          name: foundCourse.courseName,
-          code: foundCourse.courseCode,
-          credits: foundCourse.credits,
-          professors: foundCourse.professors,
-          level: foundCourse.classLevel,
-          rating: foundCourse.avgRating,
-          description: foundCourse.description,
-          web: foundCourse.webSection
-        });
+        code = foundCourse.courseCode;
+        res.redirect("/courses/code/"+code);
+        // res.status(200).render("./templates/courseInfo", {course: foundCourse});
       }
       }
       // res.render("./templates/index", {

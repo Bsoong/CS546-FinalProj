@@ -2,32 +2,33 @@
 <html>
 <head>
 <title>Course Info</title>
-<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-<link rel = "stylesheet" href = "public/style.css">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel = "stylesheet" type = "text/css" href = "/public/style.css">
+{{!-- <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+<link rel = "stylesheet" href = "public/style.css"> --}}
 </head>
 {{> navigationBarPartial}}
 <body>
   <div class="page-container">
   <dl>
-    <form>
     <dt>Course Name:</dt>
-    <dd>{{name}} </dd>
+    <dd>{{course.courseName}} </dd>
     <dt>Course Code:</dt>
-     <dd> {{code}} </dd>
+     <dd> {{course.courseCode}} </dd>
      <dt>Credits:</dt>
-     <dd>{{credits}} </dd>
+     <dd>{{course.credits}} </dd>
     <dt>Professors:</dt>
-    <dd>{{professors}} </dd>
+    <dd>{{course.professors}} </dd>
     <dt>Level:</dt>
-    <dd>{{level}}</dd>
+    <dd>{{course.classLevel}}</dd>
     <dt>Rating:</dt>
-    <dd>{{rating}} </dd>
+    <dd>{{course.rating}} </dd>
     <dt>Description:</dt>
-    <dd>{{description}}</dt>
+    <dd>{{course.description}}</dt>
     <dt>Web Section:</dt>
-    <dd>{{web}}<dd>
+    <dd>{{course.webSection}}<dd>
   </dl>
-</form>
   <a href = "/review/{{code}}">Make a review!</a>
 {{> footerPartial}}
 
