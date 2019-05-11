@@ -15,7 +15,7 @@
     {{!-- <h1 name="courseCode">Review {{code}}</h1> --}}
     <div class = "course">
         <label for = "courseCode">Course Code: </label>
-        <input type = "text" name="courseCode" class = "form-control" id = "coursecodeInput" value= "{{code}}" disabled>
+        <input type = "text" name="courseCode" class = "form-control" id = "coursecodeInput" value= "{{code}}" readonly>
     </div>
     <br>
     <div class = "rating">
@@ -33,14 +33,16 @@
 
     <div align = "center" class = "professors">
         <label for = "professor">Professor:</label> <br>
-        {{#each course.professors}}
-        <input type = "radio" class ="professorInput" id = "{{this}}" name="professor" value="{{this}}">{{this}}</input><br>
-        {{/each}}
+        <select name="professor" required>
+            {{#each course.professors}}
+            <option selected id = "{{this}}" value="{{this}}">{{this}}</option>
+            {{/each}}
+        </select>
     </div>
     <br>
     <div class="review">
-        <label for="comment">Review</label>
-        <textarea class="form-control" name="comment" rows="5" id="comment">{{review.body}}</textarea>
+        <label for="commentLabel">Review</label>
+        <textarea class="form-control" name="comment" rows="5" id="commentLabel">{{review.body}}</textarea>
     </div>
     <br>
     <button type="submit" class="btn btn-primary">Submit</button>

@@ -17,11 +17,17 @@ module.exports = {
         if(datePosted===undefined || typeof(datePosted)!="string" || datePosted.trim().length==0){
             throw "datePosted parameter is invalid";
         }
-        if(tags===undefined || typeof(tags)!="array"){
-            throw "tags parameter is invalid";
+        if(tags===undefined){
+            tags=[];
+        } else {
+            if(typeof(tags)!="array"){
+                throw "tags parameter is invalid";
+            }
         }
-        if(rating===undefined || typeof(rating)!="number"){
+        if(rating===undefined){
             throw "rating parameter is invalid";
+        } else {
+            rating = +rating;
         }
         if(typeof(review)!="string"){
             throw "review parameter is invalid";
@@ -38,13 +44,13 @@ module.exports = {
             comments: []
         };
       
-        const insertInfo = await ratingCollection.insertOne(newrating);
+        const insertInfo = await ratingCollection.insertOne(newRating);
         if (insertInfo.insertedCount === 0) {
             throw "Could not add rating";
         }
         const newId = insertInfo.insertedId;
-        const rating = await this.get(ObjectId(newId).toString());
-        return rating;
+        const r = await this.get(ObjectId(newId).toString());
+        return r;
     },
 
     async getAll(){
