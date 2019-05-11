@@ -39,12 +39,27 @@
                             <p>Error: Course does not exist</p>
                             {{/if}}
                           </div>
+                          <p>Top Rated Course</p>
+                          <div class = "topRated">
+                          <form action="/review" method="GET" name = "topRated2" enctype="application/x-www-form-urlencoded">
+                            <dt>Course Name:</dt>
+                            <dd>{{course.courseName}} </dd>
+                            <dt>Course Code:</dt>
+                             <dd> {{course.courseCode}} </dd>
+                             <dt>Credits:</dt>
+                             <dd>{{course.credits}} </dd>
+                             <dt>Level:</dt>
+                             <dd>{{course.classLevel}}</dd>
+                             <dt>Rating:</dt>
+                             <dd>{{course.rating}} </dd>
+                          </form>
+                        </div>
                         </div>
                       </div>
                     </div>
                   </div>
                 </section>
-</div>
+
 {{> constScriptsPartial}}
 {{> footerPartial}}
 </body>
