@@ -2,7 +2,6 @@ const express = require("express");
 const router = express.Router();
 const data = require("../data");
 const ratingData = data.ratings;
-const userData = data.users;
 const courseData = data.courses;
 
 router.get("/:code", async(req,res) => {
