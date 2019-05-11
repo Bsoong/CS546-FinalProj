@@ -16,40 +16,40 @@
     <form method = "POST" id = "account" action="/login/newAccount">
         <div class = "firstName">
             <label for = "fName">First name</label>
-            <input type = "text" class = "form-control" id = "fNameInput" name = "firstName" required>
+            <input type = "text" class = "form-control" id = "fName" name = "firstName" required>
         </div>
         <div class = "lastName">
             <label for = "lName">Last name</label>
-            <input type = "text" class = "form-control" id = "lNameInput" name = "lastName" required>
+            <input type = "text" class = "form-control" id = "lName" name = "lastName" required>
         </div>
         <div class="email">
             <label for="email1">Email address</label>
-            <input type="email" class="form-control" id="emailInput" name = "emailInput" placeholder="name@example.com" required>
+            <input type="email" class="form-control" id="email1" name = "emailInput" placeholder="name@example.com" required>
         </div>
         <div class="password">
             {{!-- <div class="input-group input-group-lg"> --}}
             {{!-- <div class="form-group form-group-lg"> --}}
-            <label for="pass">Password</label>
-            <input type="password" class="form-control" id="passwordInput" name = "passwordInput" placeholder="Password" required>
+            <label for="passwordInput1">Password</label>
+            <input type="password" class="form-control" id="passwordInput1" name = "passwordInput" placeholder="Password" required>
       {{!-- </div> --}}
         {{!-- </div> --}}
         </div>
     <div class="gender">
             <label for="ChooseGender">Gender</label>
-            <select class="form-control" id="Gender" name = "Gender" required>
+            <select class="form-control" id="ChooseGender" name = "Gender" required>
                 <option disabled selected value=""></option>
-                <option value = "male">Male</option>
-                <option value = "female">Female</option>
-                <option value = "other">Other</option>
+                <option value = "Male">Male</option>
+                <option value = "Female">Female</option>
+                <option value = "Other">Other</option>
             </select>
     </div>
     <div class = "age">
         <label for = "agelabel">Age</label>
-        <input type = "number" class = "form-control" id = "ageInput" name = "ageInput" required>
+        <input type = "number" class = "form-control" id = "agelabel" name = "ageInput" required>
     </div>
     <div class="year">
-        <label for="exampleFormControlSelect2">Year</label>
-        <select class="form-control" id="yearInput" name = "yearInput" required>
+        <label for="yearInput1">Year</label>
+        <select class="form-control" id="yearInput1" name = "yearInput" required>
             <option disabled selected value=""> </option>
             <option>First Year</option>
             <option>Second Year</option>
