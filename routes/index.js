@@ -47,7 +47,6 @@ router.get("/",(req, res) => {
       verified: false, title: "RateMyCourse"
     });
   }
-  // res.render('templates/index',{title: "RateMyCourse"});
 });
 
 //Once Login is implemented with backend, need to change variable verified to true so that the myprofile page pops up in place of Login.
@@ -63,11 +62,19 @@ router.get("/",(req, res) => {
 // });
 
 router.get("/createAccount", (req,res) => {
-  res.render("./templates/createAcc",{title: "RMC | Account Creation"});
+  if(req.session.authent) {
+    res.render("./templates/createAcc",{verified: true, title: "RMC | Account Creation"});
+  } else {
+    res.render("./templates/createAcc",{verified: false, title: "RMC | Account Creation"});
+  }
 });
 
 router.get("/about", (req,res) => {
-  res.render("./templates/about",{title: "RMC | About Us"});
+  if(req.session.authent) {
+    res.render("./templates/about",{verified: true, title: "RMC | About Us"});
+  } else {
+    res.render("./templates/about",{verified: false, title: "RMC | About Us"});
+  }
 });
 
 // router.get("/coursePage", async(req,res) => {
@@ -82,25 +89,28 @@ router.get("/about", (req,res) => {
 
 router.get("/myProfile", (req,res) => {
   if(req.session.authent){
-      res.render("templates/myprofile",{title: "RMC | Profile", user: req.session.user});
+      res.render("templates/myprofile",{verified: true, title: "RMC | Profile", user: req.session.user});
   } else {
     res.redirect("/");
   }
 });
 
 router.get("/logout", (req,res) => {
-  //  req.session.destroy();
-    res.render("templates/logout",{title: "RMC | Logout"});
-    return;
-})
-
-router.get("/courseInfo", (req,res) => {
-  try {
-    res.render("./templates/courseInfo",{title: "RMC | Course Info"});
-  } catch(e) {
-    console.log(e);
+  if(req.session.authent){
+    req.session.destroy();
+    res.render("templates/logout",{verified: false, title: "RMC | Logout"});
+  } else {
+    res.redirect("/");
   }
 });
+
+// router.get("/courseInfo", (req,res) => {
+//   if(req.session.authent){
+//     res.render("./templates/courseInfo",{verified: true, title: "RMC | Course Info"});
+//   } else {
+//     res.render("./templates/courseInfo",{verified: false, title: "RMC | Course Info"});
+//   }
+// });
 
 router.post("/search", async (req, res) => {
   try{
