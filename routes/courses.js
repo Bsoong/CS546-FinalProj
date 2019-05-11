@@ -4,13 +4,23 @@ const cData = require("../data");
 const courseData = cData.courses;
 const injectCourses = require("../data/courses.json");
 
-router.get("/", async(req, res) => {
-  try{
+// router.get("/", async(req, res) => {
+//   try{
+//     const courseCollection = await courseData.getAllCourses();
+//     res.status(200).json(courseCollection);
+//   }
+//   catch(e){
+//     res.status(404);
+//   }
+// });
+
+router.get("/", async(req,res) => {
+  try {
+    console.log("CoursePage");
     const courseCollection = await courseData.getAllCourses();
-    res.status(200).json(courseCollection);
-  }
-  catch(e){
-    res.status(404);
+    res.render("./templates/coursePage",{title: "RMC | Courses", courses: courseCollection});
+  } catch(e) {
+    console.log(e);
   }
 });
 

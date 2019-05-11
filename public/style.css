@@ -6,6 +6,15 @@ background-attachment: fixed;
 text-align: center;
 }
 
+.page-container {
+  position: relative;
+  min-height: 100%;
+}
+
+.page-content {
+  padding-bottom: 2.5rem;
+}
+
 nav {
 background: rgb(247,254,255);
 background: linear-gradient(180deg, rgba(247,254,255,1) 0%, rgba(0,212,255,1) 100%);
@@ -19,14 +28,16 @@ form {
     border-style: solid;
     padding: 50px;
     background: #F2F2F3;
+    width: 75%;
 }
 
 footer{
-  position:absolute;
-  bottom:0;
-  width:100%;
-  height:100px;
-  bottom:0;
+  bottom: 10px;
+  text-align: center;
+  position: absolute;
+  width: 100%;
+  height: 50px;
+  clear: both;
 }
 
 .table {
@@ -34,6 +45,7 @@ footer{
     border-radius: 5px;
     width: 50%;
     margin: 0px auto;
+    display: block;
     float: none;
 }
 thead {

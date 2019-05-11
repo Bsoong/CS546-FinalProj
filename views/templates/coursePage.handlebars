@@ -9,29 +9,9 @@
     <link rel = "stylesheet" href = "public/style.css">
   {{> navigationBarPartial}}
 <body>
+<div class="page-container">
+  <div class="page-content">
   <h1><u>Course Page</u></h1>
-<!-- <table class="table table-hover">
-  <thead>
-    <tr>
-      <th scope="col">#</th>
-      <th scope="col">Course Names</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th scope="row">1</th>
-      <td><a href = "/courses">Introduction to Computer Science </a></td>
-    </tr>
-    <tr>
-      <th scope="row">2</th>
-      <td>Jacob</td>
-    </tr>
-    <tr>
-      <th scope="row">3</th>
-      <td colspan="2">Larry the Bird</td>
-    </tr>
-  </tbody>
-</table> -->
 <div class="container-fluid">
     <table id="total votes" class="table table-hover text-centered">
         <thead>
@@ -40,17 +20,19 @@
                 <th>Course Name</th>
             </tr>
         </thead>
+        {{#each courses}}
         <tbody>
             <tr>
-                <td><a href = "/courses/">CS115</a></td>
-                <td>Introduction to Computer Science </td>
-                <td>{{ total_voter_a }}</td>
-                <td>{{ total_voter_b }}</td>
+                <td><a href = "/courses/code/{{this.courseCode}}">{{this.courseCode}}</a></td>
+                <td>{{this.courseName}}</td>
             </tr>
         </tbody>
+        {{/each}}
     </table>
+</div>
+</div>
+{{> footerPartial}}
 </div>
 {{> constScriptsPartial}}
 </body>
-{{> footerPartial}}
 </html>
