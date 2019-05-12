@@ -1,6 +1,6 @@
 const courseRoutes = require("./courses");
-const ratingRoutes = require("./ratings")
-const loginRoutes = require("./login")
+const ratingRoutes = require("./ratings");
+const loginRoutes = require("./login");
 const express = require("express");
 const session = require('express-session');
 const bodyParser = require("body-parser");
@@ -31,7 +31,7 @@ const constructorMethod = app => {
 
   app.use("/courses", courseRoutes);
   app.use("/review", ratingRoutes);
-  app.use("/login", loginRoutes)
+  app.use("/login", loginRoutes);
   app.use("/", router);
   app.use("*", (req, res) => {
     if(xss(req.session.authent)) {
@@ -149,7 +149,7 @@ router.get("/post_fail", (req, res) => {
 //   try{
 //     const courseCollection = await courseData.getAllCourses();
 //     const body = xss(req.body.searchInput);
-    
+
 // //     for(let i = 0; i < courseCollection.length; i++){
 // //       if(courseCollection[i].courseName == body || courseCollection[i].courseCode == body){
 // //         const foundCourse = courseCollection[i];
@@ -178,9 +178,16 @@ router.post("/search", async (req, res) => {
         await courses.push(courseCollection[i]);
       }
     }
-    res.status(200).render("./templates/coursePage", {
-      courses: courses
-    });
+    if(courses.length == 0){
+      res.status(404).render("./templates/index", {
+        errors2: true
+      });
+    }
+    else{
+      res.status(200).render("./templates/coursePage", {
+        courses: courses
+      });
+    }
     // for(let i = 0; i < courseCollection.length; i++){
     //   if(courseCollection[i].courseName == body || courseCollection[i].courseCode == body){
     //     const foundCourse = courseCollection[i];
