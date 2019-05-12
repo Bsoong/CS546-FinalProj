@@ -1,20 +1,10 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    <link rel = "stylesheet" href = "/public/main.css">
-    <link rel = "stylesheet" href = "/public/style.css">
-</head>
-<body>
  {{> navigationBarPartial}}
   <div class="page-container">
   <div class="page-content">
     <h1>Rate My Course</h1>
     <h1><small>For all your student needs</small></h1>
     <br>
-<section id="cover">
+{{!-- <section id="cover"> --}}
     <div id="cover-caption">
         <div id="container" class="container">
             <div class="row text-white">
@@ -27,6 +17,7 @@
                                 <br>
                                 <button type="submit" class="btn btn-success">Search!</button>
                             </div>
+                            </form>
                             {{#if errors2}}
                             <p>Error: Course does not exist</p>
                             {{/if}}
@@ -35,10 +26,8 @@
                         </div>
                       </div>
                   </div>
-                </section>
+                {{!-- </section> --}}
 </div>
 </div>
 {{> constScriptsPartial}}
 {{> footerPartial}}
-</body>
-</html>
