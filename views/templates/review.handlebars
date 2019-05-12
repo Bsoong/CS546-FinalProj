@@ -12,12 +12,12 @@
     <br>
     <div class = "rating">
         <label for = "rating">Overall Rating (1-5): </label>
-        <input align = "left" type = "number" name="rating" value="{{review.rating}}" class = "form-control" id = "ratingInput" min="1" max="5">
+        <input align = "left" type = "number" name="rating" value="{{review.rating}}" class = "form-control" id = "ratingInput" min="1" max="5" required>
     </div>
     <br>
     <div class = "tags">
         <label for = "tag[]">Tags</label>
-        <label id="hw">Homework</label>
+        <label id="hw">Homework</label> <br>
             <input type = "checkbox" id = "hw1" name="tag" value="Homework is easy">Easy</input>
             <input type = "checkbox" id = "hw2" name="tag" value="Homework is hard">Hard</input>
             <input type = "checkbox" id = "hw3" name="tag" value="Lots of homework">Lots of homework</input>
