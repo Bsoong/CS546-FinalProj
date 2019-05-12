@@ -35,4 +35,4 @@ Rate My Course: A website featuring Stevens Courses that allows Students to View
  - Rachel Kim 
  - Brandon Soong
  - Anthony Quattrocchi
- - Kalee Burn
+ - Kalee Burns
