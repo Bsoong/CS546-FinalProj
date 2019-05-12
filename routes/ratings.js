@@ -63,6 +63,19 @@ router.post("/:code", async(req,res) => {
     try {
         const newReview = await ratingData.create(xss(review.courseCode), xss(person._id), formattedDate, review.tags, xss(review.rating), reviewComment);
         if(newReview!==undefined){
+            // May move this logic to another function in data
+            const allRatings = ratingData.getRatingByCourseCode(xss(review.courseCode));
+            const course = courseData.getCourseByCode(xss(review.courseCode));
+            let cID = course._id;
+            let avg = -1;
+            if(allRatings.length!=0){
+                let totalRating = 0;
+                allRatings.forEach(function(element){
+                    totalRating+=element.rating;
+                });
+                avg = totalRating/allRatings.length;
+            }
+            const updatedCourse = courseData.updateRating(cID, avg);
             const u = await userData.addReview(xss(person._id), newReview._id.toString());
             if(u!==undefined){
                 req.session.posted = true;

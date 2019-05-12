@@ -71,6 +71,18 @@ module.exports = {
         return rate;
     },
 
+    async getRatingByCourseCode(code){
+        if(code===undefined || typeof(code)!="string"){
+            throw "code is not a string";
+        }
+        const ratingCollection = await ratings();  
+        const ratings = await ratingCollection.find({ courseCode: code }).toArray();
+        if(ratings===undefined){
+            throw "No ratings with that courseCode";
+        }
+        return ratings; //returns an array
+    },
+
     async remove(id) {
         if(id===undefined || typeof(id)!="string") {
             throw "id is not a string";

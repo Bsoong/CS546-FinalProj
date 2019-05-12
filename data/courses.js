@@ -122,7 +122,6 @@ module.exports = {
     if(typeof(rating) !== "number"){
       throw "Error: Rating must be a number";
     }
-
     const courseCollection = await courses();
     const course = await courseCollection.getCourseById(id);
     let updatedCourse = course;
@@ -133,6 +132,7 @@ module.exports = {
     if (updatedInfo.modifiedCount === 0) {
       throw "Could not update course successfully.";
     }
+    return await this.get(id);
   },
 
   async removeCourse(id) {
