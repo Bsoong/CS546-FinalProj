@@ -145,18 +145,50 @@ router.get("/post_fail", (req, res) => {
 //   }
 // });
 
+// router.post("/search", async (req, res) => {
+//   try{
+//     const courseCollection = await courseData.getAllCourses();
+//     const body = xss(req.body.searchInput);
+    
+// //     for(let i = 0; i < courseCollection.length; i++){
+// //       if(courseCollection[i].courseName == body || courseCollection[i].courseCode == body){
+// //         const foundCourse = courseCollection[i];
+// //         code = foundCourse.courseCode;
+// //         res.redirect("/courses/code/"+code);
+// //         // res.status(200).render("./templates/courseInfo", {course: foundCourse});
+// //       }
+// //       }
+// //       // res.render("./templates/index", {
+// //       //   errors2: true
+// //       // });
+//     }
+//   catch(e){
+//       res.status(400);
+//   }
+// });
+
 router.post("/search", async (req, res) => {
   try{
     const courseCollection = await courseData.getAllCourses();
     const body = xss(req.body.searchInput);
+    let courses = [];
     for(let i = 0; i < courseCollection.length; i++){
-      if(courseCollection[i].courseName == body || courseCollection[i].courseCode == body){
-        const foundCourse = courseCollection[i];
-        code = foundCourse.courseCode;
-        res.redirect("/courses/code/"+code);
+      let foundCourse = await courseCollection[i].courseName.includes(body) || courseCollection[i].courseCode.includes(body);
+      if(foundCourse){
+        await courses.push(courseCollection[i]);
+      }
+    }
+    res.status(200).render("./templates/coursePage", {
+      courses: courses
+    });
+    // for(let i = 0; i < courseCollection.length; i++){
+    //   if(courseCollection[i].courseName == body || courseCollection[i].courseCode == body){
+    //     const foundCourse = courseCollection[i];
+    //     code = foundCourse.courseCode;
+    //     res.redirect("/courses/code/"+code);
         // res.status(200).render("./templates/courseInfo", {course: foundCourse});
-      }
-      }
+      // }
+      // }
       // res.render("./templates/index", {
       //   errors2: true
       // });
