@@ -29,8 +29,7 @@ router.post("/",  async (req,res) => {
             match = await bcrypt.compare(xss(form.inputPassword), xss(user.hashedPassword));
             if(match){
                 req.session.authent = true;
-                req.session.user = user;
-                delete req.session.user.hashedPassword
+                req.session.user = user._id;
                 res.redirect("/myProfile");
                 break;
             }
@@ -65,8 +64,7 @@ router.post("/newAccount", async(req,res) => {
       } else {
         const newUser = await userData.createUser(xss(form.firstName), xss(form.lastName),xss(form.emailInput), xss(form.passwordInput), xss(form.Gender), xss(form.yearInput), xss(form.ageInput));
         req.session.authent = true;
-        req.session.user = newUser;
-        delete req.session.user.hashedPassword
+        req.session.user = newUser._id;
         res.redirect("/myProfile");
       }
     } catch(e){

@@ -88,7 +88,8 @@ router.get("/about", (req,res) => {
 router.get("/myProfile", async(req,res) => {
   if(xss(req.session.authent)){
     try {
-      const u = req.session.user;
+      // let u = req.session.user;
+      const u = await userData.getById(req.session.user.toString());
       let ratings = u.ratings;
       let r= [];
       for(let i = 0; i<ratings.length; i++){
@@ -97,9 +98,9 @@ router.get("/myProfile", async(req,res) => {
         r.push(review);
       }
       if(ratings.length==0){
-        res.render("templates/myprofile",{verified: true, title: "RMC | Profile", user: req.session.user, noratings: true});
+        res.render("templates/myprofile",{verified: true, title: "RMC | Profile", user: u, noratings: true});
       } else {
-        res.render("templates/myprofile",{verified: true, title: "RMC | Profile", user: req.session.user, ratings: r});
+        res.render("templates/myprofile",{verified: true, title: "RMC | Profile", user: u, ratings: r});
       }
     } catch(e){
       console.log(e);
