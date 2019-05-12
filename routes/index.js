@@ -66,8 +66,8 @@ router.get("/",(req, res) => {
 // });
 
 router.get("/createAccount", (req,res) => {
-  if(req.session.authent) {
-    res.render("./templates/createAcc",{verified: true, title: "RMC | Account Creation"});
+  if(!req.session.authent) {
+    res.render("./templates/createAcc",{verified: false, title: "RMC | Account Creation"});
   } else {
     res.redirect("/myProfile");
   }
@@ -105,6 +105,34 @@ router.get("/logout", (req,res) => {
     res.render("templates/logout",{verified: false, title: "RMC | Logout"});
   } else {
     res.redirect("/");
+  }
+});
+
+router.get("/posted", (req,res)=>{
+  if(req.session.authent && req.session.posted){
+    delete req.session.posted;
+    res.render("templates/reviewPosted",{posted: true, verified: true, title: "RMC | Review Posted"});
+  } else {
+    if(req.session.authent) {
+      res.render("templates/error",{verified: true, title: "RMC | Error", hasErrors: true, error: "Page not accessible."});
+    } else {
+      res.render("templates/error",{verified: false, title: "RMC | Error", hasErrors: true, error: "Page not accessible."});
+    }
+      // res.redirect("/");
+  }
+});
+
+router.get("/post_fail", (req, res) => {
+  if(req.session.authent && req.session.post_fail){
+      delete req.session.post_fail;
+      res.render("templates/error",{hasErrors: true, verified: true, title: "RMC | Error", error: "Sorry! There was a technical difficulty and your review could not be posted at this time."});
+  } else {
+    if(req.session.authent) {
+      res.render("templates/error",{verified: true, title: "RMC | Error", hasErrors: true, error: "Page not accessible."});
+    } else {
+      res.render("templates/error",{verified: false, title: "RMC | Error", hasErrors: true, error: "Page not accessible."});
+    }
+      // res.redirect("/");
   }
 });
 

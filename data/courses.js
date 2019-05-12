@@ -78,7 +78,7 @@ module.exports = {
     const courseCollection = await courses();
     const course = await courseCollection.findOne({ courseName: name });
 
-    if(!course){
+    if(course===null){
       throw "Course not found";
     }
 

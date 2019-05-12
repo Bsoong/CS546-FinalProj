@@ -4,14 +4,6 @@ const bcrypt = require("bcrypt");
 const data = require("../data");
 const userData = data.users;
 
-// router.use("/myprofile", function(req, res, next) {
-//   if(req.session.authent) {
-//     next();
-//   } else {
-//     res.status(403).send("Error: User is not Logged in.");
-//   }
-// });
-
 router.get("/", (req,res) => {
   if(req.session.authent){
     res.redirect("/myProfile");
@@ -20,19 +12,6 @@ router.get("/", (req,res) => {
   }
 });
 
-// router.get("/", (req,res) => {
-//   if(req.session.authent) {
-//     res.render("templates/index", {
-//       verified: true
-//     });
-//   } else {
-//     res.render("templates/index", {
-//       verified: false
-//     });
-//   }
-// });
-
-//Once Login is implemented with backend, need to change variable verified to true so that the myprofile page pops up in place of Login.
 router.post("/",  async (req,res) => {
   let form = req.body;
   try{
@@ -68,15 +47,30 @@ router.post("/",  async (req,res) => {
 }
 });
 
-// router.post("/newAccount", async(req,res) => {
-//     let form = req.body;
-//     try {
-//       const newUser = await userData.createUser(form.firstName, form.lastName, form.emailInput, form.passwordInput, form.Gender, form.yearInput, form.ageInput);
-//       res.redirect("/");
-//     } catch(e){
-//       console.log(e);
-//       res.redirect("/");
-//     }   
-// });
+router.post("/newAccount", async(req,res) => {
+    let form = req.body;
+    try {
+      const users = await userData.getAllUsers();
+      for(let i=0;i<users.length;i++){
+        let user = users[i];
+        if(user.email == form.emailInput){
+            exist = true;
+            break;
+        }
+      }
+      if(exist){
+        res.render("./templates/createAcc",{verified: false, hasErrors: true, title: "RMC | Account Creation"});
+      } else {
+        const newUser = await userData.createUser(form.firstName, form.lastName, form.emailInput, form.passwordInput, form.Gender, form.yearInput, form.ageInput);
+        req.session.authent = true;
+        req.session.user = newUser;
+        delete req.session.user.hashedPassword
+        res.redirect("/myProfile");
+      }      
+    } catch(e){
+      console.log(e);
+      res.redirect("/");
+    }   
+});
 
 module.exports = router;
