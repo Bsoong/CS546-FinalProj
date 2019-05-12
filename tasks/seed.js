@@ -26,7 +26,6 @@ dbConnection().then(
       })
       .then(() => {
         console.log("Done seeding database");
-        db.close();
       });
   },
   error => {

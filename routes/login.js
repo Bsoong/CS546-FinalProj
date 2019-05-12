@@ -50,6 +50,7 @@ router.post("/",  async (req,res) => {
 
 router.post("/newAccount", async(req,res) => {
     let form = req.body;
+    let exist = false;
     try {
       const users = await userData.getAllUsers();
       for(let i=0;i<users.length;i++){
