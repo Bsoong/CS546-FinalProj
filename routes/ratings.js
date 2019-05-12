@@ -61,12 +61,8 @@ router.post("/:code", async(req,res) => {
     let date = new Date();
     let formattedDate = date.getMonth()+1 + "/" + date.getDate() + "/" + date.getFullYear();
     try {
-        console.log(typeof(xss(review.courseCode)));
-        console.log(typeof(xss(person._id)));
-        console.log(typeof(review.rating));
         const newReview = await ratingData.create(xss(review.courseCode), xss(person._id), formattedDate, review.tags, xss(review.rating), reviewComment);
         if(newReview!==undefined){
-            console.log(newReview._id);
             const u = await userData.addReview(xss(person._id), newReview._id.toString());
             if(u!==undefined){
                 req.session.posted = true;
