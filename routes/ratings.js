@@ -3,6 +3,7 @@ const router = express.Router();
 const data = require("../data");
 const ratingData = data.ratings;
 const courseData = data.courses;
+const userData = data.users;
 const xss = require("xss");
 
 router.get("/:code", async(req,res) => {
@@ -60,9 +61,18 @@ router.post("/:code", async(req,res) => {
     let date = new Date();
     let formattedDate = date.getMonth()+1 + "/" + date.getDate() + "/" + date.getFullYear();
     try {
-        const newReview = await ratingData.create(xss(review.courseCode), person._id, formattedDate, xss(review.tags), xss(review.rating), reviewComment);
-        req.session.posted = true;
-        res.redirect("/posted");
+        console.log(typeof(xss(review.courseCode)));
+        console.log(typeof(xss(person._id)));
+        console.log(typeof(review.rating));
+        const newReview = await ratingData.create(xss(review.courseCode), xss(person._id), formattedDate, review.tags, xss(review.rating), reviewComment);
+        if(newReview!==undefined){
+            console.log(newReview._id);
+            const u = await userData.addReview(xss(person._id), newReview._id.toString());
+            if(u!==undefined){
+                req.session.posted = true;
+                res.redirect("/posted");
+            }
+        }       
     } catch(e){
         console.log(e);
         req.session.post_fail = true;

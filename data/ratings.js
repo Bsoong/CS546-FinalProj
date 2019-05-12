@@ -126,7 +126,7 @@ module.exports = {
             throw "id is not a string";
         }   
         if(newReview===undefined || typeof(newReview)!="string"){
-            throw "tags parameter is invalid";
+            throw "review parameter is invalid";
         }
         const ratingCollection = await ratings();
         const rate = await ratingCollection.findOne({ _id: ObjectId(id) });
@@ -164,7 +164,7 @@ module.exports = {
             datePosted: datePosted,
             comment: comment
         };
-        newComments = rate.comments;
+        const newComments = rate.comments;
         newComments.push(newComment);
         const updateInfo = await ratingCollection.updateOne({_id: ObjectId(id)}, {$set: {comments: newComments}});
         if (updateInfo.modifiedCount === 0) {
