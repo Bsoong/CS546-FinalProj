@@ -28,6 +28,7 @@
       </div>
       <div id="reviews">
         <h2 id="ratings">Reviews:</h2>
+        <p><a href = "/review/{{course.courseCode}}">Leave a review</a></p>
         {{#each review}}
         <div class="indivReview">
           <p>Review posted by {{this.authorName}} on {{this.datePosted}}</p>
@@ -51,7 +52,6 @@
         </div>
         {{/each}}
       </div>
-      <p><a href = "/review/{{course.courseCode}}">Leave a review</a></p>
     </div>
   </div>
   </div>
