@@ -6,9 +6,12 @@ const courses = mongoCollections.courses;
 const {ObjectId} = require("mongodb");
 
 module.exports = {
-    async create(courseCode, author, datePosted, tags, rating, review){
+    async create(courseCode, professor, author, datePosted, tags, rating, review){
         if(courseCode===undefined || typeof(courseCode)!="string" || courseCode.trim().length==0) {
             throw "courseCode parameter is invalid";
+        }
+        if(professor===undefined || typeof(professor)!="string" || professor.trim().length==0) {
+            throw "professor parameter is invalid";
         }
         //add check if courseCode exists in courses database
         if(author===undefined || typeof(author)!="string" || author.trim().length==0){
@@ -20,7 +23,7 @@ module.exports = {
         if(tags===undefined){
             tags=[];
         } else {
-            if(typeof(tags)!="array"){
+            if(typeof(tags)!="array" && typeof(tags)!="object"){
                 throw "tags parameter is invalid";
             }
         }
@@ -36,6 +39,7 @@ module.exports = {
         
         let newRating = {
             courseCode: courseCode,
+            professor: professor,
             author: author,
             datePosted: datePosted,
             tags: tags,

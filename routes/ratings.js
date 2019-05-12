@@ -39,6 +39,14 @@ router.post("/:code", async(req,res) => {
     if(xss(!review.rating)){
         errors.push("Need to give a rating");
     }
+    if(xss(!review.professor)){
+        errors.push("Need to indicate a professor");
+    }
+    if(typeof(review.tag)=="string"){
+        let t = [];
+        t.push(review.tag);
+        review.tag = t;
+    }
     try {
         const course = await courseData.getCourseByCode(xss(review.courseCode));
         if(course===undefined){
@@ -61,7 +69,7 @@ router.post("/:code", async(req,res) => {
     let date = new Date();
     let formattedDate = date.getMonth()+1 + "/" + date.getDate() + "/" + date.getFullYear();
     try {
-        const newReview = await ratingData.create(xss(review.courseCode), xss(person._id), formattedDate, review.tags, xss(review.rating), reviewComment);
+        const newReview = await ratingData.create(xss(review.courseCode), xss(review.professor), xss(person._id), formattedDate, review.tag, xss(review.rating), reviewComment);
         if(newReview!==undefined){
             const ratings = await ratingData.getAll();
             const match = [];

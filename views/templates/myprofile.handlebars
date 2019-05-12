@@ -15,6 +15,7 @@
                 <th>Course Code</th>
                 <th>Rating</th>
                 <th>Review</th>
+                <th>Options</th>
             </tr>
         </thead>
         {{#each ratings}}
@@ -24,6 +25,7 @@
                 <td><a href = "/courses/code/{{this.courseCode}}">{{this.courseCode}}</a></td>
                 <td><a href = "/courses/code/{{this.courseCode}}">{{this.rating}}</a></td>
                 <td><a href = "/courses/code/{{this.courseCode}}">{{this.review}}</a></td>
+                <td><a href="">Delete</a> | <a href="">Edit</a></td>
             </tr>
         </tbody>
         {{/each}}
