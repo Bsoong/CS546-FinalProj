@@ -31,6 +31,7 @@
     "node-uuid": "^1.4.8",
     "popper.js": "^1.15.0",
     "save": "^2.3.3",
-    "serve-favicon": "^2.5.0"
+    "serve-favicon": "^2.5.0",
+    "xss": "^1.0.6"
   }
 }

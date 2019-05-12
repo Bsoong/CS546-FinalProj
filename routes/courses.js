@@ -3,6 +3,7 @@ const router = express.Router();
 const cData = require("../data");
 const courseData = cData.courses;
 const injectCourses = require("../data/courses.json");
+const xss = require("xss");
 
 // router.get("/", async(req, res) => {
 //   try{
@@ -17,7 +18,7 @@ const injectCourses = require("../data/courses.json");
 router.get("/", async(req,res) => {
   try {
     const courseCollection = await courseData.getAllCourses();
-    if(req.session.authent){
+    if(xss(req.session.authent)){
       res.render("./templates/coursePage",{verified: true, title: "RMC | Courses", courses: courseCollection});
     } else {
       res.render("./templates/coursePage",{verified: false, title: "RMC | Courses", courses: courseCollection});
@@ -40,11 +41,11 @@ router.get("/", async(req,res) => {
 
 router.get("/code/:code", async(req, res) => {
   try {
-    const course = await courseData.getCourseByCode(req.params.code);
-    if(req.session.authent){
-      res.render("templates/courseInfo",{verified: true, title: req.params.code, course: course});
+    const course = await courseData.getCourseByCode(xss(req.params.code));
+    if(xss(req.session.authent)){
+      res.render("templates/courseInfo",{verified: true, title: xss(req.params.code), course: course});
     } else {
-      res.render("templates/courseInfo",{verified: false, title: req.params.code, course: course});
+      res.render("templates/courseInfo",{verified: false, title: xss(req.params.code), course: course});
     }
   }
   catch(e){
@@ -69,7 +70,7 @@ router.get("/code/:code", async(req, res) => {
 
 router.delete("/:id", async(req, res) => {
   try{
-    const courseId = req.params.id;
+    const courseId = xss(req.params.id);
     const remove = await courseData.removeCourse(courseId);
   }
   catch(e){

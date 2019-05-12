@@ -10,6 +10,7 @@ const app = express();
 const userData = require("../data/users.js");
 const courseData = require("../data/courses.js")
 const saltRounds = 16;
+const xss = require("xss");
 
 const constructorMethod = app => {
   app.use(session({
@@ -33,7 +34,7 @@ const constructorMethod = app => {
   app.use("/login", loginRoutes)
   app.use("/", router);
   app.use("*", (req, res) => {
-    if(req.session.authent) {
+    if(xss(req.session.authent)) {
       res.render("templates/error",{verified: true, title: "RMC | Error", hasErrors: true, error: "Page not found."});
     } else {
       res.render("templates/error",{verified: false, title: "RMC | Error", hasErrors: true, error: "Page not found."});
@@ -42,7 +43,7 @@ const constructorMethod = app => {
 };
 
 router.get("/",(req, res) => {
-  if(req.session.authent) {
+  if(xss(req.session.authent)) {
     res.render("templates/index", {
       verified: true, title: "RateMyCourse"
     });
@@ -66,7 +67,7 @@ router.get("/",(req, res) => {
 // });
 
 router.get("/createAccount", (req,res) => {
-  if(!req.session.authent) {
+  if(xss(!req.session.authent)) {
     res.render("./templates/createAcc",{verified: false, title: "RMC | Account Creation"});
   } else {
     res.redirect("/myProfile");
@@ -74,7 +75,7 @@ router.get("/createAccount", (req,res) => {
 });
 
 router.get("/about", (req,res) => {
-  if(req.session.authent) {
+  if(xss(req.session.authent)) {
     res.render("./templates/about",{verified: true, title: "RMC | About Us"});
   } else {
     res.render("./templates/about",{verified: false, title: "RMC | About Us"});
@@ -92,23 +93,15 @@ router.get("/about", (req,res) => {
 // });
 
 router.get("/myProfile", (req,res) => {
-  if(req.session.authent){
+  if(xss(req.session.authent)){
       res.render("templates/myprofile",{verified: true, title: "RMC | Profile", user: req.session.user});
   } else {
     res.redirect("/");
   }
 });
 
-router.get("/reviewPage", (req,res) => {
-  if(req.session.authen) {
-    res.render("templates/reviewPage",{verified: true, title: "RMC | Reviews"});
-  } else {
-    res.render("templates/reviewPage",{verified: false, title: "RMC | Reviews"});
-  }
-});
-
 router.get("/logout", (req,res) => {
-  if(req.session.authent){
+  if(xss(req.session.authent)){
     req.session.destroy();
     res.render("templates/logout",{verified: false, title: "RMC | Logout"});
   } else {
@@ -117,7 +110,7 @@ router.get("/logout", (req,res) => {
 });
 
 router.get("/posted", (req,res)=>{
-  if(req.session.authent && req.session.posted){
+  if(xss(req.session.authent) && xss(req.session.posted)){
     delete req.session.posted;
     res.render("templates/reviewPosted",{posted: true, verified: true, title: "RMC | Review Posted"});
   } else {
@@ -131,7 +124,7 @@ router.get("/posted", (req,res)=>{
 });
 
 router.get("/post_fail", (req, res) => {
-  if(req.session.authent && req.session.post_fail){
+  if(xss(req.session.authent) && xss(req.session.post_fail)){
       delete req.session.post_fail;
       res.render("templates/error",{hasErrors: true, verified: true, title: "RMC | Error", error: "Sorry! There was a technical difficulty and your review could not be posted at this time."});
   } else {
@@ -155,7 +148,7 @@ router.get("/post_fail", (req, res) => {
 router.post("/search", async (req, res) => {
   try{
     const courseCollection = await courseData.getAllCourses();
-    const body = req.body.searchInput;
+    const body = xss(req.body.searchInput);
     for(let i = 0; i < courseCollection.length; i++){
       if(courseCollection[i].courseName == body || courseCollection[i].courseCode == body){
         const foundCourse = courseCollection[i];

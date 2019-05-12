@@ -3,18 +3,19 @@ const router = express.Router();
 const data = require("../data");
 const ratingData = data.ratings;
 const courseData = data.courses;
+const xss = require("xss");
 
 router.get("/:code", async(req,res) => {
     try{
-        if(req.session.authent){
-            const course = await courseData.getCourseByCode(req.params.code);
+        if(xss(req.session.authent)){
+            const course = await courseData.getCourseByCode(xss(req.params.code));
             if(course===undefined){
                 throw "course not found";
             }
-            res.render("templates/review", {verified: true, title: "RMC | Rate Course", code: req.params.code, course: course});
+            res.render("templates/review", {verified: true, title: "RMC | Rate Course", code: xss(req.params.code), course: course});
         } else {
             res.redirect("/");
-        }   
+        }
     } catch(e){
         res.redirect("/");
         // if(req.session.authent){
@@ -28,17 +29,17 @@ router.post("/:code", async(req,res) => {
     const person = req.session.user;
     let errors = [];
     let reviewComment = "";
-    if(review.comment){
+    if(xss(review.comment)){
         reviewComment = review.comment;
     }
-    if(!review.courseCode){
+    if(xss(!review.courseCode)){
         errors.push("Need to input Course Code");
     }
-    if(!review.rating){
+    if(xss(!review.rating)){
         errors.push("Need to give a rating");
     }
     try {
-        const course = await courseData.getCourseByCode(review.courseCode);
+        const course = await courseData.getCourseByCode(xss(review.courseCode));
         if(course===undefined){
             throw "course not found";
         }
@@ -59,13 +60,13 @@ router.post("/:code", async(req,res) => {
     let date = new Date();
     let formattedDate = date.getMonth()+1 + "/" + date.getDate() + "/" + date.getFullYear();
     try {
-        const newReview = await ratingData.create(review.courseCode, person._id, formattedDate, review.tags, review.rating, reviewComment);
+        const newReview = await ratingData.create(xss(review.courseCode), person._id, formattedDate, xss(review.tags), xss(review.rating), reviewComment);
         req.session.posted = true;
         res.redirect("/posted");
     } catch(e){
         console.log(e);
         req.session.post_fail = true;
-        res.redirect("/post_fail");        
+        res.redirect("/post_fail");
     }
 });
 

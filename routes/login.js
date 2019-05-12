@@ -3,9 +3,10 @@ const router = express.Router();
 const bcrypt = require("bcrypt");
 const data = require("../data");
 const userData = data.users;
+const xss = require("xss")
 
 router.get("/", (req,res) => {
-  if(req.session.authent){
+  if(xss(req.session.authent)){
     res.redirect("/myProfile");
   } else {
     res.render("templates/login",{verified: false, title: "RMC | Login"});
@@ -24,8 +25,8 @@ router.post("/",  async (req,res) => {
     let users = await userData.getAllUsers();
     for(let i=0;i<users.length;i++){
         let user = users[i];
-        if(user.email == form.inputEmail){
-            match = await bcrypt.compare(form.inputPassword, user.hashedPassword);
+        if(user.email == xss(form.inputEmail)){
+            match = await bcrypt.compare(xss(form.inputPassword), xss(user.hashedPassword));
             if(match){
                 req.session.authent = true;
                 req.session.user = user;
@@ -53,7 +54,7 @@ router.post("/newAccount", async(req,res) => {
       const users = await userData.getAllUsers();
       for(let i=0;i<users.length;i++){
         let user = users[i];
-        if(user.email == form.emailInput){
+        if(user.email == xss(form.emailInput)){
             exist = true;
             break;
         }
@@ -61,16 +62,16 @@ router.post("/newAccount", async(req,res) => {
       if(exist){
         res.render("./templates/createAcc",{verified: false, hasErrors: true, title: "RMC | Account Creation"});
       } else {
-        const newUser = await userData.createUser(form.firstName, form.lastName, form.emailInput, form.passwordInput, form.Gender, form.yearInput, form.ageInput);
+        const newUser = await userData.createUser(xss(form.firstName), xss(form.lastName),xss(form.emailInput), xss(form.passwordInput), xss(form.Gender), xss(form.yearInput), xss(form.ageInput));
         req.session.authent = true;
         req.session.user = newUser;
         delete req.session.user.hashedPassword
         res.redirect("/myProfile");
-      }      
+      }
     } catch(e){
       console.log(e);
       res.redirect("/");
-    }   
+    }
 });
 
 module.exports = router;
