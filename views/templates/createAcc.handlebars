@@ -12,6 +12,9 @@
     <div class="page-container">
   <div class="page-content">
     <h1>Create an Account</h1>
+    {{#if hasErrors}}
+    <p>Error: Account already registered under this email</p>
+    {{/if}}
     <form method = "POST" id = "account" action="/login/newAccount">
         <div class = "firstName">
             <label for = "fName">First name</label>
