@@ -37,6 +37,7 @@
         {{#each review}}
         <div class="indivReview">
           <p>Review posted by {{this.authorName}} on {{this.datePosted}}</p>
+          <p>Class taken with Professor {{this.professor}}</p>
           <p>Tags</p>
           <ul>
             {{#each this.tags}}
