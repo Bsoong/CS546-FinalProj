@@ -12,14 +12,14 @@
                     <div class="info-form">
                         <form action="/search" class="form-inlin justify-content-center" method="post" enctype="application/x-www-form-urlencoded">
                             <div class="form-group">
-                                <label class="sr-only" for = "searchInput">Name</label>
-                                <input id = "searchInput" type="text" class="form-control" placeholder="Search Courses by name or Code" name="searchInput" required>
+                              <label for = "searchInput"></label>
+                              <input name = "searchInput" id = "searchInput" type="text" class="form-control" placeholder="Search Courses by name or Code" name="searchInput" required>
                                 <br>
-                                <button type="submit" class="btn btn-success">Search!</button>
+                                <button type="submit" class="btn btn-danger">Search!</button>
                             </div>
                             </form>
                             {{#if errors2}}
-                            <p id = "courseDNE">Error: Course does not exist.</p>
+                            <p id="searchError">Error: Course does not exist.</p>
                             {{/if}}
                           </div>
                         </div>

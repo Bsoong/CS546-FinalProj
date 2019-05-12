@@ -25,7 +25,9 @@ const constructorMethod = app => {
     let method = req.method;
     let route = req.originalUrl;
     let authent = (req.session.authent)? "(Authenticated User)" : "(Non-authenticated User)";
-    console.log(`${date} ${method} ${route} ${authent}`);
+    if(!(route.includes(".css"))&&!(route.includes(".js"))){
+      console.log(`${date} ${method} ${route} ${authent}`);      
+    }
     next();
   });
 
@@ -171,11 +173,11 @@ router.post("/search", async (req, res) => {
   try{
     const courseCollection = await courseData.getAllCourses();
     const body = xss(req.body.searchInput);
-    let courses = [];
+    const courses = [];
     for(let i = 0; i < courseCollection.length; i++){
-      let foundCourse = await courseCollection[i].courseName.includes(body) || courseCollection[i].courseCode.includes(body);
+      let foundCourse = courseCollection[i].courseName.includes(body) || courseCollection[i].courseCode.includes(body);
       if(foundCourse){
-        await courses.push(courseCollection[i]);
+        courses.push(courseCollection[i]);
       }
     }
     if(courses.length == 0){
