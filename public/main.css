@@ -51,3 +51,7 @@ footer{
 a {
     color: #00789b;
 }
+
+#searchError {
+    color: black
+}
