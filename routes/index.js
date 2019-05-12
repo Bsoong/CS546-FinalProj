@@ -99,6 +99,14 @@ router.get("/myProfile", (req,res) => {
   }
 });
 
+router.get("/reviewPage", (req,res) => {
+  if(req.session.authen) {
+    res.render("templates/reviewPage",{verified: true, title: "RMC | Reviews"});
+  } else {
+    res.render("templates/reviewPage",{verified: false, title: "RMC | Reviews"});
+  }
+});
+
 router.get("/logout", (req,res) => {
   if(req.session.authent){
     req.session.destroy();
