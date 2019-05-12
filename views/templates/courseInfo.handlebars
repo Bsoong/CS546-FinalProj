@@ -1,14 +1,4 @@
-<!DOCTYPE html>
-<html>
-<head>
-<meta name="viewport" content="width=device-width, initial-scale=1">
-    {{!-- <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    <link rel = "stylesheet" type = "text/css" href = "/public/courseInfo.css"> --}}
-<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-<link rel = "stylesheet" href = "/public/main.css">
 <link rel = "stylesheet" href = "/public/style.css">
-</head>
-<body>
 {{> navigationBarPartial}}
   <div class="page-container">
   <div class="page-content">
@@ -39,16 +29,18 @@
       <div id="reviews">
         <h2 id="ratings">Reviews:</h2>
         {{#each review}}
-        <div>
-          <p>{{review.datePosted}}</p>
+        <div class="indivReview">
+          <p>Review posted by {{this.authorName}} on {{this.datePosted}}</p>
           <p>Tags</p>
           <ul>
-            {{#each review.tags}}
+            {{#each this.tags}}
             <li>{{this}}</li>
             {{/each}}
           </ul>
-          <p>{{review.review}}</p>
+          <p>Rating: {{this.rating}}</p>
+          <p>Review: {{this.review}}</p>
           <div class="comments">
+            <p>Comments:</p>
             {{#each review.comments}}
             <div class="singleComment">
               <p>{{this.datePosted}}</p>
@@ -65,5 +57,3 @@
   </div>
 {{> constScriptsPartial}}
 {{> footerPartial}}
-</body>
-</html>
