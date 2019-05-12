@@ -48,6 +48,33 @@ footer{
     background: #F2F2F3;
 }
 
+#profilePage {
+    display: inline-block;
+    border-style: solid;
+    padding: 20px;
+    width: 65%;
+    margin-bottom: 20px;
+    background: #F2F2F3;
+}
+
+.profile-table {
+    background: white;
+    border-radius: 5px;
+    width: 80%;
+    margin: 0px auto;
+    margin-bottom: 15px;
+    float: none;
+}
+
+.profile-table th, td {
+    padding: 4px 10px;
+    border: 1px black solid;
+}
+
+thead {
+  text-align: center;
+}
+
 a {
     color: #00789b;
 }

@@ -1,5 +1,36 @@
 {{> navigationBarPartial}}
-  <dl>
+<div id ="profilePage">
+  <h1>My Profile</h1>
+  <h2>{{user.firstName}} {{user.lastName}}</h2>
+  <p>Email: {{user.email}}</p>
+  <div class="review">
+    <h3>My Reviews</h3>
+    {{#if noratings}}
+    <p>No reviews</p>
+    {{else}}
+    <table class="profile-table">
+      <thead>
+            <tr>
+                <th>Date Posted</th>
+                <th>Course Code</th>
+                <th>Rating</th>
+                <th>Review</th>
+            </tr>
+        </thead>
+        {{#each ratings}}
+        <tbody>
+            <tr>
+                <td><a href = "/courses/code/{{this.courseCode}}">{{this.datePosted}}</a></td>
+                <td><a href = "/courses/code/{{this.courseCode}}">{{this.courseCode}}</a></td>
+                <td><a href = "/courses/code/{{this.courseCode}}">{{this.rating}}</a></td>
+                <td><a href = "/courses/code/{{this.courseCode}}">{{this.review}}</a></td>
+            </tr>
+        </tbody>
+        {{/each}}
+    </table>
+    {{/if}}
+  </div>
+  {{!-- <dl>
     <dt>First Name:</dt>
      <dd> {{user.firstName}} </dd>
     <dt>Last Name:</dt>
@@ -10,8 +41,9 @@
     <dd>{{user.reviews}} </dd>
     <dt>Comments:</dt>
     <dd>{{user.comments}} </dd>
-  </dl>
+  </dl> --}}
   <a href = "/logout">Logout!</a>
+</div>
 {{> constScriptsPartial}}
 {{> footerPartial}}
 <script src="tota11y.min.js"></script>

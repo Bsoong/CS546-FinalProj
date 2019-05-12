@@ -9,6 +9,7 @@ const bcrypt = require("bcrypt");
 const app = express();
 const userData = require("../data/users.js");
 const courseData = require("../data/courses.js")
+const ratingData = require("../data/ratings.js");
 const saltRounds = 16;
 const xss = require("xss");
 
@@ -84,21 +85,28 @@ router.get("/about", (req,res) => {
   }
 });
 
-// router.get("/coursePage", async(req,res) => {
-//   try {
-//     console.log("CoursePage");
-//     const courseCollection = await courseData.getAllCourses();
-//     res.render("./templates/coursePage",{title: "RMC | Courses"});
-//   } catch(e) {
-//     console.log(e);
-//   }
-// });
-
-router.get("/myProfile", (req,res) => {
+router.get("/myProfile", async(req,res) => {
   if(xss(req.session.authent)){
-      res.render("templates/myprofile",{verified: true, title: "RMC | Profile", user: req.session.user});
+    try {
+      const u = req.session.user;
+      let ratings = u.ratings;
+      let r= [];
+      for(let i = 0; i<ratings.length; i++){
+        let reviewId = ratings[i];
+        const review = await ratingData.get(reviewId);
+        r.push(review);
+      }
+      if(r.length==0){
+        res.render("templates/myprofile",{verified: true, title: "RMC | Profile", user: req.session.user, noratings: true});
+      } else {
+        res.render("templates/myprofile",{verified: true, title: "RMC | Profile", user: req.session.user, ratings: r});
+      }
+    } catch(e){
+      console.log(e);
+      res.render("templates/error",{verified: true, title: "RMC | Error", hasErrors: true, error: "Issue opening page."});
+    }
   } else {
-    res.redirect("/");
+    res.redirect("/login");
   }
 });
 
@@ -121,7 +129,6 @@ router.get("/posted", (req,res)=>{
     } else {
       res.render("templates/error",{verified: false, title: "RMC | Error", hasErrors: true, error: "Page not accessible."});
     }
-      // res.redirect("/");
   }
 });
 
@@ -135,39 +142,8 @@ router.get("/post_fail", (req, res) => {
     } else {
       res.render("templates/error",{verified: false, title: "RMC | Error", hasErrors: true, error: "Page not accessible."});
     }
-      // res.redirect("/");
   }
 });
-
-// router.get("/courseInfo", (req,res) => {
-//   if(req.session.authent){
-//     res.render("./templates/courseInfo",{verified: true, title: "RMC | Course Info"});
-//   } else {
-//     res.render("./templates/courseInfo",{verified: false, title: "RMC | Course Info"});
-//   }
-// });
-
-// router.post("/search", async (req, res) => {
-//   try{
-//     const courseCollection = await courseData.getAllCourses();
-//     const body = xss(req.body.searchInput);
-
-// //     for(let i = 0; i < courseCollection.length; i++){
-// //       if(courseCollection[i].courseName == body || courseCollection[i].courseCode == body){
-// //         const foundCourse = courseCollection[i];
-// //         code = foundCourse.courseCode;
-// //         res.redirect("/courses/code/"+code);
-// //         // res.status(200).render("./templates/courseInfo", {course: foundCourse});
-// //       }
-// //       }
-// //       // res.render("./templates/index", {
-// //       //   errors2: true
-// //       // });
-//     }
-//   catch(e){
-//       res.status(400);
-//   }
-// });
 
 router.post("/search", async (req, res) => {
   try{
