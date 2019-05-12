@@ -46,7 +46,8 @@ module.exports = {
     if (insertInfo.insertedCount === 0){
       throw "Could not add course";
     }
-
+    const newId = insertInfo.insertedId;
+    return await this.getCourseById(ObjectId(newId).toString());
   },
 
   async getAllCourses(){
@@ -114,35 +115,31 @@ module.exports = {
     return course;
   },
 
-  async updateRating(id){
+  
+  async updateRating(id, rating){
     if(typeof(id) !== "string"){
       throw "Error: Id must be a string";
     }
-    // if(typeof(rating) !== "number"){
-    //   throw "Error: Rating must be a number";
-    // }
-    const courseCollection = await courses();
-    const course = await courseCollection.findOne({ _id: ObjectId(id) });
-    const ratingCollection = await ratings();
-    const ratingList = await ratingCollection.find({ courseCode: course.courseCode }).toArray();
-    let avg = course.avgRating;
-    if(ratingList.length!=0){
-      let totalRating = 0;
-      for(let i =0; i<ratingList.length; i++){
-          let rate = ratingList[i];
-          totalRating+=rate.rating;
-      }
-      avg = totalRating/ratingList.length;
+    if(typeof(rating) !== "number"){
+      throw "Error: Rating must be a number";
     }
-    let updatedCourse = course;
-    updatedCourse.avgRating = avg;
+    const courseCollection = await courses();
+    // const course = await courseCollection.findOne({ _id: ObjectId(id) });
+    // if(ratingList.length!=0){
+    //   let totalRating = 0;
+    //   for(let i =0; i<ratingList.length; i++){
+    //       let rate = ratingList[i];
+    //       totalRating+=rate.rating;
+    //   }
+    //   avg = totalRating/ratingList.length;
+    // }
 
-    const updatedInfo = await courseCollection.updateOne({ _id: ObjectId(id) }, updatedCourse);
+    const updatedInfo = await courseCollection.updateOne({ _id: ObjectId(id)}, {$set: {avgRating: rating}});
 
     if (updatedInfo.modifiedCount === 0) {
       throw "Could not update course successfully.";
     }
-    return await this.get(id);
+    return await this.getCourseById(id);
   },
 
   async removeCourse(id) {
