@@ -1,0 +1,149 @@
+[
+    {
+    "courseCode": "CS-115",
+    "datePosted": "5/12/2019",
+    "tags": [],
+    "rating": 5,
+    "review":"This was a great class, I really began loving programming after taking this course."
+    },
+    {
+        "courseCode": "CS-115",
+        "datePosted": "5/12/2019",
+        "tags": [],
+        "rating": 4,
+        "review":"Really enjoyed this class."
+    },
+    {
+        "courseCode": "CS-146",
+        "datePosted": "5/9/2019",
+        "tags": [],
+        "rating": 5,
+        "review":"I learned a lot about programming."
+    },
+    {
+        "courseCode": "CS-146",
+        "datePosted": "5/4/2019",
+        "tags": [],
+        "rating": 4,
+        "review":"Really great course on web design."
+    },
+    {
+        "courseCode": "CS-135",
+        "datePosted": "3/12/2019",
+        "tags": [],
+        "rating": 3,
+        "review":"Hard to follow."
+    },
+    {
+        "courseCode": "CS-135",
+        "datePosted": "5/12/2018",
+        "tags": [],
+        "rating": 1,
+        "review":"My worst class of the semester."
+    },
+    {
+        "courseCode": "CS-181",
+        "datePosted": "12/12/2018",
+        "tags": [],
+        "rating": 3,
+        "review":"Challenging but rewarding."
+    },
+    {
+        "courseCode": "CS-181",
+        "datePosted": "12/18/2018",
+        "tags": [],
+        "rating": 2,
+        "review":"Disagreed with the teaching methods."
+    },
+    {
+        "courseCode": "CS-182",
+        "datePosted": "5/10/2019",
+        "tags": [],
+        "rating": 2,
+        "review":"Really hard."
+    },
+    {
+        "courseCode": "CS-182",
+        "datePosted": "5/12/2018",
+        "tags": [],
+        "rating": 3,
+        "review":"Difficult class and the tests were not great. Useful nonetheless"
+    },
+    {
+        "courseCode": "CS-284",
+        "datePosted": "5/12/2018",
+        "tags": [],
+        "rating": 4,
+        "review":"Pretty easy."
+    },
+    {
+        "courseCode": "CS-284",
+        "datePosted": "5/12/2018",
+        "tags": [],
+        "rating": 3,
+        "review":"Would recommend."
+    },
+    {
+        "courseCode": "CS-306",
+        "datePosted": "5/12/2018",
+        "tags": [],
+        "rating": 3,
+        "review":"Lots of work, can be difficult, but extremely useful."
+    },
+    {
+        "courseCode": "CS-334",
+        "datePosted": "5/12/2018",
+        "tags": [],
+        "rating": 2,
+        "review":"Not fun."
+    },
+    {
+        "courseCode": "CS-347",
+        "datePosted": "5/12/2018",
+        "tags": [],
+        "rating": 4,
+        "review":"Easy class, kinda useless. Project was fun though"
+    },
+    {
+        "courseCode": "CS-370",
+        "datePosted": "5/12/2018",
+        "tags": [],
+        "rating": 5,
+        "review":"Great class! Extremely useful, 100% would recommend."
+    },
+    {
+        "courseCode": "CS-383",
+        "datePosted": "5/12/2018",
+        "tags": [],
+        "rating": 3,
+        "review":"Okay class."
+    },
+    {
+        "courseCode": "CS-385",
+        "datePosted": "5/12/2018",
+        "tags": [],
+        "rating": 3,
+        "review":"Difficult."
+    },
+    {
+        "courseCode": "CS-392",
+        "datePosted": "5/12/2018",
+        "tags": [],
+        "rating": 4,
+        "review":"Easy class."
+    },
+    {
+        "courseCode": "CS-442",
+        "datePosted": "5/12/2018",
+        "tags": [],
+        "rating": 4,
+        "review":"Interesting class. Tests are somewhat difficult"
+    },
+    {
+        "courseCode": "CS-485",
+        "datePosted": "5/12/2018",
+        "tags": [],
+        "rating": 3,
+        "review":"Don't know why we have to take this class but at least it's easy."
+    }
+]

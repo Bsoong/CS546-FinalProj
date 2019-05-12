@@ -93,10 +93,10 @@ router.get("/myProfile", async(req,res) => {
       let r= [];
       for(let i = 0; i<ratings.length; i++){
         let reviewId = ratings[i];
-        const review = await ratingData.get(reviewId);
+        const review = await ratingData.get(reviewId.toString());
         r.push(review);
       }
-      if(r.length==0){
+      if(ratings.length==0){
         res.render("templates/myprofile",{verified: true, title: "RMC | Profile", user: req.session.user, noratings: true});
       } else {
         res.render("templates/myprofile",{verified: true, title: "RMC | Profile", user: req.session.user, ratings: r});
