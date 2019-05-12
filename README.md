@@ -11,7 +11,7 @@ Rate My Course: A website featuring Stevens Courses that allows Students to View
  
  2. Start the MongoDB server, and initialize the Database using the seed command:
  ```
- node ./tasks/seed.js
+ npm run seed
  ctrl + c or z
  ```
  
