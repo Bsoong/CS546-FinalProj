@@ -30,16 +30,18 @@
         <h2 id="ratings">Reviews:</h2>
       <p><a href = "/review/{{course.courseCode}}">Leave a review</a></p>
         {{#each review}}
-        <div>
-          <p>{{review.datePosted}}</p>
+        <div class="indivReview">
+          <p>Review posted by {{this.authorName}} on {{this.datePosted}}</p>
           <p>Tags</p>
           <ul>
-            {{#each review.tags}}
+            {{#each this.tags}}
             <li>{{this}}</li>
             {{/each}}
           </ul>
-          <p>{{review.review}}</p>
+          <p>Rating: {{this.rating}}</p>
+          <p>Review: {{this.review}}</p>
           <div class="comments">
+            <p>Comments:</p>
             {{#each review.comments}}
             <div class="singleComment">
               <p>{{this.datePosted}}</p>
