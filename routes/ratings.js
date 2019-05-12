@@ -62,7 +62,8 @@ router.post("/:code", async(req,res) => {
             review: review,
             code: review.courseCode,
             title: "RMC | Rate Course",
-            verified: true
+            verified: true,
+            course: review
         });
         return;
     }

@@ -30,20 +30,21 @@ thead {
 }
 
 /* Styling for /templates/courseInfo */
-#coursepage {
+.coursepage {
   display: inline-block;
   border-style: solid;
   padding: 20px;
   width: 65%;
   margin-bottom: 20px;
   background: #F2F2F3;
+  border-radius: 10px;
 }
 
-#coursepage p {
+.coursepage p {
   font-size: 20px;
 }
 
-#coursepage ul {
+.coursepage ul {
   font-size: 18px;
 }
 
@@ -73,6 +74,53 @@ div.description{
   width:fit-content;
   border:black 2px solid;
 }
+
+.indivReview{
+  background: white;
+  width: 90%;
+  margin-left: auto;
+  margin-right: auto;
+  border:gray 1px solid;
+  border-radius: 5px;
+  text-align: left;
+  padding: 15px;
+  line-height: 1;
+  margin-top: 20px;
+  margin-bottom: 10px
+}
+
+.indivReview p {
+  font-size: 16px;
+}
+
+.tags p{
+  display: inline-block;
+}
+
+.tag {
+  display: inline-block;
+  background: lightgray;
+  border-radius:2px;
+  width: fit-content;
+  margin-bottom: 1rem;
+  margin-left: 5px;
+  padding: 4px 8px;
+}
+
+.tag p {
+  margin:1px;
+  font-size: 14px;
+}
+
+#reply {
+  text-align: right;
+  font-size: 1em;
+  margin-bottom: 0;
+}
+
+/* .indivReview {
+
+} */
 
 #ratings-form {
   display: block;
