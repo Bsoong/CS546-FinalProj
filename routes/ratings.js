@@ -27,7 +27,7 @@ router.get("/:code", async(req,res) => {
 
 router.post("/:code", async(req,res) => {
     const review = req.body;
-    const person = req.session.user;
+    const person = await userData.getById(req.session.user);
     let errors = [];
     let reviewComment = "";
     if(xss(review.comment)){
@@ -63,19 +63,30 @@ router.post("/:code", async(req,res) => {
     try {
         const newReview = await ratingData.create(xss(review.courseCode), xss(person._id), formattedDate, review.tags, xss(review.rating), reviewComment);
         if(newReview!==undefined){
-            // May move this logic to another function in data
-            const allRatings = ratingData.getRatingByCourseCode(xss(review.courseCode));
-            const course = courseData.getCourseByCode(xss(review.courseCode));
-            let cID = course._id;
-            let avg = -1;
-            if(allRatings.length!=0){
-                let totalRating = 0;
-                allRatings.forEach(function(element){
-                    totalRating+=element.rating;
-                });
-                avg = totalRating/allRatings.length;
+            const ratings = await ratingData.getAll();
+            const match = [];
+            for(let j = 0; j<ratings.length;j++){
+                let rr = ratings[j];
+                if(rr.courseCode==review.courseCode){
+                    match.push(rr.rating);
+                }
             }
-            const updatedCourse = courseData.updateRating(cID, avg);
+            const course = await courseData.getCourseByCode(xss(review.courseCode));
+            let avg = course.avgRating;
+            console.log("match length " + match.length);
+            let totalRating = 0;
+            for(let i = 0;i<match.length;i++){
+                let eachrate = match[i];
+                totalRating+=eachrate;
+            }                
+            avg = totalRating/match.length;
+            await courseData.updateRating(course._id.toString(), avg);
+            // if(match.length==0){
+            //     await courseData.updateRating(course._id.toString(), newReview.rating);
+            // } else {
+            //     match.push(newReview.rating);
+                
+            // }            
             const u = await userData.addReview(xss(person._id), newReview._id.toString());
             if(u!==undefined){
                 req.session.posted = true;

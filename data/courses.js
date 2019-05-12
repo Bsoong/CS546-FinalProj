@@ -1,6 +1,6 @@
 const mongoCollections = require("./mongoCollections");
 const courses = mongoCollections.courses;
-const uuid = require("node-uuid");
+const ratings = mongoCollections.ratings;
 const {ObjectId} = require("mongodb");
 // const axios = require("axios");
 
@@ -32,7 +32,6 @@ module.exports = {
     const courseCollection = await courses();
 
     let newCourse = {
-      _id: uuid.v4(),
       courseName: name,
       courseCode: code,
       professors: professors,
@@ -47,7 +46,8 @@ module.exports = {
     if (insertInfo.insertedCount === 0){
       throw "Could not add course";
     }
-
+    const newId = insertInfo.insertedId;
+    return await this.getCourseById(ObjectId(newId).toString());
   },
 
   async getAllCourses(){
@@ -115,6 +115,7 @@ module.exports = {
     return course;
   },
 
+  
   async updateRating(id, rating){
     if(typeof(id) !== "string"){
       throw "Error: Id must be a string";
@@ -123,16 +124,22 @@ module.exports = {
       throw "Error: Rating must be a number";
     }
     const courseCollection = await courses();
-    const course = await courseCollection.getCourseById(id);
-    let updatedCourse = course;
-    updatedCourse.avgRating = rating;
+    // const course = await courseCollection.findOne({ _id: ObjectId(id) });
+    // if(ratingList.length!=0){
+    //   let totalRating = 0;
+    //   for(let i =0; i<ratingList.length; i++){
+    //       let rate = ratingList[i];
+    //       totalRating+=rate.rating;
+    //   }
+    //   avg = totalRating/ratingList.length;
+    // }
 
-    const updatedInfo = await courseCollection.updateOne({ _id: id }, updatedCourse);
+    const updatedInfo = await courseCollection.updateOne({ _id: ObjectId(id)}, {$set: {avgRating: rating}});
 
     if (updatedInfo.modifiedCount === 0) {
       throw "Could not update course successfully.";
     }
-    return await this.get(id);
+    return await this.getCourseById(id);
   },
 
   async removeCourse(id) {
