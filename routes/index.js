@@ -180,9 +180,16 @@ router.post("/search", async (req, res) => {
         await courses.push(courseCollection[i]);
       }
     }
-    res.status(200).render("./templates/coursePage", {
-      courses: courses
-    });
+    if(courses.length == 0){
+      res.status(404).render("./templates/index", {
+        errors2: true
+      });
+    }
+    else{
+      res.status(200).render("./templates/coursePage", {
+        courses: courses
+      });
+    }
     // for(let i = 0; i < courseCollection.length; i++){
     //   if(courseCollection[i].courseName == body || courseCollection[i].courseCode == body){
     //     const foundCourse = courseCollection[i];
