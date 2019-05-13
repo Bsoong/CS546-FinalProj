@@ -58,10 +58,10 @@ const constructorMethod = app => {
 };
 
 router.get("/",(req, res) => {
+  //const topratings = ratingData.highestRating(); is this where I would put it?
+  //console.log(topratings);
   if(xss(req.session.authent)) {
-    res.render("templates/index", {
-      verified: true, title: "RateMyCourse"
-    });
+    res.render("templates/index", { verified: true, title: "RateMyCourse" });
   } else {
     res.render("templates/index", {
       verified: false, title: "RateMyCourse"
