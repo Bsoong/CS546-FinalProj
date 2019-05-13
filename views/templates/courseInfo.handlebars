@@ -34,7 +34,7 @@
         <h4>Average Rating: N/A</h4>
         {{/if}}
         {{#each review}}
-        <div class="indivReview">
+        <div class="indivReview" id="{{this._id}}">
           {{#if this.review}}
           <p>Review posted by {{this.authorName}} on {{this.datePosted}}</p>
           {{else}}
@@ -55,7 +55,8 @@
           </div>
           <p>Rating: {{this.rating}}</p>
           {{#if this.review}}
-          <p>Review: {{this.review}}</p>
+          <p class="rev">Review: {{this.review}}</p>
+          {{!-- <p class="rev"></p> --}}
           {{/if}}
           <div class="comments">
             {{#each review.comments}}
@@ -68,7 +69,7 @@
           <p id="reply"><a href="">Reply</a></p>
         </div>
         {{/each}}
-        <p><a href = "/review/{{course.courseCode}}">Leave a review</a></p>
+        <p><a href = "/review/course/{{course.courseCode}}">Leave a review</a></p>
       </div>
     </div>
   </div>

@@ -38,9 +38,21 @@ const constructorMethod = app => {
   app.use("/", router);
   app.use("*", (req, res) => {
     if(xss(req.session.authent)) {
-      res.render("templates/error",{verified: true, title: "RMC | Error", hasErrors: true, error: "Page not found."});
+      if(xss(req.session.error)){
+        let message = xss(req.session.error);
+        delete req.session.error;
+        res.render("templates/error",{verified: true, title: "RMC | Error", hasErrors: true, error: message});
+      } else {
+        res.render("templates/error",{verified: true, title: "RMC | Error", hasErrors: true, error: "Page not found."});
+      }
     } else {
-      res.render("templates/error",{verified: false, title: "RMC | Error", hasErrors: true, error: "Page not found."});
+      if(xss(req.session.error)){
+        let message = xss(req.session.error);
+        delete req.session.error;
+        res.render("templates/error",{verified: false, title: "RMC | Error", hasErrors: true, error: message});
+      } else {
+        res.render("templates/error",{verified: false, title: "RMC | Error", hasErrors: true, error: "Page not found."});
+      }
     }
   });
 };

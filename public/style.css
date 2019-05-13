@@ -118,6 +118,15 @@ div.description{
   margin-bottom: 0;
 }
 
+.rev {
+  margin-bottom:10px;
+  line-height: 1.4em;
+}
+
+form.option {
+  display: inline-block;
+}
+
 /* .indivReview {
 
 } */

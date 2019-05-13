@@ -14,21 +14,31 @@
     <table class="profile-table">
       <thead>
             <tr>
-                <th>Date Posted</th>
-                <th>Course Code</th>
-                <th>Rating</th>
+                <th id="dp">Date Posted</th>
+                <th id="cc">Course Code</th>
+                <th id="rate">Rating</th>
                 <th>Review</th>
-                <th>Options</th>
+                <th id="opt" colspan ="2">Options</th>
             </tr>
         </thead>
         {{#each ratings}}
         <tbody>
             <tr>
-                <td><a href = "/courses/code/{{this.courseCode}}">{{this.datePosted}}</a></td>
-                <td><a href = "/courses/code/{{this.courseCode}}">{{this.courseCode}}</a></td>
-                <td><a href = "/courses/code/{{this.courseCode}}">{{this.rating}}</a></td>
-                <td><a href = "/courses/code/{{this.courseCode}}">{{this.review}}</a></td>
-                <td><a href="">Delete</a> | <a href="">Edit</a></td>
+                <td>{{this.datePosted}}</td>
+                <td>{{this.courseCode}}</td>
+                <td>{{this.rating}}</td>
+                <td><a href = "/courses/code/{{this.courseCode}}#{{this._id}}">View review</a></td>
+                <td>
+                  <form method="POST" action="/review/delete?{{this._id}}" class="option" onsubmit="return confirm('Do you really want to delete this review?');">
+                    <button type="submit" name="delete" value="delete">Delete</button>
+                  </form>
+                </td>
+                <td>
+                  <form method="POST" action="/review/edit?{{this._id}}" class="option">
+                    <button type="submit" name="edit" value="edit">Edit</button>
+                  </form>
+                </td>
+                {{!-- <td><a href="">Delete</a> | <a href="">Edit</a></td> --}}
             </tr>
         </tbody>
         {{/each}}

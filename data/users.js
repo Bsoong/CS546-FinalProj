@@ -89,6 +89,37 @@ module.exports = {
         return await this.getById(id);
     },
 
+    async removeReview(id, reviewId){
+        if (!id){
+            throw "You must provide an id to search for";
+        }
+        if(reviewId===undefined || typeof(reviewId)!="string"){
+            throw "review parameter is invalid";
+        }
+        const user = await this.getById(id);
+        const add = user.ratings;
+        let found = false;
+        let index = 0;
+        let deleted = null;
+        for(let a = 0; a<add.length; a++){
+            if(add[a]==reviewId){
+                deleted = add[a];
+                index=a;
+                found=true;
+                break;
+            }
+        }
+        if(found){
+            add.splice(index,index+1);
+        }
+        const userCollection = await users();
+        const updateInfo = await userCollection.updateOne({_id: ObjectId(id)}, {$set: {ratings: add}});
+        if (updateInfo.modifiedCount === 0) {
+            throw "could not update rating successfully";
+        }
+        return deleted;
+    },
+
     async removeUser(id){
         if (!id) {
             throw "You must provide an id to search for";
