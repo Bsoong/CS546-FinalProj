@@ -64,7 +64,20 @@ footer{
     margin: 0px auto;
     margin-bottom: 15px;
     float: none;
+    /* table-layout: fixed; */
 }
+/* .profile-table #dp {
+    width: 115px;
+}
+.profile-table #cc {
+    width: 117px;
+}
+.profile-table #opt {
+    width: 120px;
+}
+.profile-table #rate {
+    width: 70px;
+} */
 
 .profile-table th, .profile-table td {
     padding: 4px 10px;

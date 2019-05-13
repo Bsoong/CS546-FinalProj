@@ -6,7 +6,7 @@ const courseData = data.courses;
 const userData = data.users;
 const xss = require("xss");
 
-router.get("/:code", async(req,res) => {
+router.get("/course/:code", async(req,res) => {
     try{
         if(xss(req.session.authent)){
             const course = await courseData.getCourseByCode(xss(req.params.code));
@@ -19,14 +19,12 @@ router.get("/:code", async(req,res) => {
             res.redirect("/login");
         }
     } catch(e){
+        req.session.error = "An error occured while getting this page.";
         res.redirect("/");
-        // if(req.session.authent){
-        //     res.render("templates/review", {verified: true, title: "RMC | Rate Course"})
-        // }
     }
 });
 
-router.post("/:code", async(req,res) => {
+router.post("/course/:code", async(req,res) => {
     const review = req.body;
     const person = await userData.getById(req.session.user);
     let errors = [];
@@ -83,7 +81,6 @@ router.post("/:code", async(req,res) => {
             }
             const course = await courseData.getCourseByCode(xss(review.courseCode));
             let avg = course.avgRating;
-            console.log("match length " + match.length);
             let totalRating = 0;
             for(let i = 0;i<match.length;i++){
                 let eachrate = match[i];
@@ -108,6 +105,25 @@ router.post("/:code", async(req,res) => {
         req.session.post_fail = true;
         res.redirect("/post_fail");
     }
+});
+
+router.post("/delete?:id", async(req,res)=>{
+    try{
+        if(xss(req.session.authent)){
+            // let userId = xss(req.session.user);
+            // let id = xss(req.params.id);
+            // const deletedReviewId = await userData.removeReview(userId, id);
+            // const deletedReview = await ratingData.remove(id);
+            res.redirect("/myProfile");
+            // res.render("templates/error", {verified: true, title: "RMC | Review Deleted", code: xss(req.params.code), course: course});
+        } else {
+            req.session.login_fail = true;
+            res.redirect("/login");
+        }
+    } catch(e){
+        req.session.error = "An error occured while getting this page.";
+        res.redirect("/");
+    } 
 });
 
 module.exports = router;
