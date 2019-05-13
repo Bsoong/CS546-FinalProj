@@ -31,8 +31,8 @@ dbConnection().then(
       //     let r = ratingList[i];
       //     const rating = ratingData.create(r.courseCode, allUsers[person]._id.toString(), r.datePosted, r.tags, r.rating, r.review);
       //     userData.addReview(allUsers[person]._id.toString(), rating._id.toString());
-      //   }      
-      // })
+      //   }
+      //})
       .then(() => {
         console.log("Done seeding database");
       });
