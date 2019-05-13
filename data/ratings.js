@@ -99,7 +99,7 @@ module.exports = {
         }
     },
     
-        async highestRating(){
+    async highestRating(){
         const ratingCollection = await ratings();
         const all = await ratingCollection.find({}).toArray(); //wouldn't let me call getAll()
         var bestRatings = all.sort((a,b) => b-a);
@@ -164,9 +164,12 @@ module.exports = {
         return await this.get(id);
     },
 
-    async addComment(id, author, datePosted, comment){
+    async addComment(id, authorID, author, datePosted, comment){
         if(id===undefined || typeof(id)!="string") {
             throw "id is not a string";
+        }
+        if(authorID===undefined || typeof(authorID)!="string") {
+            throw "author's id is not a string";
         }
         if(author===undefined || typeof(author)!="string" || author.trim().length==0){
             throw "author parameter is invalid";
@@ -184,16 +187,52 @@ module.exports = {
         }
         let newComment = {
             _id: ObjectId(),
+            reviewID: id,
+            authorID: authorID,
             author: author,
             datePosted: datePosted,
             comment: comment
         };
-        const newComments = rate.comments;
+        let newComments = rate.comments;
         newComments.push(newComment);
         const updateInfo = await ratingCollection.updateOne({_id: ObjectId(id)}, {$set: {comments: newComments}});
         if (updateInfo.modifiedCount === 0) {
             throw "could not update rating successfully";
         }    
-        return await this.get(id);
+        return newComment;
+    },
+
+    async deleteComment(rID, cID) {
+        if(rID===undefined || typeof(rID)!="string") {
+            throw "review id is not a string";
+        }
+        if(cID===undefined || typeof(cID)!="string") {
+            throw "comment id is not a string";
+        }    
+        const ratingCollection = await ratings();
+        const rate = await ratingCollection.findOne({ _id: ObjectId(id) });
+        if(rate===null){
+            throw "rating with this id not found";
+        }
+        let oldComments = rate.comments;
+        let found = false;
+        let index=0;
+        let deleted = null;
+        for(let a = 0; a<oldComments.length; a++){
+            if(oldComments[a]._id==cID){
+                deleted = oldComments[a];
+                index=a;
+                found=true;
+                break;
+            }
+        }
+        if(found){
+            oldComments.splice(index,index+1);
+        }
+        const updateInfo = await ratingCollection.updateOne({_id: ObjectId(id)}, {$set: {comments: oldComments}});
+        if (updateInfo.modifiedCount === 0) {
+            throw "could not update rating successfully";
+        }
+        return deleted;
     }
 }

@@ -58,23 +58,28 @@
           <p class="rev">Review: {{this.review}}</p>
           {{!-- <p class="rev"></p> --}}
           {{/if}}
-          <div class="comment-box" data-id="{{this._id}}">
-          <form class="comment-form">
-            <input type="text" name="comment" value="{{com}}">
-            {{!-- <button type="submit">Post</button> --}}
-            <button type="button" class="cancel" data-id="{{this._id}}">Cancel</button>
-            {{!-- <button type="button" onclick="myFunction()">Cancel</button> --}}
-          </form>
-          </div>
-          <div class="comments">
+          <div class="comments" data-id="{{this._id}}">
             {{#each review.comments}}
-            <div class="singleComment">
-              <p>{{this.datePosted}}</p>
-              <p>{{this.comment}}</p>
-            </div>
+              {{> commentsPartials }}
             {{/each}}
           </div>
-          <button class="reply" data-id="{{this._id}}">Reply</button>
+          <div class="comment-box" data-id="{{this._id}}">
+          <form class="comment-form" data-id="{{this._id}}">
+            <input class="new-comment" data-id="{{this._id}}" type="text" name="comment" value="{{com}}">
+            {{!-- <textarea class="tarea" data-id="{{this._id}}" name="comment" value="{{com}}"></textarea> --}}
+            <button type="submit" data-id="{{this._id}}">Post</button>
+            <button type="button" class="cancel" data-id="{{this._id}}">Cancel</button>
+          </form>
+          </div>
+          <button class="reply" data-id="{{this._id}}" data-logged="true">Reply</button>
+          {{!-- {{#with verified}}
+          <button class="reply" data-id="{{this._id}}" data-logged="digga">Reply</button>
+          {{else}}
+          <button class="reply" data-id="{{this._id}}" data-logged="troth">Reply</button>
+          {{/if}} --}}
+          {{!-- {{#if comment}}
+          {{else}}
+          {{/if}} --}}
           {{!-- <button id="reply" onclick = "myFunction()">Reply</button> --}}
           {{!-- <p id="reply"><a href="">Reply</a></p> --}}
         </div>
@@ -85,11 +90,14 @@
   </div>
   </div>
 {{> constScriptsPartial}}
-<script>
+<script src="/public/AjaxComment.js"></script>
+{{!-- <script>
   $(document).ready(function(){
     $("[class^='comment-box']").hide()
     $("button[class^='reply']").click(function(){
       var c = $(this).attr("data-id");
+      $("[class^='comment-box']").hide();
+      $("button[class^='reply']").show();
       $("[class^='comment-box']").filter("[data-id="+c+"]").show();
       $(this).hide();
     });
@@ -98,8 +106,11 @@
       $("[class^='comment-box']").filter("[data-id="+c+"]").hide();
       $("[class^='reply']").filter("[data-id="+c+"]").show();
     });
-  });
-  //function myFunction() {
+    $("[class^='comment-form']").submit(function(event){
+      event.preventDefault();
+    });
+  }); --}}
+  {{!-- //function myFunction() {
   //var x = document.getElementById("comment-box");
   //var b = document.getElementById("reply");
   //if (x.style.display === "none") {
@@ -109,6 +120,6 @@
   //  x.style.display = "none";
   //  b.style.display = "block";
   //}
-  //}
-</script>
+  //} --}}
+{{!-- </script> --}}
 {{> footerPartial}}

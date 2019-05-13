@@ -79,14 +79,15 @@ module.exports = {
             throw "review parameter is invalid";
         }
         const user = await this.getById(id);
-        const add = user.ratings;
+        let add = user.ratings;
         add.push(reviewId);
         const userCollection = await users();
         const updateInfo = await userCollection.updateOne({_id: ObjectId(id)}, {$set: {ratings: add}});
         if (updateInfo.modifiedCount === 0) {
             throw "could not update rating successfully";
         }
-        return await this.getById(id);
+        const u = await this.getById(id);
+        return u;
     },
 
     async removeReview(id, reviewId){
@@ -97,7 +98,7 @@ module.exports = {
             throw "review parameter is invalid";
         }
         const user = await this.getById(id);
-        const add = user.ratings;
+        let add = user.ratings;
         let found = false;
         let index = 0;
         let deleted = null;
@@ -114,6 +115,56 @@ module.exports = {
         }
         const userCollection = await users();
         const updateInfo = await userCollection.updateOne({_id: ObjectId(id)}, {$set: {ratings: add}});
+        if (updateInfo.modifiedCount === 0) {
+            throw "could not update rating successfully";
+        }
+        return deleted;
+    },
+
+    async addComment(id, comment){
+        if (!id){
+            throw "You must provide an id to search for";
+        }
+        if(comment===undefined){
+            throw "comment is undefined";
+        }
+        const user = await this.getById(id);
+        let add = user.comments;
+        add.push(comment);
+        const userCollection = await users();
+        const updateInfo = await userCollection.updateOne({_id: ObjectId(id)}, {$set: {comments: add}});
+        if (updateInfo.modifiedCount === 0) {
+            throw "could not update rating successfully";
+        }
+        const u = await this.getById(id);
+        return u;
+    },
+
+    async deleteComment(id, cID){
+        if (!id){
+            throw "You must provide an id to search for";
+        }
+        if(cID===undefined || typeof(cID)!="string") {
+            throw "comment id is not a string";
+        }   
+        const user = await this.getById(id);
+        let oldComments = user.comments;
+        let found = false;
+        let index=0;
+        let deleted = null;
+        for(let a = 0; a<oldComments.length; a++){
+            if(oldComments[a]._id==cID){
+                deleted = oldComments[a];
+                index=a;
+                found=true;
+                break;
+            }
+        }
+        if(found){
+            oldComments.splice(index,index+1);
+        }
+        const userCollection = await users();
+        const updateInfo = await userCollection.updateOne({_id: ObjectId(id)}, {$set: {comments: oldComments}});
         if (updateInfo.modifiedCount === 0) {
             throw "could not update rating successfully";
         }

@@ -47,9 +47,9 @@ router.get("/code/:code", async(req, res) => {
     }
     if(xss(req.session.authent)){
       if(course.avgRating<0){
-        res.render("templates/courseInfo",{verified: true, title: xss(req.params.code), course: course, review: ratings});
+        res.render("templates/courseInfo",{verified: true, comment:true, title: xss(req.params.code), course: course, review: ratings});
       } else {
-        res.render("templates/courseInfo",{verified: true, title: xss(req.params.code), rating: true, course: course, review: ratings});
+        res.render("templates/courseInfo",{verified: true, comment:true, title: xss(req.params.code), rating: true, course: course, review: ratings});
       }
     } else {
       if(course.avgRating<0){
