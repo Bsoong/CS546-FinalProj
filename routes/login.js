@@ -9,7 +9,12 @@ router.get("/", (req,res) => {
   if(xss(req.session.authent)){
     res.redirect("/myProfile");
   } else {
-    res.render("templates/login",{verified: false, title: "RMC | Login"});
+    if(xss(req.session.login_fail)){
+      delete req.session.login_fail;
+      res.render("templates/login",{verified: false, error: "Error: You need to be logged in to make a review.", title: "RMC | Login"});
+    } else {
+      res.render("templates/login",{verified: false, title: "RMC | Login"});
+    }
   }
 });
 

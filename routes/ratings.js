@@ -15,7 +15,8 @@ router.get("/:code", async(req,res) => {
             }
             res.render("templates/review", {verified: true, title: "RMC | Rate Course", code: xss(req.params.code), course: course});
         } else {
-            res.redirect("/");
+            req.session.login_fail = true;
+            res.redirect("/login");
         }
     } catch(e){
         res.redirect("/");
