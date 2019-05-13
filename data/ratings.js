@@ -97,7 +97,6 @@ module.exports = {
         if (deletionInfo.deletedCount === 0) {
           throw `Could not delete rating with id of ${id}`;
         }
-        return deletionInfo;
     },
     
     

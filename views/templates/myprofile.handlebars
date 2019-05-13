@@ -29,12 +29,14 @@
                 <td>{{this.rating}}</td>
                 <td><a href = "/courses/code/{{this.courseCode}}#{{this._id}}">View review</a></td>
                 <td>
-                  <form method="POST" action="/review/delete?{{this._id}}" class="option" onsubmit="return confirm('Do you really want to delete this review?');">
+                  <form method="POST" action="/review/delete/{{this._id}}" class="option" onsubmit="return confirm('Do you really want to delete this review?');">
+                    {{!-- <input type="text" hidden name="code" value="{{this.courseCode}}"> --}}
                     <button type="submit" name="delete" value="delete">Delete</button>
                   </form>
                 </td>
                 <td>
-                  <form method="POST" action="/review/edit?{{this._id}}" class="option">
+                  <form method="POST" action="/review/edit/{{this._id}}" class="option">
+                    {{!-- <input type="text" hidden name="code" value="{{this.courseCode}}"> --}}
                     <button type="submit" name="edit" value="edit">Edit</button>
                   </form>
                 </td>

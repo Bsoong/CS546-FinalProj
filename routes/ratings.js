@@ -107,23 +107,46 @@ router.post("/course/:code", async(req,res) => {
     }
 });
 
-
-router.post("/delete?:id", async(req,res)=>{
+router.post("/delete/:id", async(req,res)=>{
     try{
         if(xss(req.session.authent)){
-            // let userId = xss(req.session.user);
-            // let id = xss(req.params.id);
-            // const deletedReviewId = await userData.removeReview(userId, id);
-            // const deletedReview = await ratingData.remove(id);
-            res.redirect("/myProfile");
-            // res.render("templates/error", {verified: true, title: "RMC | Review Deleted", code: xss(req.params.code), course: course});
+            let userId = xss(req.session.user);
+            let id = xss(req.params.id);
+            const deletedReviewId = await userData.removeReview(userId, id);
+            const toDelete = await ratingData.get(id);
+            await ratingData.remove(id);
+            const ratings = await ratingData.getAll();
+            const match = [];
+            for(let j = 0; j<ratings.length;j++){
+                let rr = ratings[j];
+                if(rr.courseCode==toDelete.courseCode){
+                    match.push(rr.rating);
+                }
+            }
+            const course = await courseData.getCourseByCode(xss(toDelete.courseCode));
+            let avg = course.avgRating;
+            if(match.length!=0){                
+                let totalRating = 0;
+                for(let i = 0;i<match.length;i++){
+                    let eachrate = match[i];
+                    totalRating+=eachrate;
+                }                
+                avg = totalRating/match.length;
+                await courseData.updateRating(course._id.toString(), avg);
+            } else {
+                avg = -1;
+                await courseData.updateRating(course._id.toString(), avg);                
+            }            
+            // res.redirect("/myProfile");
+            res.render("templates/reviewPosted", {verified: true, title: "RMC | Review Deleted", deleted: true});
         } else {
             req.session.login_fail = true;
             res.redirect("/login");
         }
     } catch(e){
+        console.log(e);
         req.session.error = "An error occured while getting this page.";
-        res.redirect("/");
+        res.redirect("/deletion_fail");
     }
 });
 
