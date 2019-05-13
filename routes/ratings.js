@@ -85,21 +85,21 @@ router.post("/course/:code", async(req,res) => {
             for(let i = 0;i<match.length;i++){
                 let eachrate = match[i];
                 totalRating+=eachrate;
-            }                
+            }
             avg = totalRating/match.length;
             await courseData.updateRating(course._id.toString(), avg);
             // if(match.length==0){
             //     await courseData.updateRating(course._id.toString(), newReview.rating);
             // } else {
             //     match.push(newReview.rating);
-                
-            // }            
+
+            // }
             const u = await userData.addReview(xss(person._id), newReview._id.toString());
             if(u!==undefined){
                 req.session.posted = true;
                 res.redirect("/posted");
             }
-        }       
+        }
     } catch(e){
         console.log(e);
         req.session.post_fail = true;
@@ -147,7 +147,7 @@ router.post("/delete/:id", async(req,res)=>{
         console.log(e);
         req.session.error = "An error occured while getting this page.";
         res.redirect("/deletion_fail");
-    } 
+    }
 });
 
 module.exports = router;

@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>RMC Create</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel = "stylesheet" href = "../../public/css/style.css">
+</head>
+{{> navigationBarPartial}}
+<body>
+    <h1><u>Create an Account</u></h1>
+    <form method = "post" id = "account">
+        <div class = "firstName">
+            <label for = "fName">First name</label>
+            <input type = "text" class = "form-control" id = "fNameInput">
+        </div>
+        <div class = "lastName">
+            <label for = "lName">Last name</label>
+            <input type = "text" class = "form-control" id = "lNameInput">
+        </div>
+        <div class="email">
+            <label for="email1">Email address</label>
+            <input type="email" class="form-control" id="emailInput" placeholder="name@example.com">
+        </div>
+        <div class="password">
+            <div class="input-group input-group-lg">
+            <div class="form-group form-group-lg">
+            <label for="pass">Password</label>
+            <input type="password" class="form-control" id="passwordInput" placeholder="Password">
+      </div>
+        </div>
+        </div>
+    <div class="gender">
+            <label for="ChooseGender">Gender</label>
+            <select class="form-control" id="exampleFormControlSelect1">
+                <option value = "male">Male</option>
+                <option value = "female">Female</option>
+                <option value = "option">Other</option>
+            </select>
+    </div>
+    <div class = "age">
+        <label for = "agelabel">Age</label>
+        <input type = "number" class = "form-control" id = "ageInput">
+    </div>
+    <div class="year">
+        <label for="exampleFormControlSelect2">Year</label>
+        <select class="form-control" id="exampleFormControlSelect2">
+            <option>First Year</option>
+            <option>Second Year</option>
+            <option>Third Year</option>
+            <option>Fourth Year</option>
+            <option>Fifth Year</option>
+            <option>Graduate</option>
+        </select>
+  </div>
+        <br>
+  <button type="submit" class="btn btn-primary">Submit</button>
+</form>
+    <p>Already have an account?<a href = "login.html"> Click here!</a></p>
+   {{> constScriptsPartial}}
+</body>
+<footer>
+    RateMyCourse
+</footer>
+</html>
