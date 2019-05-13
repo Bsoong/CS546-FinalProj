@@ -4,6 +4,7 @@ const mongoCollections = require("./mongoCollections");
 const ratings = mongoCollections.ratings;
 const courses = mongoCollections.courses;
 const {ObjectId} = require("mongodb");
+const Handlebars = require("handlebars");
 
 module.exports = {
     async create(courseCode, professor, author, datePosted, tags, rating, review){
@@ -117,6 +118,12 @@ module.exports = {
         }    
         return await this.get(id);
     },
+
+    // async highestRating(){
+    //     const allRatings = getAll();
+    //     var bestRatings = allRatings.sort((a,b) => b-a).slice(0,5);
+    //     return bestRatings; //array of the top 5 best ratings
+    // },
 
     async editTags(id, newTags){
         if(id===undefined || typeof(id)!="string") {
