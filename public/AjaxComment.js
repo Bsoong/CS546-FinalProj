@@ -1,67 +1,45 @@
 (function($) {
-  var commentForm = $("#newCommentForm"),
-  commentLabel = $("#reply");
-
-  function bindEventsToTodoItem(todoItem) {
-  todoItem.find(".finishItem").on("click", function(event) {
-    event.preventDefault();
-    var currentLink = $(this);
-    var currentId = currentLink.data("id");
-
-    var requestConfig = {
-      method: "POST",
-      //url to bind comment to review
-      url: "/review/" + currentId
-    };
-
-    $.ajax(requestConfig).then(function(responseMessage) {
-      var newElement = $(responseMessage);
-      bindEventsToTodoItem(newElement);
-      todoItem.replaceWith(newElement);
+  $("[class^='comment-box']").hide()
+    $("button[class^='reply']").click(function(){
+      var v = $(this).attr("data-logged");
+      if(v=="true"){
+        var c = $(this).attr("data-id");
+        $("[class^='comment-box']").hide();
+        $("button[class^='reply']").show();
+        $("[class^='comment-box']").filter("[data-id="+c+"]").show();
+        $(this).hide();
+      } else {
+        alert("You have to be logged in to reply.");
+      }
     });
-  });
-}
-
-  myNewTaskForm.submit(function(event) {
-    event.preventDefault();
-
-    var newComment = commentForm.val();
-    var newContent = $("#new-content");
-
-    if (newComment) {
-      var useJson = true;
-      if (useJson) {
+    $("[class^='cancel']").click(function(){
+      var c = $(this).attr("data-id");
+      $("[class^='comment-box']").filter("[data-id="+c+"]").hide();
+      $("[class^='reply']").filter("[data-id="+c+"]").show();
+    });
+    $("[class^='comment-form']").submit(function(event){
+      event.preventDefault();
+      var rID = $(this).attr("data-id");
+      var newComment = $("input[data-id^="+rID+"]").val();
+      if(newComment){
         var requestConfig = {
           method: "POST",
-          url: "/review/comment",
-          contentType: "application/json",
+          url: "/review/comment/"+rID,
           data: JSON.stringify({
-            comment: newComment
+            comment: newComment,
+            reviewID: rID
           })
         };
-
         $.ajax(requestConfig).then(function(responseMessage) {
-          console.log(responseMessage);
-          newContent.html(responseMessage.message);
-          //                alert("Data Saved: " + msg);
+          var newElement = $(responseMessage);
+          if(jQuery.type(newElement)==="string"){
+            alert(newElement);
+          } else {
+            $(".comments").filter("data-id=" + rID + "]").append(newElement);
+          }
         });
       } else {
-        var requestConfig = {
-          method: "POST",
-          url: "/review/comment",
-          contentType: "application/json",
-          data: JSON.stringify({
-            comment: newComment
-          })
-        };
-
-        $.ajax(requestConfig).then(function(responseMessage) {
-          console.log(responseMessage);
-          var newElement = $(responseMessage);
-          bindEventsToTodoItem(newElement);
-        });
+        alert("You must type in something to comment.");
       }
-    }
-  });
-
+    });
 })(window.jQuery);

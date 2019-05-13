@@ -150,4 +150,21 @@ router.post("/delete/:id", async(req,res)=>{
     }
 });
 
+router.post("/comment/:rID", async(req,res) => {
+    let info = xss(req.body);
+    let posteeID = xss(req.session.user);
+    let date = new Date();
+    let formattedDate = date.getMonth()+1 + "/" + date.getDate() + "/" + date.getFullYear();
+    //add comment to review
+    try{
+        const author = await userData.getById(posteeID);
+        let name = author.firstName + " " + author.LastName;
+        const newComment = await ratingData.addComment(info.reviewID, posteeID, name, formattedDate, info.comment);
+        const userComment = await userData.addComment(posteeID, newComment);
+        res.render("partials/commentsPartials", {layout:false, ...newComment});
+    } catch(e){
+        res.send("Could not post comment. Error: " + e + ".");
+    }
+});
+
 module.exports = router;
