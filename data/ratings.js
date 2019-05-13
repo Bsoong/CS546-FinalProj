@@ -99,12 +99,13 @@ module.exports = {
         }
     },
     
-    
-    // async highestRating(){
-    //     const allRatings = getAll();
-    //     var bestRatings = allRatings.sort((a,b) => b-a).slice(0,5);
-    //     return bestRatings; //array of the top 5 best ratings
-    // },
+        async highestRating(){
+        const ratingCollection = await ratings();
+        const all = await ratingCollection.find({}).toArray(); //wouldn't let me call getAll()
+        var bestRatings = all.sort((a,b) => b-a);
+        console.log(all); //returns empty array...
+        return bestRatings; //array of the top 5 best ratings
+    },
 
     async editRating(id, newRating){
         if(id===undefined || typeof(id)!="string") {
