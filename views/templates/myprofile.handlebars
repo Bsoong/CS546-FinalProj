@@ -1,4 +1,7 @@
+<link rel = "stylesheet" href = "/public/style.css">
 {{> navigationBarPartial}}
+<div class="page-container">
+<div class="page-content">
 <div id ="profilePage">
   <h1>My Profile</h1>
   <h2>{{user.firstName}} {{user.lastName}}</h2>
@@ -45,6 +48,8 @@
     <dd>{{user.comments}} </dd>
   </dl> --}}
   <a href = "/logout">Logout!</a>
+</div>
+</div>
 </div>
 {{> constScriptsPartial}}
 {{> footerPartial}}
