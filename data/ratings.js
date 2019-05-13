@@ -98,6 +98,13 @@ module.exports = {
           throw `Could not delete rating with id of ${id}`;
         }
     },
+    
+    
+    // async highestRating(){
+    //     const allRatings = getAll();
+    //     var bestRatings = allRatings.sort((a,b) => b-a).slice(0,5);
+    //     return bestRatings; //array of the top 5 best ratings
+    // },
 
     async editRating(id, newRating){
         if(id===undefined || typeof(id)!="string") {
