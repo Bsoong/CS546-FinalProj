@@ -149,8 +149,20 @@ form.option {
   /* margin-right: auto; */
 }
 
-textarea#comment {
+textarea#commentLabel {
   width: 90%;
   margin-right:auto;
   margin-left:auto;
 }
+
+/* .remove {
+  display: none;
+}
+
+.show {
+  display: block;
+}
+
+#comment-box{
+  display:none;
+} */

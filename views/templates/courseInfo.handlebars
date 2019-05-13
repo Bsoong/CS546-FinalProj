@@ -34,7 +34,7 @@
         <h4>Average Rating: N/A</h4>
         {{/if}}
         {{#each review}}
-        <div class="indivReview" id="{{this._id}}">
+        <div class="indivReview" class="{{this._id}}">
           {{#if this.review}}
           <p>Review posted by {{this.authorName}} on {{this.datePosted}}</p>
           {{else}}
@@ -58,6 +58,14 @@
           <p class="rev">Review: {{this.review}}</p>
           {{!-- <p class="rev"></p> --}}
           {{/if}}
+          <div class="comment-box" data-id="{{this._id}}">
+          <form class="comment-form">
+            <input type="text" name="comment" value="{{com}}">
+            {{!-- <button type="submit">Post</button> --}}
+            <button type="button" class="cancel" data-id="{{this._id}}">Cancel</button>
+            {{!-- <button type="button" onclick="myFunction()">Cancel</button> --}}
+          </form>
+          </div>
           <div class="comments">
             {{#each review.comments}}
             <div class="singleComment">
@@ -66,7 +74,9 @@
             </div>
             {{/each}}
           </div>
-          <p id="reply"><a href="">Reply</a></p>
+          <button class="reply" data-id="{{this._id}}">Reply</button>
+          {{!-- <button id="reply" onclick = "myFunction()">Reply</button> --}}
+          {{!-- <p id="reply"><a href="">Reply</a></p> --}}
         </div>
         {{/each}}
         <p><a href = "/review/course/{{course.courseCode}}">Leave a review</a></p>
@@ -75,4 +85,30 @@
   </div>
   </div>
 {{> constScriptsPartial}}
+<script>
+  $(document).ready(function(){
+    $("[class^='comment-box']").hide()
+    $("button[class^='reply']").click(function(){
+      var c = $(this).attr("data-id");
+      $("[class^='comment-box']").filter("[data-id="+c+"]").show();
+      $(this).hide();
+    });
+    $("[class^='cancel']").click(function(){
+      var c = $(this).attr("data-id");
+      $("[class^='comment-box']").filter("[data-id="+c+"]").hide();
+      $("[class^='reply']").filter("[data-id="+c+"]").show();
+    });
+  });
+  //function myFunction() {
+  //var x = document.getElementById("comment-box");
+  //var b = document.getElementById("reply");
+  //if (x.style.display === "none") {
+  //  x.style.display = "block";
+  //  b.style.display = "none";
+  //} else {
+  //  x.style.display = "none";
+  //  b.style.display = "block";
+  //}
+  //}
+</script>
 {{> footerPartial}}
