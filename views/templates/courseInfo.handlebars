@@ -2,7 +2,7 @@
 {{> navigationBarPartial}}
   <div class="page-container">
   <div class="page-content">
-    <div id="coursepage">
+    <div class="coursepage">
       <h2>{{course.courseName}}</h2>
       <h3>{{course.courseCode}}</h3>
       <p>Credits: {{course.credits}}</p>
@@ -26,28 +26,39 @@
       <div class="description">
         <p>{{course.description}}</p>
       </div>
-      <div id="reviews">
-        <h2 id="ratings">Reviews:</h2>
-        <p><a href = "/review/{{course.courseCode}}">Leave a review</a></p>
+      <div class="reviews">
+        <h2 id="ratings">Reviews</h2>
         {{#if rating}}
         <h4>Average Rating: {{course.avgRating}}</h3>
         {{else}}
         <h4>Average Rating: N/A</h4>
         {{/if}}
         {{#each review}}
-        <div class="indivReview">
+        <div class="indivReview" id="{{this._id}}">
+          {{#if this.review}}
           <p>Review posted by {{this.authorName}} on {{this.datePosted}}</p>
+          {{else}}
+          <p>Rating by {{this.authorName}} on {{this.datePosted}}</p>
+          {{/if}}
           <p>Class taken with Professor {{this.professor}}</p>
-          <p>Tags</p>
-          <ul>
+          <div class="tags">
+          <p>Tags: </p>
+          {{#if this.tags}}
             {{#each this.tags}}
-            <li>{{this}}</li>
+            <div class="tag">
+              <p>{{this}}</p>
+            </div>
             {{/each}}
-          </ul>
+          {{else}}
+          <p>N/A</p>
+          {{/if}}
+          </div>
           <p>Rating: {{this.rating}}</p>
-          <p>Review: {{this.review}}</p>
+          {{#if this.review}}
+          <p class="rev">Review: {{this.review}}</p>
+          {{!-- <p class="rev"></p> --}}
+          {{/if}}
           <div class="comments">
-            <p>Comments:</p>
             {{#each review.comments}}
             <div class="singleComment">
               <p>{{this.datePosted}}</p>
@@ -55,8 +66,10 @@
             </div>
             {{/each}}
           </div>
+          <p id="reply"><a href="">Reply</a></p>
         </div>
         {{/each}}
+        <p><a href = "/review/course/{{course.courseCode}}">Leave a review</a></p>
       </div>
     </div>
   </div>

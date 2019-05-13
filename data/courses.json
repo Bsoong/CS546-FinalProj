@@ -47,7 +47,7 @@
     "_id": "f2adf678-6d6d-448f-a809-fe0735219971",
     "courseName": "Introduction to Computer Science Honors II",
     "courseCode": "CS-182",
-    "professors": ["Antonio Nicolosi"],
+    "professors": ["Antonio Nicolosi", "Eric Koskinen"],
     "avgRating": 1,
     "description": "Advanced programming concepts covering classical data structures and object-oriented programming. Emphasis will be on building a collection of re-usable software components that will form the basis of future programming efforts. The data structures covered include lists, stacks, queues, trees, binary search trees, and balanced search trees. The object-oriented features of Java covered include classes, templates, inheritance, polymorphism and run-time binding. Also included is a discussion of the analysis of asymptotic running times of algorithms.",
     "credits": 4,

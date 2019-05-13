@@ -6,7 +6,7 @@ const courseData = data.courses;
 const userData = data.users;
 const xss = require("xss");
 
-router.get("/:code", async(req,res) => {
+router.get("/course/:code", async(req,res) => {
     try{
         if(xss(req.session.authent)){
             const course = await courseData.getCourseByCode(xss(req.params.code));
@@ -15,17 +15,16 @@ router.get("/:code", async(req,res) => {
             }
             res.render("templates/review", {verified: true, title: "RMC | Rate Course", code: xss(req.params.code), course: course});
         } else {
-            res.redirect("/");
+            req.session.login_fail = true;
+            res.redirect("/login");
         }
     } catch(e){
+        req.session.error = "An error occured while getting this page.";
         res.redirect("/");
-        // if(req.session.authent){
-        //     res.render("templates/review", {verified: true, title: "RMC | Rate Course"})
-        // }
     }
 });
 
-router.post("/:code", async(req,res) => {
+router.post("/course/:code", async(req,res) => {
     const review = req.body;
     const person = await userData.getById(req.session.user);
     let errors = [];
@@ -62,7 +61,8 @@ router.post("/:code", async(req,res) => {
             review: review,
             code: review.courseCode,
             title: "RMC | Rate Course",
-            verified: true
+            verified: true,
+            course: review
         });
         return;
     }
@@ -81,30 +81,72 @@ router.post("/:code", async(req,res) => {
             }
             const course = await courseData.getCourseByCode(xss(review.courseCode));
             let avg = course.avgRating;
-            console.log("match length " + match.length);
             let totalRating = 0;
             for(let i = 0;i<match.length;i++){
                 let eachrate = match[i];
                 totalRating+=eachrate;
-            }                
+            }
             avg = totalRating/match.length;
             await courseData.updateRating(course._id.toString(), avg);
             // if(match.length==0){
             //     await courseData.updateRating(course._id.toString(), newReview.rating);
             // } else {
             //     match.push(newReview.rating);
-                
-            // }            
+
+            // }
             const u = await userData.addReview(xss(person._id), newReview._id.toString());
             if(u!==undefined){
                 req.session.posted = true;
                 res.redirect("/posted");
             }
-        }       
+        }
     } catch(e){
         console.log(e);
         req.session.post_fail = true;
         res.redirect("/post_fail");
+    }
+});
+
+router.post("/delete/:id", async(req,res)=>{
+    try{
+        if(xss(req.session.authent)){
+            let userId = xss(req.session.user);
+            let id = xss(req.params.id);
+            const deletedReviewId = await userData.removeReview(userId, id);
+            const toDelete = await ratingData.get(id);
+            await ratingData.remove(id);
+            const ratings = await ratingData.getAll();
+            const match = [];
+            for(let j = 0; j<ratings.length;j++){
+                let rr = ratings[j];
+                if(rr.courseCode==toDelete.courseCode){
+                    match.push(rr.rating);
+                }
+            }
+            const course = await courseData.getCourseByCode(xss(toDelete.courseCode));
+            let avg = course.avgRating;
+            if(match.length!=0){                
+                let totalRating = 0;
+                for(let i = 0;i<match.length;i++){
+                    let eachrate = match[i];
+                    totalRating+=eachrate;
+                }                
+                avg = totalRating/match.length;
+                await courseData.updateRating(course._id.toString(), avg);
+            } else {
+                avg = -1;
+                await courseData.updateRating(course._id.toString(), avg);                
+            }            
+            // res.redirect("/myProfile");
+            res.render("templates/reviewPosted", {verified: true, title: "RMC | Review Deleted", deleted: true});
+        } else {
+            req.session.login_fail = true;
+            res.redirect("/login");
+        }
+    } catch(e){
+        console.log(e);
+        req.session.error = "An error occured while getting this page.";
+        res.redirect("/deletion_fail");
     }
 });
 

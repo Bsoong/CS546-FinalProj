@@ -38,9 +38,21 @@ const constructorMethod = app => {
   app.use("/", router);
   app.use("*", (req, res) => {
     if(xss(req.session.authent)) {
-      res.render("templates/error",{verified: true, title: "RMC | Error", hasErrors: true, error: "Page not found."});
+      if(xss(req.session.error)){
+        let message = xss(req.session.error);
+        delete req.session.error;
+        res.render("templates/error",{verified: true, title: "RMC | Error", hasErrors: true, error: message});
+      } else {
+        res.render("templates/error",{verified: true, title: "RMC | Error", hasErrors: true, error: "Page not found."});
+      }
     } else {
-      res.render("templates/error",{verified: false, title: "RMC | Error", hasErrors: true, error: "Page not found."});
+      if(xss(req.session.error)){
+        let message = xss(req.session.error);
+        delete req.session.error;
+        res.render("templates/error",{verified: false, title: "RMC | Error", hasErrors: true, error: message});
+      } else {
+        res.render("templates/error",{verified: false, title: "RMC | Error", hasErrors: true, error: "Page not found."});
+      }
     }
   });
 };
@@ -149,10 +161,31 @@ router.get("/post_fail", (req, res) => {
 router.post("/search", async (req, res) => {
   try{
     const courseCollection = await courseData.getAllCourses();
-    const body = xss(req.body.searchInput);
+    let body = xss(req.body.searchInput);
+    body = body.toLowerCase();
     const courses = [];
     for(let i = 0; i < courseCollection.length; i++){
-      let foundCourse = courseCollection[i].courseName.includes(body) || courseCollection[i].courseCode.includes(body);
+      let cn = courseCollection[i].courseName.toLowerCase();
+      let cc = courseCollection[i].courseCode.toLowerCase();
+      let desc = courseCollection[i].description.toLowerCase();
+      let prof = courseCollection[i].professors;
+      let professors = "";
+      for(let p = 0; p<prof.length; p++){
+        professors = professors.concat(prof[p].toLowerCase());
+      }
+      let foundCourse = false;
+      let stype = xss(req.body.searchtype);
+      if(stype=="name"){
+        foundCourse = cn.includes(body);
+      } else if(stype=="code"){
+        foundCourse = cc.includes(body);
+      } else if(stype=="desc"){
+        foundCourse = desc.includes(body);
+      } else if(stype=="prof"){
+        foundCourse = professors.includes(body);
+      } else {
+        foundCourse = cn.includes(body) || cc.includes(body) || desc.includes(body) || professors.includes(body);
+      }
       if(foundCourse){
         courses.push(courseCollection[i]);
       }

@@ -1,10 +1,23 @@
+{{!-- <!DOCTYPE html>
+<html>
+<head>
+    <title>RMC Review</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel = "stylesheet" href = "/public/main.css">
+    <link rel = "stylesheet" href = "public/review.css"> --}}
 {{> navigationBarPartial}}
+    <link rel = "stylesheet" href = "/public/style.css">
   <div class="page-container">
     {{#if posted}}
         <h1>Review Posted</h1>
         <p>Thank you. Your review has been posted.</p>
     {{/if}}
+    {{#if deleted}}
+    <h1>Review Deleted</h1>
+    <p>Your review has been deleted.</p>
+    <p><a href="/myProfile">Go back to your profile</a></p>
+
+    {{/if}}
 </div>
 {{> constScriptsPartial}}
 {{> footerPartial}}
-<script src="tota11y.min.js"></script>

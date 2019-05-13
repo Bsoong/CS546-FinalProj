@@ -13,12 +13,19 @@
                             <div class="form-group">
                               <label for = "searchInput"></label>
                               <input name = "searchInput" id = "searchInput" type="text" class="form-control" placeholder="Search Courses by name or Code" name="searchInput" required>
+                              <select class="form-control" id="searchtype" name="searchtype">
+                                <option value="any" selected>Any</option>
+                                <option value="name">Course Name</option>
+                                <option value="code">Course Code</option>
+                                <option value="desc">Course Description</option>
+                                <option value="prof">Professor</option>
+                              </select>
                                 <br>
                                 <button type="submit" class="btn btn-danger">Search!</button>
                             </div>
                             </form>
                             {{#if errors2}}
-                            <p id="searchError">Error: Course does not exist.</p>
+                            <p id="searchError">Error: Search did not return any results.</p>
                             {{/if}}
                           </div>
                         </div>
