@@ -4,7 +4,7 @@ Rate My Course: A website featuring Stevens Courses that allows Students to View
 
 
 ## How to run the program:
- 1. Using git, clone the respository and them use the following command to install the Node_modules packages:
+ 1. Using git, clone the respository and then use the following command to install the Node_modules packages:
  ```
  npm install (package)
  ```
