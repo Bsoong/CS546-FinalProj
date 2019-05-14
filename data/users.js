@@ -111,7 +111,7 @@ module.exports = {
             }
         }
         if(found){
-            add.splice(index,index+1);
+            add.splice(index,1);
         }
         const userCollection = await users();
         const updateInfo = await userCollection.updateOne({_id: ObjectId(id)}, {$set: {ratings: add}});
