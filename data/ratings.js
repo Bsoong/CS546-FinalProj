@@ -24,7 +24,7 @@ module.exports = {
         if(tags===undefined){
             tags=[];
         } else {
-            if(!(Array.isArray(tags))){
+            if(typeof(tags)!="array" && typeof(tags)!="object"){
                 throw "tags parameter is invalid";
             }
         }
@@ -37,7 +37,7 @@ module.exports = {
             throw "review parameter is invalid";
         }
         const ratingCollection = await ratings();
-        
+
         let newRating = {
             courseCode: courseCode,
             professor: professor,
@@ -48,7 +48,7 @@ module.exports = {
             review: review,
             comments: []
         };
-      
+
         const insertInfo = await ratingCollection.insertOne(newRating);
         if (insertInfo.insertedCount === 0) {
             throw "Could not add rating";
@@ -80,7 +80,7 @@ module.exports = {
     //     if(code===undefined || typeof(code)!="string"){
     //         throw "code is not a string";
     //     }
-    //     const ratingCollection = await ratings();  
+    //     const ratingCollection = await ratings();
     //     const ratings = await ratingCollection.find({ courseCode: code }).toArray();
     //     if(ratings===undefined){
     //         throw "No ratings with that courseCode";
@@ -88,52 +88,43 @@ module.exports = {
     //     return ratings; //returns an array
     // },
 
+  //  RecentRating
+    async recentRating() {
+      const ratingCollection = await ratings();
+      const all = await ratingCollection.find({}).toArray();
+      var recentRating = array.sort(function(a,b){return a.getTime() - b.getTime()});
+      return recentRating[0];
+    },
+
+  //  HighestRating
+    async highestRating(){
+        const ratingCollection = await ratings();
+        const all = await ratingCollection.find({}).toArray();
+        var bestRatings = all.sort();
+        return bestRatings[bestRatings.length-1];
+    },
+
+
     async remove(id) {
         if(id===undefined || typeof(id)!="string") {
             throw "id is not a string";
-        }    
+        }
         const ratingCollection = await ratings();
         const deletionInfo = await ratingCollection.removeOne({ _id: ObjectId(id) });
-    
+
         if (deletionInfo.deletedCount === 0) {
           throw `Could not delete rating with id of ${id}`;
         }
     },
-    
-    async highestRating(){
-        const ratingCollection = await ratings();
-        const all = await ratingCollection.find({}).toArray(); //wouldn't let me call getAll()
-        var bestRatings = all.sort((a,b) => b-a);
-        console.log(all); //returns empty array...
-        return bestRatings; //array of the top 5 best ratings
-    },
 
-    async editProfessor(id, newProfessor){
-        if(id===undefined || typeof(id)!="string") {
-            throw "id is not a string";
-        }   
-        if(newProfessor===undefined || typeof(newProfessor)!="string"){
-            throw "professor parameter is invalid";
-        } 
-        const ratingCollection = await ratings();
-        const rate = await ratingCollection.findOne({ _id: ObjectId(id) });
-        if(rate===null){
-            throw "rating with this id not found";
-        }
-        const updateInfo = await ratingCollection.updateOne({_id: ObjectId(id)}, {$set: {professor: newProfessor}});
-        if (updateInfo.modifiedCount === 0) {
-            throw "could not update professor successfully";
-        }    
-        return await this.get(id);
-    },
 
     async editRating(id, newRating){
         if(id===undefined || typeof(id)!="string") {
             throw "id is not a string";
-        }   
+        }
         if(newRating===undefined || typeof(newRating)!="number"){
             throw "rating parameter is invalid";
-        } 
+        }
         const ratingCollection = await ratings();
         const rate = await ratingCollection.findOne({ _id: ObjectId(id) });
         if(rate===null){
@@ -142,7 +133,7 @@ module.exports = {
         const updateInfo = await ratingCollection.updateOne({_id: ObjectId(id)}, {$set: {rating: newRating}});
         if (updateInfo.modifiedCount === 0) {
             throw "could not update rating successfully";
-        }    
+        }
         return await this.get(id);
     },
 
@@ -155,13 +146,9 @@ module.exports = {
     async editTags(id, newTags){
         if(id===undefined || typeof(id)!="string") {
             throw "id is not a string";
-        }   
-        if(newTags===undefined){
-            newTags=[];
-        } else {
-            if(!(Array.isArray(newTags))){
-                throw "tags parameter is invalid";
-            }
+        }
+        if(newTags===undefined || typeof(newTags)!="array"){
+            throw "tags parameter is invalid";
         }
         const ratingCollection = await ratings();
         const rate = await ratingCollection.findOne({ _id: ObjectId(id) });
@@ -170,15 +157,15 @@ module.exports = {
         }
         const updateInfo = await ratingCollection.updateOne({_id: ObjectId(id)}, {$set: {tags: newTags}});
         if (updateInfo.modifiedCount === 0) {
-            throw "could not update tags successfully";
-        }    
+            throw "could not update rating successfully";
+        }
         return await this.get(id);
     },
 
     async editReview(id, newReview){
         if(id===undefined || typeof(id)!="string") {
             throw "id is not a string";
-        }   
+        }
         if(newReview===undefined || typeof(newReview)!="string"){
             throw "review parameter is invalid";
         }
@@ -189,8 +176,8 @@ module.exports = {
         }
         const updateInfo = await ratingCollection.updateOne({_id: ObjectId(id)}, {$set: {review: newReview}});
         if (updateInfo.modifiedCount === 0) {
-            throw "could not update review successfully";
-        }    
+            throw "could not update rating successfully";
+        }
         return await this.get(id);
     },
 
@@ -228,7 +215,7 @@ module.exports = {
         const updateInfo = await ratingCollection.updateOne({_id: ObjectId(id)}, {$set: {comments: newComments}});
         if (updateInfo.modifiedCount === 0) {
             throw "could not update rating successfully";
-        }    
+        }
         return newComment;
     },
 
@@ -238,7 +225,7 @@ module.exports = {
         }
         if(cID===undefined || typeof(cID)!="string") {
             throw "comment id is not a string";
-        }    
+        }
         const ratingCollection = await ratings();
         const rate = await ratingCollection.findOne({ _id: ObjectId(rID) });
         if(rate===null){
