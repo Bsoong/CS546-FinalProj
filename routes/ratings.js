@@ -13,7 +13,22 @@ router.get("/course/:code", async(req,res) => {
             if(course===undefined){
                 throw "course not found";
             }
-            res.render("templates/review", {verified: true, title: "RMC | Rate Course", code: xss(req.params.code), course: course});
+            const user = await userData.getById(xss(req.session.user));
+            let userReviews = user.ratings;
+            let exist = false;
+            for(let u = 0; u<userReviews.length; u++){
+                let reviewId = userReviews[u];
+                let review = await ratingData.get(reviewId.toString());
+                if(review.courseCode==xss(req.params.code)){
+                    exist=true;
+                    break;
+                }
+            }
+            if(!exist){
+                res.render("templates/review", {verified: true, title: "RMC | Rate Course", code: xss(req.params.code), course: course});
+            } else {
+                res.render("templates/reviewPosted", {verified: true, title: "RMC | Review Exists", code: xss(req.params.code), alreadyPosted: true});
+            }
         } else {
             req.session.login_fail = true;
             res.redirect("/login");
