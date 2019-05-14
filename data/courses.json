@@ -274,5 +274,18 @@
     "semester": "Spring",
     "classLevel": "Undergraduate",
     "webSection": false
+  },
+  {
+    "_id": "b1hh3714-bedg-6c54-7gg7-asbw372jhsh2",
+    "courseName": "Web Development",
+    "courseCode": "CS-546",
+    "professors": ["Patrick Hill", "Phil Barressi"],
+    "avgRating": 1,
+    "description": "The Best Stevens Class offered. If you don't take it you're missing out!",
+    "credits": 3,
+    "semester": "Spring",
+    "classLevel": "Graduate",
+    "webSection": true
   }
+
 ]
