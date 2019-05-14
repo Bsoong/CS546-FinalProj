@@ -26,7 +26,7 @@ const constructorMethod = app => {
     let method = req.method;
     let route = req.originalUrl;
     let authent = (req.session.authent)? "(Authenticated User)" : "(Non-authenticated User)";
-    if(!(route.includes(".css"))&&!(route.includes(".js"))){
+    if(!(route.includes(".css"))&&!(route.includes(".js"))&&!(route.includes(".ico"))){
       console.log(`${date} ${method} ${route} ${authent}`);      
     }
     next();

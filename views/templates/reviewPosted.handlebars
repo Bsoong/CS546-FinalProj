@@ -12,6 +12,11 @@
     <h1>Comment Deleted</h1>
     <p>Your comment has been deleted.</p>
     {{/if}}
+    {{#if alreadyPosted}}
+    <h1>Review Exists</h1>
+    <p>You already reviewed this course.</p>
+    <p><a href="/course/{{code}}">Go to course page.</a></p>
+    {{/if}}
     <p><a href="/myProfile">Go back to your profile</a></p>
 </div>
 {{> constScriptsPartial}}
