@@ -26,8 +26,7 @@ const constructorMethod = app => {
     let method = req.method;
     let route = req.originalUrl;
     let authent = (req.session.authent)? "(Authenticated User)" : "(Non-authenticated User)";
-    // &&!(route.includes(".js"))
-    if(!(route.includes(".css"))){
+    if(!(route.includes(".css"))&&!(route.includes(".js"))){
       console.log(`${date} ${method} ${route} ${authent}`);      
     }
     next();
@@ -70,18 +69,6 @@ router.get("/",(req, res) => {
   }
 });
 
-//Once Login is implemented with backend, need to change variable verified to true so that the myprofile page pops up in place of Login.
-// router.get("/login", (req,res) => {
-//   console.log("Login");
-//   res.render("templates/login",{title: "RMC | Login"
-// });
-
-
-// router.get("/comment", (req,res) => {
-//   console.log("Comments");
-//   res.render("./templates/comment",{title: "RMC | "});
-// });
-
 router.get("/createAccount", (req,res) => {
   if(xss(!req.session.authent)) {
     res.render("./templates/createAcc",{verified: false, title: "RMC | Account Creation"});
@@ -110,16 +97,34 @@ router.get("/myProfile", async(req,res) => {
         const review = await ratingData.get(reviewId.toString());
         r.push(review);
       }
+      let comments = u.comments;
+      let c = [];
+      for(let j=0; j<comments.length; j++){
+        let rID = comments[j].reviewID;
+        const rev = await ratingData.get(rID.toString());
+        let comment = comments[j];
+        comment.courseCode = rev.courseCode;
+        c.push(comment);
+      }
       if(ratings.length==0){
-        res.render("templates/myprofile",{verified: true, title: "RMC | Profile", user: u, noratings: true});
+        if(comments.length==0){
+          res.render("templates/myprofile",{verified: true, title: "RMC | Profile", user: u, noratings: true, nocomments:true});
+        } else {
+          res.render("templates/myprofile",{verified: true, title: "RMC | Profile", user: u, noratings: true, comments: c});
+        }
       } else {
-        res.render("templates/myprofile",{verified: true, title: "RMC | Profile", user: u, ratings: r});
+        if(comments.length==0){
+          res.render("templates/myprofile",{verified: true, title: "RMC | Profile", user: u, ratings: r, nocomments:true});
+        } else {
+          res.render("templates/myprofile",{verified: true, title: "RMC | Profile", user: u, ratings: r, comments: c});
+        }
       }
     } catch(e){
       console.log(e);
       res.render("templates/error",{verified: true, title: "RMC | Error", hasErrors: true, error: "Issue opening page."});
     }
   } else {
+    req.session.login_fail = true;
     res.redirect("/login");
   }
 });

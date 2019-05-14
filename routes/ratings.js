@@ -168,4 +168,23 @@ router.post("/comment/:rID", async(req,res) => {
     }
 });
 
+router.post("/delete-comment/:id", async(req,res)=>{
+    try{
+        if(xss(req.session.authent)){
+            let userId = xss(req.session.user);
+            let id = xss(req.params.id);
+            const duser = await userData.deleteComment(userId, id);
+            const drating = await ratingData.deleteComment(duser.reviewID, id);
+            res.render("templates/reviewPosted", {verified: true, title: "RMC | Comment Deleted", comment: true});
+        } else {
+            req.session.login_fail = true;
+            res.redirect("/login");
+        }
+    } catch(e){
+        console.log(e);
+        req.session.error = "An error occured while getting this page.";
+        res.redirect("/deletion_fail");
+    }
+});
+
 module.exports = router;

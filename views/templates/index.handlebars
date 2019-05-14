@@ -9,10 +9,10 @@
             <div class="row text-white">
                 <div class="col-sm-6 offset-sm-3 text-center">
                     <div class="info-form">
-                        <form action="/search" class="form-inlin justify-content-center" method="post" enctype="application/x-www-form-urlencoded">
-                            <div class="form-group">
+                        <form action="/search" class="form-inlin justify-content-center" id="searchBar" method="post" enctype="application/x-www-form-urlencoded">
+                            <div class="form-group" id="searchDiv">
                               <label for = "searchInput"></label>
-                              <input name = "searchInput" id = "searchInput" type="text" class="form-control" placeholder="Search Courses by name or Code" name="searchInput" required>
+                              <input id = "searchInput" type="text" class="form-control" placeholder="Search by course name, course code, course description or professor" name="searchInput" required>
                               <select class="form-control" id="searchtype" name="searchtype">
                                 <option value="any" selected>Any</option>
                                 <option value="name">Course Name</option>
@@ -33,6 +33,7 @@
                       </div>
                   </div>
                 {{!-- </section> --}}
+                
 </div>
 </div>
 {{> constScriptsPartial}}

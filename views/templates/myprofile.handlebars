@@ -6,6 +6,8 @@
   <h1>My Profile</h1>
   <h2>{{user.firstName}} {{user.lastName}}</h2>
   <p>Email: {{user.email}}</p>
+  <p>Gender: {{user.gender}}</p>
+  <p>Year: {{user.year}}</p>
   <div class="review">
     <h3>My Reviews</h3>
     {{#if noratings}}
@@ -47,18 +49,45 @@
     </table>
     {{/if}}
   </div>
-  {{!-- <dl>
-    <dt>First Name:</dt>
-     <dd> {{user.firstName}} </dd>
-    <dt>Last Name:</dt>
-    <dd>{{user.lastName}} </dd>
-    <dt>Email: </dt>
-    <dd>{{user.email}}</dd>
-    <dt>Reviews:</dt>
-    <dd>{{user.reviews}} </dd>
-    <dt>Comments:</dt>
-    <dd>{{user.comments}} </dd>
-  </dl> --}}
+  <div class="comments">
+    <h3>My Comments</h3>
+    {{#if nocomments}}
+    <p>No comments</p>
+    {{else}}
+    <table class="profile-table">
+      <thead>
+            <tr>
+                <th>Date Posted</th>
+                <th>Course Code</th>
+                <th>Comment</th>
+                <th colspan ="2">Options</th>
+            </tr>
+        </thead>
+        {{#each comments}}
+        <tbody>
+            <tr>
+                <td>{{this.datePosted}}</td>
+                <td>{{this.courseCode}}</td>
+                <td><a href = "/courses/code/{{this.courseCode}}#{{this._id}}">View comment</a></td>
+                <td>
+                  <form method="POST" action="/review/delete-comment/{{this._id}}" class="option" onsubmit="return confirm('Do you really want to delete this comment?');">
+                    {{!-- <input type="text" hidden name="code" value="{{this.courseCode}}"> --}}
+                    <button type="submit" name="deleteComment" value="delete">Delete</button>
+                  </form>
+                </td>
+                <td>
+                  <form method="POST" action="/review/edit-comment/{{this._id}}" class="option">
+                    {{!-- <input type="text" hidden name="code" value="{{this.courseCode}}"> --}}
+                    <button type="submit" name="editComment" value="edit">Edit</button>
+                  </form>
+                </td>
+                {{!-- <td><a href="">Delete</a> | <a href="">Edit</a></td> --}}
+            </tr>
+        </tbody>
+        {{/each}}
+    </table>
+    {{/if}}
+  </div>
   <a href = "/logout">Logout!</a>
 </div>
 </div>
