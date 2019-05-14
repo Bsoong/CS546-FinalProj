@@ -89,7 +89,7 @@
   </div>
 {{> constScriptsPartial}}
 <script src="/public/AjaxComment.js"></script>
-{{!-- <script>
+<script>
   $(document).ready(function(){
     $("[class^='comment-box']").hide()
     $("button[class^='reply']").click(function(){
@@ -107,17 +107,6 @@
     $("[class^='comment-form']").submit(function(event){
       event.preventDefault();
     });
-  }); --}}
-  {{!-- //function myFunction() {
-  //var x = document.getElementById("comment-box");
-  //var b = document.getElementById("reply");
-  //if (x.style.display === "none") {
-  //  x.style.display = "block";
-  //  b.style.display = "none";
-  //} else {
-  //  x.style.display = "none";
-  //  b.style.display = "block";
-  //}
-  //} --}}
-{{!-- </script> --}}
+  });
+</script>
 {{> footerPartial}}

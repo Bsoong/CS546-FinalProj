@@ -3,7 +3,11 @@
 <div class="page-container">
     <div class="page-content">
     <h1>Review {{code}}</h1>
+    {{#if edit}}
+    <form action="/review/edit/{{id}}" method="POST" id="ratings-form">
+    {{else}}
     <form action="/review/course/{{code}}" method ="POST" id="ratings-form">
+    {{/if}}
     {{!-- <h1 name="courseCode">Review {{code}}</h1> --}}
     <div class = "course">
         <label for = "courseCode">Course Code: </label>
@@ -62,7 +66,7 @@
                 <tr>
                     <td><label id="professor-tag">Professor:</label></td>
                     <td>
-                        <div class="checkin"><input type = "checkbox" id = "professor1" name="tag" value="Professor is interesing">Interesting</input></div>
+                        <div class="checkin"><input type = "checkbox" id = "professor1" name="tag" value="Professor is interesting">Interesting</input></div>
                         <div class="checkin"><input type = "checkbox" id = "professor2" name="tag" value="Professor is knowledgeable">Knowledgeable</input></div>
                         <div class="checkin"><input type = "checkbox" id = "professor3" name="tag" value="Professor is boring">Boring</input></div>
                         <div class="checkin"><input type = "checkbox" id = "professor4" name="tag" value="Professor is harsh">Harsh</input></div>
@@ -85,11 +89,20 @@
     <br>
     <div class="review">
         <label for="commentLabel">Review</label>
-        <textarea class="form-control" name="comment" rows="10" id="commentLabel">{{review.body}}</textarea>
+        <textarea class="form-control" name="comment" rows="10" id="commentLabel">{{review.review}}</textarea>
     </div>
     <br>
     <button type="submit" class="btn btn-danger">Submit</button>
     </form>
+    {{#if edit}}
+    <div id="hidden">
+        <ul id="tagsList">
+            {{#each review.tags}}
+            <li>{{this}}</li>
+            {{/each}}
+        </ul>
+    </div>
+    {{/if}}
     {{#if hasErrors}}
     <ul class="error-list">
     {{#each errors}}
@@ -100,4 +113,14 @@
     </div>
     </div>
     {{> constScriptsPartial}}
+    <script>
+       $(document).ready(function(){
+            var tagsArray = $("ul#tagsList>li")
+            $("#hidden").hide()
+            $.each(tagsArray, function(index){
+                var val = $(this).text()
+                $("input[value= '" + val+ "']").prop("checked", true)
+            });
+        });
+    </script>
 {{> footerPartial}}

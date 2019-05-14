@@ -106,7 +106,6 @@ router.post("/course/:code", async(req,res) => {
                 avg = avg.toFixed(1);
                 avg = parseFloat(avg);
             }
-            console.log(avg + " "+ typeof(avg));
             await courseData.updateRating(course._id.toString(), avg);
             // if(match.length==0){
             //     await courseData.updateRating(course._id.toString(), newReview.rating);
@@ -171,6 +170,87 @@ router.post("/delete/:id", async(req,res)=>{
         console.log(e);
         req.session.error = "An error occured while getting this page.";
         res.redirect("/deletion_fail");
+    }
+});
+
+router.post("/edit-form/:id", async(req,res)=>{
+    if(xss(req.session.authent)){
+        res.redirect("/review/edit/"+xss(req.params.id));
+    } else {
+        req.session.login_fail = true;
+        res.redirect("/login");
+    }
+});
+
+router.get("/edit/:id", async(req,res)=>{
+    if(xss(req.session.authent)){
+        try{
+            const editR = await ratingData.get(xss(req.params.id));
+            const course = await courseData.getCourseByCode(editR.courseCode);
+            res.render("templates/review", {verified:true, title: "RMC | Edit Review", review: editR, id: editR._id.toString(), course: course, code: editR.courseCode, edit:true});
+        }catch(e){
+            console.log(e)
+            req.session.error = "There was an error in editing your review";
+            res.redirect("/edit_fail");
+        }
+    } else {
+        req.session.login_fail = true;
+        res.redirect("/login");
+    }
+});
+
+router.post("/edit/:id", async(req,res)=>{
+    try{
+        if(xss(req.session.authent)){
+            const newReview = req.body;
+            let rID = xss(req.params.id);
+            const oldReview = await ratingData.get(rID);
+            if(oldReview.rating!=newReview.rating){
+                await ratingData.editRating(rID, +newReview.rating);
+                const course = await courseData.getCourseByCode(oldReview.courseCode);
+                const ratings = await ratingData.getAll();
+                const match = [];
+                for(let j = 0; j<ratings.length;j++){
+                    let rr = ratings[j];
+                    if(rr.courseCode==oldReview.courseCode){
+                        match.push(rr.rating);
+                    }
+                }
+                let totalRating = 0;
+                for(let i = 0;i<match.length;i++){
+                    let eachrate = match[i];
+                    totalRating+=eachrate;
+                }
+                let avg = totalRating/match.length;
+                if(avg%1!=0){
+                    avg = avg.toFixed(1);
+                    avg = parseFloat(avg);
+                }
+                await courseData.updateRating(course._id.toString(), avg);
+            }
+            if(typeof(newReview.tag)=="string"){
+                let t = [];
+                t.push(newReview.tag);
+                newReview.tag = t;
+            }
+            await ratingData.editTags(rID, newReview.tag)
+            let reviewComment = "";
+            if(xss(newReview.comment)){
+                reviewComment = newReview.comment;
+            }
+            await ratingData.editReview(rID, reviewComment);
+            if(newReview.professor!=oldReview.professor){
+                await ratingData.editProfessor(rID, newReview.professor)
+            }
+            res.render("templates/reviewPosted", {verified:true, title: "RMC | Review Edited", posted: true});
+        } else {
+            req.session.login_fail = true;
+            res.redirect("/login");
+        }
+    } catch(e){
+        console.log(e);
+        req.session.error = "Review could not be edited at this time.";
+        res.redirect("/edit_fail");
     }
 });
 
