@@ -52,6 +52,7 @@ router.get("/code/:code", async(req, res) => {
         }
       }
     }
+    reviewtags.sort();
     if(xss(req.session.authent)){
       if(course.avgRating<0){
         res.render("templates/courseInfo",{verified: true, comment:true, title: xss(req.params.code), course: course, review: ratings, alltags: reviewtags});

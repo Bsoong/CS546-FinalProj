@@ -143,6 +143,7 @@ router.post("/delete/:id", async(req,res)=>{
                 }
             }
             const course = await courseData.getCourseByCode(xss(toDelete.courseCode));
+            let oldAvg = course.avgRating;
             let avg = course.avgRating;
             if(match.length!=0){                
                 let totalRating = 0;
@@ -155,7 +156,9 @@ router.post("/delete/:id", async(req,res)=>{
                     avg = avg.toFixed(1);
                     avg = parseFloat(avg);
                 }
-                await courseData.updateRating(course._id.toString(), avg);
+                if(avg!=course.avgRating){
+                    await courseData.updateRating(course._id.toString(), avg);
+                }
             } else {
                 avg = -1;
                 await courseData.updateRating(course._id.toString(), avg);                
@@ -228,12 +231,14 @@ router.post("/edit/:id", async(req,res)=>{
                 }
                 await courseData.updateRating(course._id.toString(), avg);
             }
-            if(!(oldReview.tags.sort().join(",")===newReview.tag.sort().join(","))){
-                if(typeof(newReview.tag)=="string"){
-                    let t = [];
-                    t.push(newReview.tag);
-                    newReview.tag = t;
-                }
+            if(typeof(newReview.tag)=="string"){
+                let t = [];
+                t.push(newReview.tag);
+                newReview.tag = t;
+            }
+            let o = oldReview.tags.sort().join(",");
+            let n = newReview.tag.sort().join(",");
+            if(!(o===n)){
                 await ratingData.editTags(rID, newReview.tag)
             }          
             if(oldReview.review!=newReview.comment){
