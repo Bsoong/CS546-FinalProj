@@ -24,7 +24,7 @@ module.exports = {
         if(tags===undefined){
             tags=[];
         } else {
-            if(typeof(tags)!="array" && typeof(tags)!="object"){
+            if(!(Array.isArray(tags))){
                 throw "tags parameter is invalid";
             }
         }
@@ -116,6 +116,25 @@ module.exports = {
           throw `Could not delete rating with id of ${id}`;
         }
     },
+    
+    async editProfessor(id, newProfessor){
+        if(id===undefined || typeof(id)!="string") {
+            throw "id is not a string";
+        }   
+        if(newProfessor===undefined || typeof(newProfessor)!="string"){
+            throw "professor parameter is invalid";
+        } 
+        const ratingCollection = await ratings();
+        const rate = await ratingCollection.findOne({ _id: ObjectId(id) });
+        if(rate===null){
+            throw "rating with this id not found";
+        }
+        const updateInfo = await ratingCollection.updateOne({_id: ObjectId(id)}, {$set: {professor: newProfessor}});
+        if (updateInfo.modifiedCount === 0) {
+            throw "could not update professor successfully";
+        }    
+        return await this.get(id);
+    },
 
 
     async editRating(id, newRating){
@@ -147,8 +166,12 @@ module.exports = {
         if(id===undefined || typeof(id)!="string") {
             throw "id is not a string";
         }
-        if(newTags===undefined || typeof(newTags)!="array"){
-            throw "tags parameter is invalid";
+        if(newTags===undefined){
+            newTags=[];
+        } else {
+            if(!(Array.isArray(newTags))){
+                throw "tags parameter is invalid";
+            }
         }
         const ratingCollection = await ratings();
         const rate = await ratingCollection.findOne({ _id: ObjectId(id) });
