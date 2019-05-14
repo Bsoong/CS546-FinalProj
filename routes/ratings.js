@@ -228,17 +228,21 @@ router.post("/edit/:id", async(req,res)=>{
                 }
                 await courseData.updateRating(course._id.toString(), avg);
             }
-            if(typeof(newReview.tag)=="string"){
-                let t = [];
-                t.push(newReview.tag);
-                newReview.tag = t;
-            }
-            await ratingData.editTags(rID, newReview.tag)
-            let reviewComment = "";
-            if(xss(newReview.comment)){
-                reviewComment = newReview.comment;
-            }
-            await ratingData.editReview(rID, reviewComment);
+            if(!(oldReview.tags.sort().join(",")===newReview.tag.sort().join(","))){
+                if(typeof(newReview.tag)=="string"){
+                    let t = [];
+                    t.push(newReview.tag);
+                    newReview.tag = t;
+                }
+                await ratingData.editTags(rID, newReview.tag)
+            }          
+            if(oldReview.review!=newReview.comment){
+                let reviewComment = "";
+                if(xss(newReview.comment)){
+                    reviewComment = newReview.comment;
+                }
+                await ratingData.editReview(rID, reviewComment);
+            }            
             if(newReview.professor!=oldReview.professor){
                 await ratingData.editProfessor(rID, newReview.professor)
             }
