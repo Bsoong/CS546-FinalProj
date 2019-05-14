@@ -4,7 +4,7 @@ const ObjectId = require('mongodb').ObjectId; //or ObjectID
 const bcrypt = require("bcrypt");
 
 module.exports = {
-    async createUser(firstName, lastName, email, password, gender, year, age){ //Need hashed password and user comments?..
+    async createUser(id, firstName, lastName, email, password, gender, year, age){ 
         //series of checks of the entered variables making sure they exist
         if(!firstName && firstName != "string"){
             throw "You must enter your First Name";
@@ -44,6 +44,9 @@ module.exports = {
             ratings: [],
             comments: [],
         }
+        if(id!=null){
+            newUser._id = ObjectId(id);
+        }    
         const insertInfo = await userCollection.insertOne(newUser);
         if(insertInfo.insertedCount ===0){
             throw "Could not enter user information";

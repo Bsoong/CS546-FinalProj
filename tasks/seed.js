@@ -23,16 +23,17 @@ dbConnection().then(
       .then(db=>{
         for(let i = 0; i < userList.length; i++){
           let u = userList[i];
-          userData.createUser(u.firstName, u.lastName, u.email, u.password, u.gender, u.year, u.age);
+          userData.createUser(u._id, u.firstName, u.lastName, u.email, u.password, u.gender, u.year, u.age);
         }
       })
       // .then(db => {
       //   for(let i=0; i<ratingList.length; i++){
       //     let r = ratingList[i];
-      //     const rating = ratingData.create(r.courseCode, allUsers[person]._id.toString(), r.datePosted, r.tags, r.rating, r.review);
-      //     userData.addReview(allUsers[person]._id.toString(), rating._id.toString());
+      //     let index = Math.floor(Math.random()*userList.length);
+      //     const rating = ratingData.create(r.courseCode, userList[index]._id, r.datePosted, r.tags, r.rating, r.review);
+      //     userData.addReview(userList[index]._id.toString(), rating._id.toString());
       //   }
-      //})
+      // })
       .then(() => {
         console.log("Done seeding database");
       });
