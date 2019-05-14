@@ -87,6 +87,11 @@ router.post("/course/:code", async(req,res) => {
                 totalRating+=eachrate;
             }
             avg = totalRating/match.length;
+            if(avg%1!=0){
+                avg = avg.toFixed(1);
+                avg = parseFloat(avg);
+            }
+            console.log(avg + " "+ typeof(avg));
             await courseData.updateRating(course._id.toString(), avg);
             // if(match.length==0){
             //     await courseData.updateRating(course._id.toString(), newReview.rating);
@@ -132,6 +137,10 @@ router.post("/delete/:id", async(req,res)=>{
                     totalRating+=eachrate;
                 }                
                 avg = totalRating/match.length;
+                if(avg%1!=0){
+                    avg = avg.toFixed(1);
+                    avg = parseFloat(avg);
+                }
                 await courseData.updateRating(course._id.toString(), avg);
             } else {
                 avg = -1;

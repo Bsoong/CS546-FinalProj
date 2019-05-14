@@ -4,10 +4,23 @@
 <div class="page-content">
 <div id ="profilePage">
   <h1>My Profile</h1>
-  <h2>{{user.firstName}} {{user.lastName}}</h2>
-  <p>Email: {{user.email}}</p>
-  <p>Gender: {{user.gender}}</p>
-  <p>Year: {{user.year}}</p>
+  <h3>{{user.firstName}} {{user.lastName}}</h3>
+  <table class="profile-table" id="profile">
+    <tbody>
+      <tr>
+        <td>Email:</td>
+        <td>{{user.email}}</td>
+      </tr>
+      <tr>
+        <td>Gender:</td>
+        <td>{{user.gender}}</td>
+      </tr>
+      <tr>
+        <td>Year:</td>
+        <td>{{user.year}}</td>
+      </tr>
+    </tbody>
+  </table>
   <div class="review">
     <h3>My Reviews</h3>
     {{#if noratings}}
