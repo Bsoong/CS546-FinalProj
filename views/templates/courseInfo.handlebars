@@ -59,7 +59,10 @@
           {{!-- <p class="rev"></p> --}}
           {{/if}}
           <div class="comments" data-id="{{this._id}}">
-            {{#each review.comments}}
+            {{#if this.comments}}
+              <p class="comment-title" data-id="{{this._id}}">Comments: </p>
+            {{/if}}
+            {{#each this.comments}}
               {{> commentsPartials }}
             {{/each}}
           </div>
@@ -71,17 +74,11 @@
             <button type="button" class="cancel" data-id="{{this._id}}">Cancel</button>
           </form>
           </div>
+          {{#if @root.verified}}
           <button class="reply" data-id="{{this._id}}" data-logged="true">Reply</button>
-          {{!-- {{#with verified}}
-          <button class="reply" data-id="{{this._id}}" data-logged="digga">Reply</button>
           {{else}}
-          <button class="reply" data-id="{{this._id}}" data-logged="troth">Reply</button>
-          {{/if}} --}}
-          {{!-- {{#if comment}}
-          {{else}}
-          {{/if}} --}}
-          {{!-- <button id="reply" onclick = "myFunction()">Reply</button> --}}
-          {{!-- <p id="reply"><a href="">Reply</a></p> --}}
+          <button class="reply" data-id="{{this._id}}" data-logged="false">Reply</button>
+          {{/if}}
         </div>
         {{/each}}
         <p><a href = "/review/course/{{course.courseCode}}">Leave a review</a></p>
