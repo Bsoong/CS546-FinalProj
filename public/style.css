@@ -138,8 +138,14 @@ form.option {
   border-style: solid;
   background: #F2F2F3;
   padding: 20px;
-  width: 45%;
+  width: 60%;
   margin-bottom: 20px;
+  font-size: 20px;
+}
+
+#ratings-form input[type=checkbox] {
+  margin-right: 5px;
+  margin-left: 10px;
 }
 
 #coursecodeInput, #ratingInput {
@@ -155,14 +161,15 @@ textarea#commentLabel {
   margin-left:auto;
 }
 
-/* .remove {
-  display: none;
+.table#review-tags{
+  width:90%;
+  border-radius: 10px;
 }
 
-.show {
-  display: block;
+#review-tags td, #review-tags tr{
+  padding: 10px;
+  /* border-top: ; */
+  border-right: 1px solid lightgrey;
+  /* border:gray 1px solid; */
+  /* border-radius: 10px; */
 }
-
-#comment-box{
-  display:none;
-} */
