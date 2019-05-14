@@ -106,7 +106,9 @@ router.post("/course/:code", async(req,res) => {
                 avg = avg.toFixed(1);
                 avg = parseFloat(avg);
             }
-            await courseData.updateRating(course._id.toString(), avg);
+            if(avg!=course.avgRating){
+                await courseData.updateRating(course._id.toString(), avg);
+            }
             // if(match.length==0){
             //     await courseData.updateRating(course._id.toString(), newReview.rating);
             // } else {
