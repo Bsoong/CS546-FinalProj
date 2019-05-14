@@ -145,7 +145,7 @@
   },
   {
     "_id": "51bf4375-703f-46b4-a3a6-73db59e3b8fc",
-    "courseName": "Algorihms",
+    "courseName": "Algorithms",
     "courseCode": "CS-385",
     "professors": ["Brian Borowski"],
     "avgRating": 1,
