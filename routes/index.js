@@ -68,6 +68,24 @@ router.get("/",(req, res) => {
     });
   }
 });
+//SAME AS ABOVE BUT MODIFIED
+// router.get("/",(req, res) => {
+//   if(xss(req.session.authent)) {
+//     try{
+//       const ra = await ratingData.highestRating();
+//       console.log(ra);
+//       res.render("templates/index", {verified: true, title: "RateMyCourse"});
+//       res.render("templates/partial/reviewPageTablepartial", {ratings: ra});
+//     } catch(e) {
+//       res.render("templates/index", {verified: true, title: "RateMyCourse"});
+//     }
+//   }
+//   else{
+//     res.render("templates/index", { verified: false, title: "RateMyCourse" });
+//   }
+// });
+
+
 
 router.get("/createAccount", (req,res) => {
   if(xss(!req.session.authent)) {
