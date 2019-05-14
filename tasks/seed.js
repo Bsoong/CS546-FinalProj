@@ -17,7 +17,7 @@ dbConnection().then(
       .then(db => {
         for(let i = 0; i < courseList.length; i++){
           let currentCourse = courseList[i];
-          courseData.create(currentCourse.courseName, currentCourse.courseCode, currentCourse.professors, -1, currentCourse.description, currentCourse.credits, currentCourse.classLevel, currentCourse.webSection);
+          courseData.create(currentCourse.courseName, currentCourse.courseCode, currentCourse.professors, -1, currentCourse.description, currentCourse.credits, currentCourse.semester, currentCourse.classLevel, currentCourse.webSection);
         }
       })
       .then(db=>{

@@ -68,7 +68,7 @@ router.get("/code/:code", async(req, res) => {
 //   try{
 //     for(let i = 0; i < injectCourses.length; i++){
 //       let currentCourse = injectCourses[i];
-//       let newCourse = await courseData.create(currentCourse.courseName, currentCourse.courseCode, currentCourse.professors, currentCourse.avgRating, currentCourse.description, currentCourse.credits, currentCourse.classLevel, currentCourse.webSection);
+//       let newCourse = await courseData.create(currentCourse.courseName, currentCourse.courseCode, currentCourse.professors, currentCourse.avgRating, currentCourse.description, currentCourse.credits, currentCourse.semester, currentCourse.classLevel, currentCourse.webSection);
 //       res.json(newCourse);
 //     }
 //     res.status(200);
