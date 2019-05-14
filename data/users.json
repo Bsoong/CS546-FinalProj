@@ -34,5 +34,15 @@
         "gender": "Female" ,
         "year": "Second Year",
         "age": 20
+    },
+
+    {
+      "firstName": "Patrick",
+      "lastName": "Hill",
+      "email": "phill@stevens.edu",
+      "password": "ph",
+      "gender": "Male" ,
+      "year": "Graduate",
+      "age": 21
     }
 ]
