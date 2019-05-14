@@ -67,7 +67,7 @@ router.post("/newAccount", async(req,res) => {
       if(exist){
         res.render("./templates/createAcc",{verified: false, hasErrors: true, title: "RMC | Account Creation"});
       } else {
-        const newUser = await userData.createUser(null, xss(form.firstName), xss(form.lastName),xss(form.emailInput), xss(form.passwordInput), xss(form.Gender), xss(form.yearInput), xss(form.ageInput));
+        const newUser = await userData.createUser(xss(form.firstName), xss(form.lastName),xss(form.emailInput), xss(form.passwordInput), xss(form.Gender), xss(form.yearInput), xss(form.ageInput));
         req.session.authent = true;
         req.session.user = newUser._id;
         res.redirect("/myProfile");
