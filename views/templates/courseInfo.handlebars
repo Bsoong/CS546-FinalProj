@@ -34,8 +34,15 @@
         {{else}}
         <h4>Average Rating: N/A</h4>
         {{/if}}
+        <div class="allTags">
+          {{#each alltags}}
+            <div class="tag">
+              <p>{{this}}</p>
+            </div>
+          {{/each}}
+        </div>
         {{#each review}}
-        <div class="indivReview" class="{{this._id}}">
+        <div class="indivReview" id="{{this._id}}">
           {{#if this.review}}
           <p>Review posted by {{this.authorName}} on {{this.datePosted}}</p>
           {{else}}

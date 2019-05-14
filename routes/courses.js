@@ -36,6 +36,7 @@ router.get("/code/:code", async(req, res) => {
     const course = await courseData.getCourseByCode(xss(req.params.code));
     const ratinglist = await ratingData.getAll();
     const ratings = [];
+    const reviewtags = [];
     for(let i = 0; i<ratinglist.length; i++){
       let r = ratinglist[i];
       if(r.courseCode==course.courseCode){
@@ -43,24 +44,32 @@ router.get("/code/:code", async(req, res) => {
         let name = u.firstName + " " + u.lastName;
         r.authorName = name;
         ratings.push(r);
+        let taglist = r.tags;
+        for(let j =0;j<taglist.length; j++){
+          if(!(reviewtags.includes(taglist[j]))){
+            reviewtags.push(taglist[j]);
+          }
+        }
       }
     }
     if(xss(req.session.authent)){
       if(course.avgRating<0){
-        res.render("templates/courseInfo",{verified: true, comment:true, title: xss(req.params.code), course: course, review: ratings});
+        res.render("templates/courseInfo",{verified: true, comment:true, title: xss(req.params.code), course: course, review: ratings, alltags: reviewtags});
       } else {
-        res.render("templates/courseInfo",{verified: true, comment:true, title: xss(req.params.code), rating: true, course: course, review: ratings});
+        res.render("templates/courseInfo",{verified: true, comment:true, title: xss(req.params.code), rating: true, course: course, review: ratings, alltags: reviewtags});
       }
     } else {
       if(course.avgRating<0){
-        res.render("templates/courseInfo",{verified: false, title: xss(req.params.code), course: course, review: ratings});
+        res.render("templates/courseInfo",{verified: false, title: xss(req.params.code), course: course, review: ratings, alltags: reviewtags});
       } else {
-        res.render("templates/courseInfo",{verified: false, title: xss(req.params.code), rating: true, course: course, review: ratings});
+        res.render("templates/courseInfo",{verified: false, title: xss(req.params.code), rating: true, course: course, review: ratings, alltags:reviewtags});
       }
     }
   }
   catch(e){
-    res.status(404);
+    console.log(e);
+    req.session.error = "Could not open page.";
+    res.redirect("/page_error")    
   }
 });
 
