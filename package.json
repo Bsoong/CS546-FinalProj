@@ -4,8 +4,7 @@
   "description": "CS546 Web development final project.",
   "main": "index.js",
   "scripts": {
-    "seedPractice": "node ./tasks/seedpractice.js",
-    "seed": "node ./tasks/seed.js",
+    "seed": "node ./tasks/finalSeed.js",
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node app.js"
   },
