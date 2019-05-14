@@ -6,7 +6,7 @@ const {ObjectId} = require("mongodb");
 
 module.exports = {
 
-  async create(name, code, professors, rating, description, credits, level, web){
+  async create(name, code, professors, rating, description, credits, semester, level, web){
     if(typeof(name) !== "string"){
       throw "Error: Must provide a name of type string";
     }
@@ -25,6 +25,9 @@ module.exports = {
     if(typeof(credits) !== "number"){
       throw "Error: Must provide credits of type number";
     }
+    if(typeof(semester) !== "string" || !(semester)){
+      throw "Error: Must provide semester of type string";
+    }
     if(typeof(level) !== "string" || !(level)){
       throw "Error: Must provide a level of type string";
     }
@@ -38,6 +41,7 @@ module.exports = {
       avgRating: rating,
       description: description,
       credits: credits,
+      semester: semester,
       classLevel: level,
       webSection: web
     };

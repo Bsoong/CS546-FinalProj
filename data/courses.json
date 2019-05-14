@@ -7,6 +7,7 @@
     "avgRating": 1,
     "description": "This is an introductory programming course using the Java language. The topics include: basic facts about object-oriented programming and Java through inheritance and exceptions; recursion; UML diagrams and how to read class diagrams; ethics in computer science; and some basic understanding about computer systems: the compile/link/interpret/ execute cycle and data representation.",
     "credits": 4,
+    "semester": "Fall & Spring",
     "classLevel": "Undergraduate",
     "webSection": false
   },
@@ -18,6 +19,7 @@
     "avgRating": 1,
     "description": "This course introduces students to the infrastructure underlying the Web, including protocols and markup languages. It also addresses the question of how one presents large volumes of information to people who need to find out what they are looking for quickly. The scope of the course ranges from mechanics to aesthetics. Social and ethical issues are also discussed, including the concept of information ecologies for social acceptance.",
     "credits": 3,
+    "semester": "Fall",
     "classLevel": "Undergraduate",
     "webSection": false
   },
@@ -29,6 +31,7 @@
     "avgRating": 1,
     "description": "The aim of this course is to integrate knowledge of basic mathematics with the problems involving specification, design, and computation. By the end of the course, the student should be able to: use sets, functions, lists, and relations in the specification and design of problems; use properties of arithmetic, modular arithmetic (sum, product, exponentiation), prime numbers, greatest common divisor, factoring, Fermat’s Little Theorem; use binary, decimal, and base-b notation systems and translation methods; use induction to design and verify recursive programs; and implement in Scheme all algorithms considered during the course",
     "credits": 4,
+    "semester": "Fall & Spring",
     "classLevel": "Undergraduate",
     "webSection": false
   },
@@ -40,6 +43,7 @@
     "avgRating": 1,
     "description": "Getting acquainted with C++: data types, input and output, functions, writing simple C++ programs, flow control, Boolean expressions, decision statements, if/then, and switch/case. Loop operations, while, do/while, and for loops. Arrays and pointers. Defining structs and classes, constructors and destructors, and operator overloading using an example String class. Templates. Abstract data types: vectors, lists, stacks, queues, and priority trees with applications. Trees and simple sorting with searching algorithms. By invitation only. Students who complete this class are exempt from CS 115 and CS 284.",
     "credits": 4,
+    "semester": "Fall",
     "classLevel": "Undergraduate",
     "webSection": false
   },
@@ -51,6 +55,7 @@
     "avgRating": 1,
     "description": "Advanced programming concepts covering classical data structures and object-oriented programming. Emphasis will be on building a collection of re-usable software components that will form the basis of future programming efforts. The data structures covered include lists, stacks, queues, trees, binary search trees, and balanced search trees. The object-oriented features of Java covered include classes, templates, inheritance, polymorphism and run-time binding. Also included is a discussion of the analysis of asymptotic running times of algorithms.",
     "credits": 4,
+    "semester": "Spring",
     "classLevel": "Undergraduate",
     "webSection": false
   },
@@ -62,6 +67,7 @@
     "avgRating": 1,
     "description": "This is a course on standard data structures, including sorting and searching and using the Java language. The topics include: stages of software development; testing; UML diagrams; elementary data structures (lists, stacks, queues, and maps); use of elementary data structures in application frameworks; searching; sorting; and introduction to asymptotic complexity analysis.",
     "credits": 4,
+    "semester": "Fall & Spring",
     "classLevel": "Undergraduate",
     "webSection": false
   },
@@ -73,6 +79,7 @@
     "avgRating": 1,
     "description": "This course provides a basic introduction to the key concepts in security. It covers basic concepts such as authentication, confidentiality, integrity, and nonrepudiation as well as important techniques and applications. Topics include access control, security economics, ethics, privacy, software/operating system security, and security policies.",
     "credits": 4,
+    "semester": "Fall",
     "classLevel": "Undergraduate",
     "webSection": false
   },
@@ -84,6 +91,7 @@
     "avgRating": 1,
     "description": "Introduction to recursive functional programming and equational reasoning; lists as inductive types and list induction; introduction to formal languages, automata, and the theory of computation; regular expressions, finite state machines, and pumping lemma; context free grammars and push down automata; turing machines, recursive enumerability, and unsolvable problems; and complexity and intractability. A number of models of computation are considered, as well as their relation to various problem classes (e.g. solvable problems and polynomial time solvable problems). Some experiments are performed that involve writing small Scheme programs.",
     "credits": 3,
+    "semester": "Fall",
     "classLevel": "Undergraduate",
     "webSection": false
   },
@@ -95,6 +103,7 @@
     "avgRating": 1,
     "description": "This course provides a general introduction to the essentials of the software development process, that series of activities that facilitate developing better software in less time. The course introduces software development and deployment life cycles, requirements acquisition and analysis, software architecture and design, and resource management and scheduling in the implementation phase. Students gain experience with tools and methodologies for configuration management and project management. Security engineering is considered as an essential part of the software development process, particularly from the standpoint of applied risk management.",
     "credits": 3,
+    "semester": "Spring",
     "classLevel": "Undergraduate",
     "webSection": false
   },
@@ -106,6 +115,7 @@
     "avgRating": 1,
     "description": "Gives students practice in solving challenging problems by applying algorithmic problem solving techniques learned in prior courses. Students will develop their problem-solving, algorithm-creation, and programming abilities. Problems will be complex and will require invention of an algorithm, not simply straightforward application of standard techniques.  Students will work in teams.  To provide a focus point and to help make the course fun, students will program their solutions in a style similar to that employed by programming competitions such as the national ACM programming contest. May be repeated for credit.",
     "credits": 3,
+    "semester": "Spring",
     "classLevel": "Undergraduate",
     "webSection": false
   },
@@ -117,6 +127,7 @@
     "avgRating": 1,
     "description": "Digital systems; number systems and codes; Boolean algebra; application of Boolean algebra to switching circuits; minimization Boolean functions using algebraic, Karnaugh map, and tabular methods; design of combinational circuits; programmable logic devices; sequential circuit components; design and analysis of synchronous and asynchronous sequential circuits.",
     "credits": 3,
+    "semester": "Fall",
     "classLevel": "Undergraduate",
     "webSection": false
   },
@@ -128,6 +139,7 @@
     "avgRating": 1,
     "description": "The main aspects of computers: data (data types and formats, number bases), hardware (stored program computer concept, addressing methods and program sequencing, instruction sets and their implementation, the CPU and microprogrammed control, input/output organization, peripherals and interfacing, and main memory), communication (network protocols), software (operating systems, dispatching algorithms), and assembly language programming.",
     "credits": 3,
+    "semester": "Fall",
     "classLevel": "Undergraduate",
     "webSection": false
   },
@@ -139,6 +151,7 @@
     "avgRating": 1,
     "description": "This is a course on more complex data structures, and algorithm design and analysis, using the C language. Topics include: advanced and/or balanced search trees; hashing; further asymptotic complexity analysis; standard algorithm design techniques; graph algorithms; complex sort algorithms; and other 'classic' algorithms that serve as examples of design techniques.",
     "credits": 4,
+    "semester": "Fall & Spring",
     "classLevel": "Undergraduate",
     "webSection": false
   },
@@ -150,6 +163,7 @@
     "avgRating": 1,
     "description": "Introduction to systems programming in C on UNIX. Students will be introduced to tools for compilation, dynamic linking, debugging, editing, automatic rebuilding, and version control. Some aspects of the UNIX system call interface will be studied, drawn from this list: process creation, signals, terminal I/O, file I/O, inter-process communication, threads, network protocol stacks, programming with sockets, and introduction to RPC. Style issues to be covered include: naming, layout, commenting, portability, design for robustness and debugability, and language pitfalls. X programming and GUI design will be covered, if time allows.",
     "credits": 3,
+    "semester": "Fall & Spring",
     "classLevel": "Undergraduate",
     "webSection": false
   },
@@ -161,6 +175,7 @@
     "avgRating": 1,
     "description": "Students in this course work in teams to develop real software for real clients.  Topics in software engineering additional to, or more advanced than those taught in CS 347 are introduced 'just in time,' as needed.",
     "credits": 3,
+    "semester": "Fall",
     "classLevel": "Undergraduate",
     "webSection": false
   },
@@ -172,6 +187,7 @@
     "avgRating": 1,
     "description": "This course is a continuation of CS423.",
     "credits": 3,
+    "semester": "Spring",
     "classLevel": "Undergraduate",
     "webSection": false
   },
@@ -183,6 +199,7 @@
     "avgRating": 1,
     "description": "Under the guidance of a cybersecurity faculty member of the department, students will participate in a year-long cybersecurity project. The project may be conducted in a number of ways, including as a cybersecurity-only project, as a project where the cybersecurity student is integrated into the senior capstone project of another discipline like CS, QF, ECE, or as a project where the cybersecurity student interacts in a consultant role with one or more senior capstone teams of another discipline.",
     "credits": 3,
+    "semester": "Fall",
     "classLevel": "Undergraduate",
     "webSection": false
   },
@@ -194,6 +211,7 @@
     "avgRating": 1,
     "description": "Continuation of CS425.",
     "credits": 3,
+    "semester": "Spring",
     "classLevel": "Undergraduate",
     "webSection": false
   },
@@ -205,6 +223,7 @@
     "avgRating": 1,
     "description": "Introduction to the design and querying of relational databases. Topics include: relational schemas; keys and foreign key references; relational algebra (as an introduction to SQL); SQL in depth; Entity-Relationship (ER) database design; translating from ER models to relational schemas and from relational schemas to ER models; functional dependencies; and normalization.",
     "credits": 3,
+    "semester": "Fall",
     "classLevel": "Undergraduate",
     "webSection": false
   },
@@ -216,6 +235,7 @@
     "avgRating": 1,
     "description": "Students explore tradeoffs posed by modern information technologies such as the Internet, mining of personal data, web tracking, and surveillance systems. Also covered are major debates about how IT technologies should be harnessed to serve the greater good, such as: Internet governance, privacy vs. openness, and laws regarding intellectual property. Students will learn how actions undertaken in their daily lives as IT professionals may have broad consequences, both planned and unplanned. Students will learn how to identify and analyze these consequences and who may be affected by them. Student must be a senior computer science or cybersecurity major.",
     "credits": 1,
+    "semester": "Fall",
     "classLevel": "Undergraduate",
     "webSection": false
   },
@@ -227,6 +247,7 @@
     "avgRating": 1,
     "description": "An introduction to the functional level structure of modern pipelined processors and the empirical and analytic evaluation of their performance. Topics include: empirical and analytic techniques for measuring performance (use of various means, Amdahl's Law, and benchmarks); tradeoff analysis; principles of instruction set design and evaluation (memory addressing, operations, types and sizes of operands, instruction set encoding, CISC vs. RISC, and related compilation issues); pipelining (basics, data hazards, and control hazards); and memory systems.",
     "credits": 3,
+    "semester": "Spring",
     "classLevel": "Undergraduate",
     "webSection": false
   },
@@ -238,6 +259,7 @@
     "avgRating": 1,
     "description": "The use and internals of modern operating systems. Lectures focus on internals whereas programming assignments focus on use of the operating system interface. Major topics include: the process concept; concurrency and how to program with threads; memory management techniques, including virtual memory and shared libraries; file system data structures; and I/O.",
     "credits": 3,
+    "semester": "Spring",
     "classLevel": "Undergraduate",
     "webSection": false
   },
@@ -249,6 +271,7 @@
     "avgRating": 1,
     "description": "An introduction to programming language design and implementation, with an emphasis on the abstractions provided by programming languages. Assignments involve problem-solving issues in principles of programming languages such as Scheme and ML; recursive types and recursive functions; structural induction; abstract data types; abstract syntax; implementing languages with interpreters; static vs. dynamic scoping, closures, state; exceptions; types: type-checking, type inference, static vs. dynamic typing; object-oriented languages: classes and interfaces, inheritance and subtyping; polymorphism and genericity; and design patterns and the visitor pattern.",
     "credits": 3,
+    "semester": "Spring",
     "classLevel": "Undergraduate",
     "webSection": false
   }
