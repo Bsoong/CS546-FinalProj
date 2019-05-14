@@ -237,6 +237,8 @@ router.post("/edit/:id", async(req,res)=>{
                 let t = [];
                 t.push(newReview.tag);
                 newReview.tag = t;
+            } else if(typeof(newReview.tag)==undefined){
+                newReview.tag=[];
             }
             let o = oldReview.tags.sort().join(",");
             let n = newReview.tag.sort().join(",");
