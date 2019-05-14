@@ -145,5 +145,12 @@
         "tags": [],
         "rating": 3,
         "review":"Don't know why we have to take this class but at least it's easy."
+    },
+    {
+        "courseCode": "CS-485",
+        "datePosted": "5/12/2018",
+        "tags": [],
+        "rating": 3,
+        "review":"Don't know why we have to take this class but at least it's easy."   
     }
 ]
