@@ -146,7 +146,7 @@ module.exports = {
         }
         if(cID===undefined || typeof(cID)!="string") {
             throw "comment id is not a string";
-        }   
+        }
         const user = await this.getById(id);
         let oldComments = user.comments;
         let found = false;
@@ -161,7 +161,9 @@ module.exports = {
             }
         }
         if(found){
-            oldComments.splice(index,index+1);
+            oldComments.splice(index,1);
+        } else {
+            throw "could not find comment in user data"
         }
         const userCollection = await users();
         const updateInfo = await userCollection.updateOne({_id: ObjectId(id)}, {$set: {comments: oldComments}});

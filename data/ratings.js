@@ -217,7 +217,7 @@ module.exports = {
             throw "comment id is not a string";
         }    
         const ratingCollection = await ratings();
-        const rate = await ratingCollection.findOne({ _id: ObjectId(id) });
+        const rate = await ratingCollection.findOne({ _id: ObjectId(rID) });
         if(rate===null){
             throw "rating with this id not found";
         }
@@ -234,9 +234,11 @@ module.exports = {
             }
         }
         if(found){
-            oldComments.splice(index,index+1);
+            oldComments.splice(index,1);
+        } else {
+            throw "could not find comment in rating data";
         }
-        const updateInfo = await ratingCollection.updateOne({_id: ObjectId(id)}, {$set: {comments: oldComments}});
+        const updateInfo = await ratingCollection.updateOne({_id: ObjectId(rID)}, {$set: {comments: oldComments}});
         if (updateInfo.modifiedCount === 0) {
             throw "could not update rating successfully";
         }

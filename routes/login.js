@@ -11,7 +11,7 @@ router.get("/", (req,res) => {
   } else {
     if(xss(req.session.login_fail)){
       delete req.session.login_fail;
-      res.render("templates/login",{verified: false, error: "Error: You need to be logged in to make a review.", title: "RMC | Login"});
+      res.render("templates/login",{verified: false, error: "Error: You need to be logged in to access this page.", title: "RMC | Login"});
     } else {
       res.render("templates/login",{verified: false, title: "RMC | Login"});
     }

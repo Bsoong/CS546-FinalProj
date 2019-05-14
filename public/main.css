@@ -95,3 +95,13 @@ a {
 #searchError {
     color: black
 }
+
+#searchtype {
+    width: fit-content;
+    display:inline-block;
+    margin: 5px 0 15px 0;
+}
+
+#searchDiv {
+    /* display: inline-block; */
+}

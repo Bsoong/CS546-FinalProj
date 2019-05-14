@@ -7,9 +7,12 @@
     {{#if deleted}}
     <h1>Review Deleted</h1>
     <p>Your review has been deleted.</p>
-    <p><a href="/myProfile">Go back to your profile</a></p>
-
     {{/if}}
+    {{#if comment}}
+    <h1>Comment Deleted</h1>
+    <p>Your comment has been deleted.</p>
+    {{/if}}
+    <p><a href="/myProfile">Go back to your profile</a></p>
 </div>
 {{> constScriptsPartial}}
 {{> footerPartial}}
