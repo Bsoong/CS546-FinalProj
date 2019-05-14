@@ -11,7 +11,7 @@
     </div>
     <br>
     <div class = "professors">
-        <label for = "professor">Professor:</label> <br>
+        <label for = "professor">Professor:</label>
         <select name="professor" required>
             {{#each course.professors}}
             <option selected id = "{{this}}" value="{{this}}">{{this}}</option>
@@ -21,7 +21,7 @@
     <br>
     <div class = "rating">
         <label for = "rating">Overall Rating (1-5): </label>
-        <input align = "left" type = "number" name="rating" value="{{review.rating}}" class = "form-control" id = "ratingInput" min="1" max="5" step="0.1" required>
+        <input align = "left" type = "number" name="rating" value="{{review.rating}}" class = "form-control" placeholder="0.1 scale" id = "ratingInput" min="1" max="5" step="0.1" required>
     </div>
     <br>
     <div class = "tags">
@@ -31,52 +31,52 @@
                 <tr>
                     <td><label id="hw">Homework:</label></td>
                     <td>
-                        <input type = "checkbox" id = "hw1" name="tag" value="Homework is easy">Easy</input>
-                        <input type = "checkbox" id = "hw2" name="tag" value="Homework is hard">Hard</input>
-                        <input type = "checkbox" id = "hw3" name="tag" value="Lots of homework">Lots of homework</input>
-                        <input type = "checkbox" id = "hw4" name="tag" value="Not a lot of homework">Not a lot of homework</input>
+                        <div class="checkin"><input type = "checkbox" id = "hw1" name="tag" value="Homework is easy">Easy</input></div>
+                        <div class="checkin"><input type = "checkbox" id = "hw2" name="tag" value="Homework is hard">Hard</input></div>
+                        <div class="checkin"><input type = "checkbox" id = "hw3" name="tag" value="Lots of homework">Lots of homework</input></div>
+                        <div class="checkin"><input type = "checkbox" id = "hw4" name="tag" value="Not a lot of homework">Not a lot of homework</input></div>
                     </td>
                 </tr>
                 <tr>
                     <td><label id="test">Exams: </label></td>
                     <td>
-                        <input type = "checkbox" id = "test1" name="tag" value="Tests are easy">Easy</input>
-                        <input type = "checkbox" id = "test2" name="tag" value="Tests are hard">Hard</input>
-                        <input type = "checkbox" id = "test4" name="tag" value="Frequent exams">Frequent</input>
-                        <input type = "checkbox" id = "test3" name="tag" value="Pop quizzes">Pop quizzes</input>
-                        <input type = "checkbox" id = "test4" name="tag" value="No final exam">No final exam</input>
+                        <div class="checkin"><input type = "checkbox" id = "test1" name="tag" value="Tests are easy">Easy</input></div>
+                        <div class="checkin"><input type = "checkbox" id = "test2" name="tag" value="Tests are hard">Hard</input></div>
+                        <div class="checkin"><input type = "checkbox" id = "test4" name="tag" value="Frequent exams">Frequent</input></div>
+                        <div class="checkin"><input type = "checkbox" id = "test3" name="tag" value="Pop quizzes">Pop quizzes</input></div>
+                        <div class="checkin"><input type = "checkbox" id = "test4" name="tag" value="No final exam">No final exam</input></div>                        
                     </td>
                 </tr>
                 <tr>
                     <td><label id="lecture">Lectures: </label></td>
                     <td>
-                        <input type = "checkbox" id = "lectures1" name="tag" value="Lectures are boring">Boring</input>
-                        <input type = "checkbox" id = "lectures2" name="tag" value="Lectures are interesting">Interesting</input>
-                        <input type = "checkbox" id = "lectures3" name="tag" value="Lectures are long">Long</input>
-                        <input type = "checkbox" id = "lectures4" name="tag" value="Lectures are short">Short</input>
-                        <input type = "checkbox" id = "lectures5" name="tag" value="Lots of note-taking">Lots of note-taking</input>
-                        <input type = "checkbox" id = "lectures6" name="tag" value="Laptops allowed">Laptops allowed</input>
-                        <input type = "checkbox" id = "lectures7" name="tag" value="Attendance matters">Attendance matters</input>
+                        <div class="checkin"><input type = "checkbox" id = "lectures1" name="tag" value="Lectures are boring">Boring</input></div>
+                        <div class="checkin"><input type = "checkbox" id = "lectures2" name="tag" value="Lectures are interesting">Interesting</input></div>
+                        <div class="checkin"><input type = "checkbox" id = "lectures3" name="tag" value="Lectures are long">Long</input></div>
+                        <div class="checkin"><input type = "checkbox" id = "lectures4" name="tag" value="Lectures are short">Short</input></div>
+                        <div class="checkin"><input type = "checkbox" id = "lectures5" name="tag" value="Lots of note-taking">Lots of note-taking</input></div>
+                        <div class="checkin"><input type = "checkbox" id = "lectures6" name="tag" value="Laptops allowed">Laptops allowed</input></div>
+                        <div class="checkin"><input type = "checkbox" id = "lectures7" name="tag" value="Attendance matters">Attendance matters</input></div>
                     </td>
                 </tr>
                 <tr>
                     <td><label id="professor-tag">Professor:</label></td>
                     <td>
-                        <input type = "checkbox" id = "professor1" name="tag" value="Professor is interesing">Interesting</input>
-                        <input type = "checkbox" id = "professor2" name="tag" value="Professor is knowledgeable">Knowledgeable</input>
-                        <input type = "checkbox" id = "professor3" name="tag" value="Professor is boring">Boring</input>
-                        <input type = "checkbox" id = "professor4" name="tag" value="Professor is harsh">Harsh</input>
-                        <input type = "checkbox" id = "professor5" name="tag" value="Professor is an easy grader">Easy grader</input>
-                        <input type = "checkbox" id = "professor6" name="tag" value="Professor is caring">Caring</input>
-                        <input type = "checkbox" id = "professor7" name="tag" value="Professor is accessible">Accessible</input>
+                        <div class="checkin"><input type = "checkbox" id = "professor1" name="tag" value="Professor is interesing">Interesting</input></div>
+                        <div class="checkin"><input type = "checkbox" id = "professor2" name="tag" value="Professor is knowledgeable">Knowledgeable</input></div>
+                        <div class="checkin"><input type = "checkbox" id = "professor3" name="tag" value="Professor is boring">Boring</input></div>
+                        <div class="checkin"><input type = "checkbox" id = "professor4" name="tag" value="Professor is harsh">Harsh</input></div>
+                        <div class="checkin"><input type = "checkbox" id = "professor5" name="tag" value="Professor is an easy grader">Easy grader</input></div>
+                        <div class="checkin"><input type = "checkbox" id = "professor6" name="tag" value="Professor is caring">Caring</input></div>
+                        <div class="checkin"><input type = "checkbox" id = "professor7" name="tag" value="Professor is accessible">Accessible</input></div>
                     </td>
                 </tr>
                 <tr>
                     <td><label id="other">Other:</label></td>
                     <td>
-                        <input type = "checkbox" id = "other1" name="tag" value="Class participation matters">Participation matters</input>
-                        <input type = "checkbox" id = "other2" name="tag" value="Labs">Labs</input>
-                        <input type = "checkbox" id = "other3" name="tag" value="Group Projects">Group Projects</input>
+                        <div class="checkin"><input type = "checkbox" id = "other1" name="tag" value="Class participation matters">Participation matters</input></div>
+                        <div class="checkin"><input type = "checkbox" id = "other2" name="tag" value="Labs">Labs</input></div>
+                        <div class="checkin"><input type = "checkbox" id = "other3" name="tag" value="Group Projects">Group Projects</input></div>
                     </td>
                 </tr>
             </tbody>
