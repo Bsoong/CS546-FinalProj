@@ -62,7 +62,7 @@
     </table>
     {{/if}}
   </div>
-  <div class="comments">
+  <div class="comments-profile">
     <h3>My Comments</h3>
     {{#if nocomments}}
     <p>No comments</p>
@@ -73,7 +73,7 @@
                 <th>Date Posted</th>
                 <th>Course Code</th>
                 <th>Comment</th>
-                <th colspan ="2">Options</th>
+                <th>Options</th>
             </tr>
         </thead>
         {{#each comments}}
@@ -88,13 +88,6 @@
                     <button type="submit" name="deleteComment" value="delete">Delete</button>
                   </form>
                 </td>
-                <td>
-                  <form method="POST" action="/review/edit-comment/{{this._id}}" class="option">
-                    {{!-- <input type="text" hidden name="code" value="{{this.courseCode}}"> --}}
-                    <button type="submit" name="editComment" value="edit">Edit</button>
-                  </form>
-                </td>
-                {{!-- <td><a href="">Delete</a> | <a href="">Edit</a></td> --}}
             </tr>
         </tbody>
         {{/each}}

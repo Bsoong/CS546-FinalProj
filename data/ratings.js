@@ -24,7 +24,7 @@ module.exports = {
         if(tags===undefined){
             tags=[];
         } else {
-            if(typeof(tags)!="array" && typeof(tags)!="object"){
+            if(!(Array.isArray(tags))){
                 throw "tags parameter is invalid";
             }
         }
@@ -122,7 +122,7 @@ module.exports = {
         }
         const updateInfo = await ratingCollection.updateOne({_id: ObjectId(id)}, {$set: {professor: newProfessor}});
         if (updateInfo.modifiedCount === 0) {
-            throw "could not update rating successfully";
+            throw "could not update professor successfully";
         }    
         return await this.get(id);
     },
@@ -159,7 +159,7 @@ module.exports = {
         if(newTags===undefined){
             newTags=[];
         } else {
-            if(typeof(newTags)!="array" && typeof(newTags)!="object"){
+            if(!(Array.isArray(newTags))){
                 throw "tags parameter is invalid";
             }
         }
@@ -170,7 +170,7 @@ module.exports = {
         }
         const updateInfo = await ratingCollection.updateOne({_id: ObjectId(id)}, {$set: {tags: newTags}});
         if (updateInfo.modifiedCount === 0) {
-            throw "could not update rating successfully";
+            throw "could not update tags successfully";
         }    
         return await this.get(id);
     },
@@ -189,7 +189,7 @@ module.exports = {
         }
         const updateInfo = await ratingCollection.updateOne({_id: ObjectId(id)}, {$set: {review: newReview}});
         if (updateInfo.modifiedCount === 0) {
-            throw "could not update rating successfully";
+            throw "could not update review successfully";
         }    
         return await this.get(id);
     },
