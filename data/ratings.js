@@ -89,21 +89,20 @@ module.exports = {
     // },
 
   //  RecentRating
-    async recentRating() {
-      const ratingCollection = await ratings();
-      const all = await ratingCollection.find({}).toArray();
-      var recentRating = array.sort(function(a,b){return a.getTime() - b.getTime()});
-      return recentRating[0];
-    },
+    // async recentRating() {
+    //   const ratingCollection = await ratings();
+    //   const all = await ratingCollection.find({}).toArray();
+    //   var recentRating = all.sort(function(a,b){return a.getTime() - b.getTime()});
+    //   return recentRating[0];
+    // },
 
-  //  HighestRating
+   //HighestRating
     async highestRating(){
         const ratingCollection = await ratings();
         const all = await ratingCollection.find({}).toArray();
         var bestRatings = all.sort();
-        return bestRatings[bestRatings.length-1];
+        return bestRatings[0];
     },
-
 
     async remove(id) {
         if(id===undefined || typeof(id)!="string") {
@@ -155,12 +154,6 @@ module.exports = {
         }
         return await this.get(id);
     },
-
-    // async highestRating(){
-    //     const allRatings = getAll();
-    //     var bestRatings = allRatings.sort((a,b) => b-a).slice(0,5);
-    //     return bestRatings; //array of the top 5 best ratings
-    // },
 
     async editTags(id, newTags){
         if(id===undefined || typeof(id)!="string") {
