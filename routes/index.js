@@ -57,33 +57,22 @@ const constructorMethod = app => {
   });
 };
 
-router.get("/",(req, res) => {
-  //const topratings = ratingData.highestRating(); is this where I would put it?
-  //console.log(topratings);
+router.get("/", async(req, res) => {
   if(xss(req.session.authent)) {
-    res.render("templates/index", { verified: true, title: "RateMyCourse" });
-  } else {
-    res.render("templates/index", {
-      verified: false, title: "RateMyCourse"
-    });
+    try{
+      const ra = await ratingData.highestRating();
+      //const re = await ratingData.recentRating();
+      res.render("templates/index", {verified: true, title: "RateMyCourse", ratings: ra});
+    } catch(e) {
+      res.status(400);
+    }
+  }
+  else{
+    const ra = await ratingData.highestRating();
+    //const re = await ratingData.recentRating();
+    res.render("templates/index", { verified: false, title: "RateMyCourse", ratings: ra});
   }
 });
-//SAME AS ABOVE BUT MODIFIED
-// router.get("/",(req, res) => {
-//   if(xss(req.session.authent)) {
-//     try{
-//       const ra = await ratingData.highestRating();
-//       console.log(ra);
-//       res.render("templates/index", {verified: true, title: "RateMyCourse"});
-//       res.render("templates/partial/reviewPageTablepartial", {ratings: ra});
-//     } catch(e) {
-//       res.render("templates/index", {verified: true, title: "RateMyCourse"});
-//     }
-//   }
-//   else{
-//     res.render("templates/index", { verified: false, title: "RateMyCourse" });
-//   }
-// });
 
 
 
