@@ -110,7 +110,6 @@ module.exports = {
     async highestRating(){
         const ratingCollection = await ratings();
         const all = await ratingCollection.find({}).toArray();
-        console.log(all);
         var bestRatings = all.sort(function(a,b) {
           return a.rating < b.rating ? 1 : -1;
         });
