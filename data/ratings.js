@@ -110,8 +110,11 @@ module.exports = {
     async highestRating(){
         const ratingCollection = await ratings();
         const all = await ratingCollection.find({}).toArray();
-        var bestRatings = all.sort();
-        return bestRatings[bestRatings.length-1];
+        console.log(all);
+        var bestRatings = all.sort(function(a,b) {
+          return a.rating < b.rating ? 1 : -1;
+        });
+        return bestRatings[0];
     },
 
     async remove(id) {
