@@ -61,16 +61,16 @@ router.get("/", async(req, res) => {
   if(xss(req.session.authent)) {
     try{
       const ra = await ratingData.highestRating();
-      //const re = await ratingData.recentRating();
-      res.render("templates/index", {verified: true, title: "RateMyCourse", ratings: ra, });
+      const re = await ratingData.recentRating();
+      res.render("templates/index", {verified: true, title: "RateMyCourse", ratings: ra, recent: re });
     } catch(e) {
       res.status(400);
     }
   }
   else{
     const ra = await ratingData.highestRating();
-    //const re = await ratingData.recentRating();
-    res.render("templates/index", { verified: false, title: "RateMyCourse", ratings: ra, });
+    const re = await ratingData.recentRating();
+    res.render("templates/index", { verified: false, title: "RateMyCourse", ratings: ra, recent: re });
   }
 });
 

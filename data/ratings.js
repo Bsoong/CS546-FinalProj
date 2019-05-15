@@ -88,24 +88,24 @@ module.exports = {
     //     return ratings; //returns an array
     // },
 
-    // async recentRating() {
-    //   const ratingCollection = await ratings();
-    //   const all = await ratingCollection.find({}).toArray();
-    //   var recent = all.sort(function(a,b) {
-    //     a = a.datePosted.split('/');
-    //     b = b.datePosted.split('/');
-    //     b.unshift(b.pop());
-    //     a = a.join("");
-    //     b = b.join("");
-    //     //console.log("201959" >"2019512");
-    //
-    //     return Number(a) > Number(b) ? 1 : (Number(a) == Number(b)) ? 0 :-1;
-    //   });
-    //   console.log(recent);
-    //   return recent;
-    //
-    // },
-
+    async recentRating() {
+          const ratingCollection = await ratings();
+          const all = await ratingCollection.find({}).toArray();
+          let recentRating = all.sort(function(a,b){
+            let formatDate = function (date){
+                let d = date.split("/");
+                let newDate = [];
+                newDate.push(d.pop());
+                newDate.push((d[0].length < 2) ? "0"+d[0]:d[0]);
+                newDate.push((d[1].length < 2) ? "0"+d[1]:d[1]);
+                return newDate.join("");
+            }
+              let d1 = formatDate(a.datePosted);
+              let d2 = formatDate(b.datePosted);
+              return((d1 < d2) ? 1:-1);
+          });
+          return recentRating[0];
+        },
    //HighestRating
     async highestRating(){
         const ratingCollection = await ratings();
