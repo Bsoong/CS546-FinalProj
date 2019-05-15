@@ -286,6 +286,29 @@
     "semester": "Spring",
     "classLevel": "Graduate",
     "webSection": true
+  },
+  {
+    "_id": "b14h3714-bed4-6c54-7gg7-asbw372jhsh2",
+    "courseName": "History Of Medicine",
+    "courseCode": "HHS-476",
+    "professors": ["Samantha Muka"],
+    "avgRating": 1,
+    "description": "History of medicine from a European and modern American view.",
+    "credits": 3,
+    "semester": "Spring",
+    "classLevel": "Graduate",
+    "webSection": false
+  },
+  {
+    "_id": "b14hs534-bed4-6c54-7gg7-asbw372jhsh2",
+    "courseName": "Intermediate Statistics",
+    "courseCode": "MA-331",
+    "professors": ["William Aeberhard"],
+    "avgRating": 1,
+    "description": "An intermediate statistics course for computer science, focusing on R and R studio",
+    "credits": 3,
+    "semester": "Spring and Fall",
+    "classLevel": "Graduate",
+    "webSection": false
   }
-
 ]

@@ -11,7 +11,7 @@ const ratingList = require("../data/ratings.json");
 
 const main = async () => {
     const d = await connection();
-    
+
     d.dropDatabase();
 
     const db = await connection();
@@ -77,15 +77,15 @@ const main = async () => {
                 newAverage = parseFloat(newAverage);
             }
             await courseData.updateRating(courses[c]._id.toString(), newAverage);
-        }   
+        }
     }
 
     console.log("Done seeding database");
 
     db.serverConfig.close();
-  
+
 };
-  
+
 main().catch(error => {
     console.log(error);
 });

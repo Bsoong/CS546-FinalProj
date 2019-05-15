@@ -1,14 +1,14 @@
 [
     {
         "courseCode": "CS-115",
-        "datePosted": "5/12/2019",
+        "datePosted": "4/12/2019",
         "tags": [],
         "rating": 5,
         "review":"This was a great class, I really began loving programming after taking this course."
     },
     {
         "courseCode": "CS-115",
-        "datePosted": "5/12/2019",
+        "datePosted": "3/12/2019",
         "tags": [],
         "rating": 4,
         "review":"Really enjoyed this class."
@@ -151,6 +151,21 @@
         "datePosted": "5/12/2018",
         "tags": [],
         "rating": 3,
-        "review":"Don't know why we have to take this class but at least it's easy."   
+        "review":"Don't know why we have to take this class but at least it's easy."
+    },
+    {
+        "courseCode": "CS-546",
+        "datePosted": "5/11/2018",
+        "tags": [],
+        "rating": 5,
+        "review":"Favorite Class!"
+    },
+    {
+        "courseCode": "CS-546",
+        "datePosted": "5/10/2018",
+        "tags": [],
+        "rating": 5,
+        "review":"Awesome lectures!"
     }
+
 ]

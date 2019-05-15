@@ -88,12 +88,22 @@ module.exports = {
     //     return ratings; //returns an array
     // },
 
-  //  RecentRating
     // async recentRating() {
     //   const ratingCollection = await ratings();
     //   const all = await ratingCollection.find({}).toArray();
-    //   var recentRating = all.sort(function(a,b){return a.getTime() - b.getTime()});
-    //   return recentRating[0];
+    //   var recent = all.sort(function(a,b) {
+    //     a = a.datePosted.split('/');
+    //     b = b.datePosted.split('/');
+    //     b.unshift(b.pop());
+    //     a = a.join("");
+    //     b = b.join("");
+    //     //console.log("201959" >"2019512");
+    //
+    //     return Number(a) > Number(b) ? 1 : (Number(a) == Number(b)) ? 0 :-1;
+    //   });
+    //   console.log(recent);
+    //   return recent;
+    //
     // },
 
    //HighestRating
@@ -101,7 +111,7 @@ module.exports = {
         const ratingCollection = await ratings();
         const all = await ratingCollection.find({}).toArray();
         var bestRatings = all.sort();
-        return bestRatings[0];
+        return bestRatings[bestRatings.length-1];
     },
 
     async remove(id) {
@@ -115,14 +125,14 @@ module.exports = {
           throw `Could not delete rating with id of ${id}`;
         }
     },
-    
+
     async editProfessor(id, newProfessor){
         if(id===undefined || typeof(id)!="string") {
             throw "id is not a string";
-        }   
+        }
         if(newProfessor===undefined || typeof(newProfessor)!="string"){
             throw "professor parameter is invalid";
-        } 
+        }
         const ratingCollection = await ratings();
         const rate = await ratingCollection.findOne({ _id: ObjectId(id) });
         if(rate===null){
@@ -131,7 +141,7 @@ module.exports = {
         const updateInfo = await ratingCollection.updateOne({_id: ObjectId(id)}, {$set: {professor: newProfessor}});
         if (updateInfo.modifiedCount === 0) {
             throw "could not update professor successfully";
-        }    
+        }
         return await this.get(id);
     },
 

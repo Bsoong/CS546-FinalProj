@@ -27,7 +27,7 @@ const constructorMethod = app => {
     let route = req.originalUrl;
     let authent = (req.session.authent)? "(Authenticated User)" : "(Non-authenticated User)";
     if(!(route.includes(".css"))&&!(route.includes(".js"))&&!(route.includes(".ico"))){
-      console.log(`${date} ${method} ${route} ${authent}`);      
+      console.log(`${date} ${method} ${route} ${authent}`);
     }
     next();
   });
@@ -62,7 +62,7 @@ router.get("/", async(req, res) => {
     try{
       const ra = await ratingData.highestRating();
       //const re = await ratingData.recentRating();
-      res.render("templates/index", {verified: true, title: "RateMyCourse", ratings: ra});
+      res.render("templates/index", {verified: true, title: "RateMyCourse", ratings: ra, });
     } catch(e) {
       res.status(400);
     }
@@ -70,7 +70,7 @@ router.get("/", async(req, res) => {
   else{
     const ra = await ratingData.highestRating();
     //const re = await ratingData.recentRating();
-    res.render("templates/index", { verified: false, title: "RateMyCourse", ratings: ra});
+    res.render("templates/index", { verified: false, title: "RateMyCourse", ratings: ra, });
   }
 });
 
