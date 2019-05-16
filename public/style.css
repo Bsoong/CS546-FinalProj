@@ -131,10 +131,6 @@ form.option {
   display: inline-block;
 }
 
-/* .indivReview {
-
-} */
-
 #ratings-form {
   display: block;
   margin-left: auto;
@@ -202,9 +198,6 @@ textarea#commentLabel {
   display:inline-block;
 }
 
-/* div.comments {
-  padding-top: 1rem;
-} */
 
 div.comments > p {
   border-top: black 1px dotted;
@@ -232,4 +225,29 @@ div.comment-box button {
 
 div.comment-box {
   margin-top: 1rem;
+}
+
+div.col {
+  background-color: white;
+  border-radius: 10px;
+  display: inline-block;
+  border: black solid;
+  width: 300px;
+  padding: 20px;
+}
+
+div.col p{
+  margin:0
+}
+
+div.ratedrow {
+  width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 20px;
+}
+
+div.empty {
+  width: 70px;
+  display: inline-block;
 }
