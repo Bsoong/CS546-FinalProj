@@ -164,7 +164,11 @@ router.post("/delete/:id", async(req,res)=>{
             } else {
                 avg = -1;
                 await courseData.updateRating(course._id.toString(), avg);                
-            }            
+            }
+            let comments = toDelete.comments;
+            for(let k = 0; k<comments.length; k++){
+                await userData.deleteComment(comments[k].authorID.toString(), comments[k]._id.toString())
+            }
             // res.redirect("/myProfile");
             res.render("templates/reviewPosted", {verified: true, title: "RMC | Review Deleted", deleted: true});
         } else {
